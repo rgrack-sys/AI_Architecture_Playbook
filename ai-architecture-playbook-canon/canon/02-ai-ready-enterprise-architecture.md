@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.1  
+**Status:** Working Canon v0.2  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -31,7 +31,52 @@ The mathematics of statistics, machine learning, and AI can be extraordinarily p
 
 ---
 
-## 2. The Evidence-First Gate
+## 2. Process-first AI architecture
+
+A core architectural discipline is to begin with a real business problem rather than with a technology choice.
+
+### Canonical principle
+
+> **Always tie your architecture to a real business problem.**
+
+AI initiatives should be grounded in a concrete business problem, decision, outcome, risk, or operating need. Architecture that begins with a model, platform, agent framework, or tool and only later searches for a use case risks producing technology demonstrations rather than durable operating systems.
+
+A useful sequence is:
+
+**Business problem -> desired outcome -> process -> decisions -> evidence -> controls -> architecture -> technology**
+
+not:
+
+**Technology -> architecture -> search for a use case.**
+
+### Process engineering thesis
+
+> **The most important engineering in the AI world is process engineering. Yet most organizations are set up to build a process around a set of technology decisions.**
+
+The architectural implication is not that technology can never lead discovery. New model or platform capabilities can reveal previously impossible workflows. But once an AI capability is being operationalized, production architecture should be process-led.
+
+The process should establish:
+
+- what business outcome is being pursued,
+- what decisions are being made,
+- what evidence is required,
+- which humans or systems participate,
+- where controls and handoffs occur,
+- how exceptions are handled,
+- where accountability resides,
+- and what success or failure looks like.
+
+Only then should the architecture determine the required models, agents, tools, orchestration, data services, and platforms.
+
+### Working distinction
+
+> **Capability discovery can be technology-led. Production architecture should be process-led.**
+
+This preserves room for experimentation while preventing production systems from becoming accidental consequences of a technology stack.
+
+---
+
+## 3. The Evidence-First Gate
 
 ReAct is commonly described as a loop involving reasoning, action, observation, and further reasoning.
 
@@ -59,7 +104,7 @@ This is stronger than:
 
 ---
 
-## 3. Evidence requirements should be risk-aware
+## 4. Evidence requirements should be risk-aware
 
 Evidence acquisition becomes increasingly important when the subject is:
 
@@ -82,7 +127,7 @@ The primary obligation is to establish the **current authoritative guidance**. H
 
 ---
 
-## 4. AI-ready information architecture
+## 5. AI-ready information architecture
 
 Do not begin an enterprise AI data strategy with:
 
@@ -110,7 +155,7 @@ Useful metadata includes:
 
 ---
 
-## 5. Three architectural layers
+## 6. Three architectural layers
 
 A useful separation emerged from stress-testing the initial concept.
 
@@ -163,7 +208,7 @@ It is optimized for the immediate decision rather than for representing everythi
 
 ---
 
-## 6. Governed Knowledge Architecture
+## 7. Governed Knowledge Architecture
 
 A central principle from the conversation:
 
@@ -186,7 +231,7 @@ It can become a **policy enforcement and abstraction boundary** between enterpri
 
 ---
 
-## 7. Continuous Knowledge Synchronization
+## 8. Continuous Knowledge Synchronization
 
 Periodic summarization alone is insufficient because different information changes at different rates.
 
@@ -218,7 +263,7 @@ This avoids a dangerous architecture in which the system of record is current wh
 
 ---
 
-## 8. Volatility should be first-class metadata
+## 9. Volatility should be first-class metadata
 
 Not all knowledge deserves the same refresh policy.
 
@@ -247,7 +292,7 @@ This scale is provisional and must be stress-tested before becoming mature canon
 
 ---
 
-## 9. Where Customer Data Platforms fit
+## 10. Where Customer Data Platforms fit
 
 A CDP is valuable because it unifies customer information and identity across systems.
 
@@ -276,7 +321,7 @@ The governed knowledge architecture may additionally need:
 
 ---
 
-## 10. Research loop as an architectural capability
+## 11. Research loop as an architectural capability
 
 Agents should not blindly rely on their finite pretrained knowledge.
 
@@ -357,4 +402,3 @@ A working formulation:
 > **Traditional architecture retrieves data. AI-ready architecture produces governable knowledge and current evidence for reasoning.**
 
 This statement is deliberately provisional. It should be challenged before being promoted to mature canon.
-
