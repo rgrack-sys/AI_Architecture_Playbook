@@ -1,0 +1,36 @@
+### 1 — Marketing / high level: Why?
+
+An agentic harness turns AI from something that simply answers questions into something that can reliably complete work.
+
+It gives an AI agent the tools, context, permissions, and guardrails needed to pursue a goal—such as resolving a support case, reviewing a contract, or fixing software—while keeping people in control.
+
+### 2 — Business level: Why should a company care?
+
+AI models are powerful, but a model alone is not an enterprise-ready worker. It does not inherently understand company systems, retain task state, follow approval policies, recover from failures, or produce an audit trail.
+
+An agentic harness supplies that operational layer. It helps companies:
+
+- Connect agents safely to internal systems and data.
+- Standardize how agents plan, act, and escalate.
+- Control permissions, costs, and risk.
+- Monitor quality and measure business outcomes.
+- Swap or upgrade models without rebuilding the entire workflow.
+- Move successful AI experiments into dependable production services.
+
+The model provides intelligence; the harness makes that intelligence governable and useful.
+
+### 3 — Technical level: How does it work?
+
+An agentic harness is the runtime surrounding an AI model. It typically runs a controlled loop:
+
+1. **Receive a goal** and relevant business context.
+2. **Ask the model to decide the next action.**
+3. **Validate that action** against permissions, policies, and schemas.
+4. **Execute an approved tool**, such as querying a database, searching documents, calling an API, or editing a file.
+5. **Return the result to the model** and update task state.
+6. **Repeat** until the goal is completed, the agent needs human approval, or a limit is reached.
+7. **Record the process** for observability, evaluation, and audit.
+
+Around this loop, the harness usually provides tool integration, memory and context management, identity and access control, sandboxing, human approvals, retries, time and cost limits, tracing, testing, and evaluation.
+
+In one sentence: **an agentic harness is the control plane and execution environment that makes an AI model capable of taking safe, observable, multi-step action.**
