@@ -34,6 +34,11 @@ Future conversations should **refine the canon rather than reinvent it**.
 2. `canon/02-ai-ready-enterprise-architecture.md`
    - Data quality defines reasoning quality
    - Process-first AI architecture
+   - Executive shorthand vs. practitioner methodology
+   - Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn
+   - Current-state process truth vs. future-state process design
+   - Evidence vs. authority vs. control
+   - Architecture capability requirements before technology selection
    - Evidence-First Gate
    - AI-ready information architecture
    - Governed knowledge architecture
@@ -64,5 +69,7 @@ Future conversations should **refine the canon rather than reinvent it**.
 > Always tie your architecture to a real business problem.
 
 > The most important engineering in the AI world is process engineering. Yet most organizations are set up to build a process around a set of technology decisions.
+
+> AI architecture is derived through process engineering. The architect first understands and redesigns the work, decisions, evidence, authority, controls, state, and outcomes; the required AI architecture is then derived from those requirements.
 
 > AI architecture is not traditional architecture plus a model. It is an architecture for governed reasoning, evidence, delegation, and controlled action.
