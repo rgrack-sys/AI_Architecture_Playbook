@@ -1,6 +1,6 @@
 # AI Architecture Design Methodology — Curriculum and Syllabus
 
-**Status:** Draft v0.1 — curriculum working draft, not canon  
+**Status:** Draft v0.2 — curriculum working draft, aligned to Canon 02 v0.3; curriculum itself is not canon  
 **Purpose:** Train enterprise architects to redesign business processes for an AI-enabled operating model and then select architecture patterns and tools that implement that design.  
 **Audience:** Enterprise architects, solution architects, business architects, senior technologists, and architecture leaders who may already know the technologies but need to explain what they are, why they are needed, where they belong, and when they should not be used.
 
@@ -12,13 +12,19 @@ I do not want this course to start with models, agents, RAG, vector databases, o
 
 Those are implementation choices.
 
-The course starts with the business problem and teaches the architect to work forward:
+The course starts with the business problem and teaches the architect to work toward the technology.
+
+At the executive level, the shorthand remains:
 
 **Business problem -> Outcome -> Process -> Decisions -> Evidence -> Controls -> Architecture -> Technology**
 
-The order matters.
+The direction matters, but this is not a literal waterfall.
 
-An architect should be able to explain every technology choice by tracing it back to a process requirement, a decision, an evidence requirement, a control, or an operating constraint.
+The practitioner methodology underneath it is:
+
+**Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn**
+
+The architect should be able to explain every technology choice by tracing it back to a process, evidence, authority, control, state, outcome, or capability requirement.
 
 The methodology should also teach the inverse test:
 
@@ -34,60 +40,132 @@ At the end of the baseline course, an architect should be able to:
 
 1. Explain the AI fundamentals a customer needs in order to make architecture decisions.
 2. Define a business problem and measurable outcome before discussing technology.
-3. Discover and map the current business process from interviews, transcripts, whiteboards, documents, screen recordings, and system event data.
-4. Separate activities from decisions and identify the evidence required for each decision.
+3. Establish an evidence-backed current-state process model from interviews, transcripts, whiteboards, documents, screen recordings, and system event data.
+4. Decompose the work into activities, decisions, actions, waits, state changes, boundaries, exceptions, handoffs, and outcomes, and identify where reasoning actually matters.
 5. Identify automation boundaries and engineer the handoff and re-entry state explicitly.
-6. Determine when model knowledge is sufficient and when authoritative external evidence is required.
-7. Design the information architecture needed to provide current, governed evidence for reasoning.
-8. Separate model, agent, runtime, harness, tools, state, trigger, and deterministic software responsibilities.
-9. Design permissions, controls, human approval, delegation, and domain execution boundaries.
-10. Define evaluation, observability, provenance, and closed-loop outcome feedback before production.
-11. Translate architecture requirements into capability requirements and only then evaluate specific products.
-12. Defend the design to a CIO, CDO, security leader, business owner, regulator, engineering team, and skeptical architect.
+6. Distinguish evidence, authority, and control for consequential decisions and actions.
+7. Determine when model knowledge is sufficient and when authoritative external evidence is required.
+8. Redesign the future-state operating process before deriving the AI architecture.
+9. Design the information architecture needed to provide current, governed evidence for reasoning.
+10. Separate model, agent, runtime, harness, tools, state, trigger, and deterministic software responsibilities.
+11. Define evaluation, observability, provenance, and closed-loop outcome feedback before production.
+12. Translate architecture into capability requirements and only then evaluate specific products.
+13. Defend the design to a CIO, CDO, security leader, business owner, regulator, engineering team, and skeptical architect.
 
 ---
 
 # The baseline methodology
 
-The course will teach one repeatable design sequence.
+The course will teach one repeatable methodology with two levels of expression.
 
-## Step 1 — Business Problem
-What problem are we actually trying to solve?
+### Executive shorthand
+
+**Business problem -> Outcome -> Process -> Decisions -> Evidence -> Controls -> Architecture -> Technology**
+
+This establishes direction: start with the business and work toward the technology.
+
+It is not a literal waterfall.
+
+### Practitioner methodology
+
+> **Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn**
+
+## Pass 1 — Frame
+
+Define the business problem, desired outcome, beneficiary, unit of work, scope, constraints, measures of success, and unacceptable outcomes.
 
 Do not accept "we need an agent" as a problem statement.
 
-## Step 2 — Outcome
-What must be different when the solution works?
+## Pass 2 — Observe
 
-Define business, operational, risk, customer, and quality measures.
+Establish how the work actually happens today.
 
-## Step 3 — Process
-How does the work actually happen today?
+Distinguish:
+- the process people describe,
+- the process documents prescribe,
+- and the process observed behavior and systems show actually occurred.
 
-Map the current state before designing the AI-enabled state.
+Contradictions between these sources are findings to validate, not noise to hide.
 
-## Step 4 — Decisions
-Where are choices, judgments, classifications, approvals, prioritizations, and exceptions occurring?
+## Pass 3 — Decompose
 
-A process step and a decision are not the same thing.
+Break the process into:
+- activities,
+- decisions,
+- actions,
+- transformations,
+- waits,
+- state changes,
+- boundaries,
+- exceptions,
+- loops,
+- escalations,
+- handoffs,
+- and outcomes.
 
-## Step 5 — Evidence
-What information should each decision rely on?
+Then determine which work is deterministic, which requires probabilistic reasoning, which remains human judgment, and which depends on external or physical action.
 
-What is authoritative? How current must it be? What is its provenance? What happens if it is stale or wrong?
+## Pass 4 — Govern
 
-## Step 6 — Controls
-What permissions, policies, regulations, approval gates, safety limits, separation-of-duty requirements, and stop conditions govern the process?
+For each consequential decision or action answer three separate questions:
 
-## Step 7 — Architecture
-Now design the required reasoning, deterministic execution, knowledge, context, runtime, harness, state, integration, delegation, and observability capabilities.
+**Evidence — What must be known?**  
+**Authority — Who or what is allowed to decide or act?**  
+**Control — Under what conditions may that authority be exercised?**
 
-## Step 8 — Technology
+Evidence, authority, and control are related but not interchangeable.
+
+The architecture question becomes:
+
+> **Given this state, with this evidence, under this authority, may this system perform this action?**
+
+## Pass 5 — Redesign
+
+Design the future-state operating process only after the current state is understood.
+
+Determine what work disappears, what becomes deterministic, where reasoning is justified, where humans remain, what can be delegated, where the process waits, what state must survive, and how the process re-enters after external work.
+
+## Pass 6 — Architect
+
+Derive the technical responsibilities required to execute the redesigned process:
+- reasoning,
+- deterministic execution,
+- knowledge,
+- context,
+- state,
+- triggers,
+- runtime,
+- harness,
+- identity and permissions,
+- integration,
+- delegation,
+- observability,
+- provenance,
+- and feedback.
+
+## Pass 7 — Specify
+
+Translate the architecture into capability requirements before naming products.
+
+A capability requirement describes what the architecture must do and under what conditions. A product is only one possible implementation.
+
+## Pass 8 — Select
+
 Only now choose models, platforms, data stores, agent frameworks, workflow products, process-mining tools, vector stores, orchestration systems, or cloud services.
 
-The important distinction remains:
+## Pass 9 — Prove
+
+Evaluate whether the design works across business outcomes, process execution, reasoning, evidence, authority, controls, state transitions, handoffs, failure behavior, latency, cost, and residual risk.
+
+## Pass 10 — Learn
+
+Observe outcomes, update state and knowledge, compare results to the intended outcome, and refine the process, controls, evidence strategy, architecture, or technology as needed.
+
+The important distinctions remain:
 
 > Capability discovery can be technology-led. Production architecture should be process-led.
+
+> Architecture defines the required capabilities. Technology is selected to implement them.
 
 ---
 
@@ -156,7 +234,9 @@ This establishes the operating principle for the entire course.
 ### What I teach
 
 - Always tie the architecture to a real business problem.
-- Business problem -> outcome -> process -> decisions -> evidence -> controls -> architecture -> technology.
+- Business problem -> outcome -> process -> decisions -> evidence -> controls -> architecture -> technology is the executive shorthand.
+- Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn is the practitioner methodology.
+- The methodology is iterative, not a literal waterfall.
 - Technology-led experimentation is legitimate.
 - Technology-led production architecture is dangerous.
 - AI can make a bad process operate faster.
@@ -186,12 +266,11 @@ Give the class a technology-first request:
 > "We need an agent that uses RAG on our policy documents."
 
 Force the team to work backward until they can state:
-- the business problem,
-- desired outcome,
-- process,
-- decisions,
-- evidence,
-- controls.
+- the business problem and desired outcome,
+- the observed current-state process,
+- the work and decision decomposition,
+- the evidence, authority, and controls,
+- and the capability requirements implied by the redesigned process.
 
 Then decide whether an agent and RAG are still required.
 
@@ -277,7 +356,15 @@ The architect should understand the difference between:
 - task,
 - decision.
 
-#### E. Build the future-state map only after the current state is understood
+#### E. Separate current-state truth from future-state design
+
+Do not treat "process" as one design step.
+
+The current-state model establishes how work actually happens.
+
+The future-state model is a separate redesign pass that determines how the process should operate when deterministic automation, machine reasoning, human judgment, governed delegation, and real-world boundaries are deliberately recomposed.
+
+Build the future-state map only after the current state is understood.
 
 Ask:
 - What work disappears?
@@ -373,11 +460,11 @@ The result can expose:
 - conformance problems,
 - bottlenecks.
 
-### Architectural principle introduced by this module
+### Canonical principle used by this module
 
 > **Process maps used for AI architecture should be evidence-backed models of work, not workshop artwork.**
 
-This is a candidate principle and should be stress-tested before promotion into canon.
+This principle is now part of Canon 02.
 
 ### Public tools to demonstrate
 
@@ -407,15 +494,23 @@ Have them produce:
 
 ---
 
-## Module 4 — Decisions: Find the Places Where Reasoning Actually Matters
+## Module 4 — Decompose the Work: Find the Places Where Reasoning Actually Matters
 
 ### Topic description
 
-Not every process step needs AI.
+Not every process step needs AI, and decisions are not the only places architecture matters.
 
-The architect must identify the places where the process contains uncertainty, judgment, classification, prioritization, interpretation, prediction, recommendation, approval, or exception handling.
+The architect must decompose the process into the kinds of work that affect execution: activities, decisions, actions, transformations, waits, state changes, boundaries, exceptions, loops, escalations, handoffs, and outcomes.
+
+Then identify the places where the process contains uncertainty, judgment, classification, prioritization, interpretation, prediction, recommendation, approval, or exception handling.
 
 ### What I teach
+
+First classify the work as:
+- deterministic execution,
+- probabilistic reasoning,
+- human judgment,
+- external or physical action.
 
 For every material decision capture:
 - decision owner,
@@ -451,7 +546,9 @@ DMN provides a useful established method for explicitly modeling business decisi
 
 ### Exercise
 
-Take one process and classify every decision by:
+Take one process and first identify its activities, decisions, actions, waits, state changes, boundaries, exceptions, handoffs, and outcomes.
+
+Then classify every material decision or action by:
 - deterministic vs. probabilistic,
 - low vs. high consequence,
 - static vs. volatile evidence,
@@ -465,6 +562,8 @@ Take one process and classify every decision by:
 ### Topic description
 
 This is where the architecture departs sharply from "the model can probably answer it."
+
+Evidence is not only an input to a decision. It may also authorize an action, establish current state, prove completion, trigger re-entry, or demonstrate that a control was satisfied.
 
 ### What I teach
 
@@ -501,7 +600,7 @@ A more capable model reasoning over stale or ungoverned evidence can produce a m
 
 ### Exercise
 
-For each decision in the process map, build an Evidence Requirement Card:
+For each consequential decision or action in the process map, build an Evidence Requirement Card:
 - evidence needed,
 - source,
 - authority,
@@ -518,7 +617,7 @@ For each decision in the process map, build an Evidence Requirement Card:
 
 ### Topic description
 
-Once we know what evidence the decisions require, we can design how the enterprise makes that evidence available.
+Once we know what evidence consequential decisions and actions require, we can design how the enterprise makes that evidence available.
 
 ### What I teach
 
@@ -621,7 +720,7 @@ Design the handoff and re-entry contract in enough detail that the automated sys
 
 ### Topic description
 
-Only after process, decisions, evidence, controls, and boundaries are known do we introduce the agent architecture.
+Only after the current process has been observed and decomposed, the future state has been redesigned, and evidence, authority, controls, and boundaries are understood do we introduce the agent architecture.
 
 ### What I teach
 
@@ -655,11 +754,22 @@ Make them decompose it into the actual execution and governance responsibilities
 
 ---
 
-## Module 9 — Controls, Risk, and the Harness
+## Module 9 — Evidence, Authority, Controls, Risk, and the Harness
 
 ### Topic description
 
-The harness is where architecture becomes operational governance.
+Governance starts before the harness.
+
+For each consequential decision or action, the architect must distinguish:
+- **Evidence:** what must be known,
+- **Authority:** who or what is allowed to decide or act,
+- **Control:** under what conditions that authority may be exercised.
+
+The harness is one of the primary places those requirements become operational.
+
+The governing architecture question is:
+
+> **Given this state, with this evidence, under this authority, may this system perform this action?**
 
 ### What I teach
 
@@ -684,7 +794,7 @@ A production harness may control:
 
 ### Control design rule
 
-Controls should trace back to:
+Authority and controls should trace back to:
 - decision consequence,
 - data sensitivity,
 - regulatory obligation,
@@ -701,8 +811,10 @@ Use NIST AI RMF / GenAI Profile as a governance reference and established cloud 
 
 ### Exercise
 
-Create a Control Matrix for the target process:
-- risk,
+Create a Governance Matrix for the target process:
+- consequential decision or action,
+- required evidence,
+- authorized actor or system,
 - control,
 - enforcement point,
 - evidence that the control operated,
@@ -761,7 +873,9 @@ Design an enterprise-to-domain delegation:
 
 ### Topic description
 
-We need to know whether the architecture works, not merely whether the model produced a plausible answer.
+We need to prove that the architecture works, not merely that the model produced a plausible answer.
+
+Evaluation is an architectural responsibility because failure can occur in reasoning, evidence, authority, controls, process execution, state transitions, handoffs, or outcomes.
 
 ### What I teach
 
@@ -801,9 +915,23 @@ Evaluate at several levels:
 - policy compliance,
 - audit completeness.
 
-### Closed-loop architecture
+#### System / operating quality
+- state-transition correctness,
+- intervention rate,
+- residual risk,
+- latency,
+- cost,
+- behavior relative to the pre-AI baseline.
 
-**Observe -> Govern -> Reason -> Delegate -> Act -> Observe outcome -> Update knowledge -> Reason again**
+### Prove, then learn
+
+The practitioner methodology does not end at technology selection.
+
+**Prove** tests whether the redesigned process and architecture actually achieve the intended outcome within acceptable risk, cost, and operational limits.
+
+**Learn** treats operational outcomes as new evidence:
+
+**Observe -> Govern -> Reason -> Delegate -> Act -> Observe outcome -> Update knowledge -> Refine**
 
 Observed outcomes do not automatically become trusted knowledge.
 
@@ -819,15 +947,17 @@ Build an Evaluation Plan before selecting the implementation platform.
 
 ### Topic description
 
-Technology comes last, but it still matters.
+Technology selection follows capability specification.
 
-The curriculum needs a repeatable way to evaluate specific tools without allowing the tool to define the architecture.
+The curriculum needs a repeatable way to translate the architecture into capability requirements and then evaluate specific tools without allowing the tool to define the architecture.
 
 ### Tool Placement Framework
 
+Before evaluating products, write the capability requirement without a product name.
+
 For every proposed product, service, model, framework, or platform ask:
 
-1. **What requirement does it satisfy?**
+1. **What capability requirement does it satisfy?**
 2. **Which step in the process does it support?**
 3. **Which decision does it enable?**
 4. **What evidence does it consume or produce?**
@@ -901,18 +1031,19 @@ Produce an architecture from a business process rather than a product list.
 2. Outcome measures.
 3. Current-state process map.
 4. Process discovery source inventory and provenance.
-5. Decision inventory.
-6. Evidence Requirement Cards.
-7. Control Matrix.
-8. Automation Boundary definitions.
-9. Future-state AI-enabled process map.
-10. Knowledge / evidence architecture.
-11. Agent/runtime/harness decomposition where needed.
-12. Delegation contracts where needed.
-13. Evaluation and observability plan.
-14. Technology capability requirements.
-15. Tool mapping and selection rationale.
-16. Executive explanation of why the design exists.
+5. Work decomposition inventory, including decisions, actions, waits, state changes, boundaries, exceptions, handoffs, and outcomes.
+6. Decision inventory where reasoning or judgment occurs.
+7. Evidence Requirement Cards.
+8. Governance Matrix covering evidence, authority, and controls.
+9. Automation Boundary definitions.
+10. Future-state AI-enabled process map.
+11. Knowledge / evidence architecture.
+12. Agent/runtime/harness decomposition where needed.
+13. Delegation contracts where needed.
+14. Evaluation and observability plan.
+15. Technology capability requirements.
+16. Tool mapping and selection rationale.
+17. Executive explanation of why the design exists.
 
 ### Final defense
 
@@ -953,7 +1084,22 @@ The methodology should eventually ship with reusable templates.
 - controls,
 - sources used to validate each claim.
 
-## 3. Decision Inventory
+## 3. Work Decomposition Inventory
+- activities,
+- decisions,
+- actions,
+- transformations,
+- waits,
+- state changes,
+- boundaries,
+- exceptions,
+- loops,
+- escalations,
+- handoffs,
+- outcomes,
+- execution mode.
+
+## 4. Decision Inventory
 - decision,
 - owner,
 - inputs,
@@ -963,7 +1109,7 @@ The methodology should eventually ship with reusable templates.
 - reversibility,
 - execution mode.
 
-## 4. Evidence Requirement Card
+## 5. Evidence Requirement Card
 - decision,
 - evidence,
 - authoritative source,
@@ -973,7 +1119,7 @@ The methodology should eventually ship with reusable templates.
 - permissions,
 - fallback.
 
-## 5. Automation Boundary Contract
+## 6. Automation Boundary Contract
 - trigger,
 - actor,
 - required action,
@@ -982,7 +1128,10 @@ The methodology should eventually ship with reusable templates.
 - latency / escalation,
 - re-entry condition.
 
-## 6. Control Matrix
+## 7. Governance Matrix
+- consequential decision or action,
+- required evidence,
+- authorized actor or system,
 - risk,
 - control,
 - enforcement point,
@@ -990,7 +1139,7 @@ The methodology should eventually ship with reusable templates.
 - audit evidence,
 - failure behavior.
 
-## 7. Delegation Contract
+## 8. Delegation Contract
 - purpose,
 - task,
 - context,
@@ -1002,7 +1151,7 @@ The methodology should eventually ship with reusable templates.
 - expiry,
 - approvals.
 
-## 8. Tool Placement Card
+## 9. Tool Placement Card
 - required capability,
 - process role,
 - decision role,
@@ -1015,7 +1164,7 @@ The methodology should eventually ship with reusable templates.
 - observability,
 - portability.
 
-## 9. Evaluation Plan
+## 10. Evaluation Plan
 - reasoning metrics,
 - process metrics,
 - action metrics,
@@ -1162,33 +1311,46 @@ Most public architecture guidance becomes technical relatively quickly:
 
 Those are important, but this playbook should force one more layer of discipline in front of them.
 
-The differentiating sequence is:
+The executive shorthand remains:
 
-**Process -> Decisions -> Evidence -> Controls -> Architecture**
+**Business problem -> Outcome -> Process -> Decisions -> Evidence -> Controls -> Architecture -> Technology**
 
-Three ideas in the current canon make this especially useful for enterprise architecture:
+The practitioner methodology underneath it is:
 
-1. **Evidence before reasoning.**
-2. **Automation boundaries are explicit state transitions.**
-3. **Governed delegation separates reasoning authority from execution authority.**
+**Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn**
+
+Several ideas in the current canon make this especially useful for enterprise architecture:
+
+1. **Current-state process models should be evidence-backed.**
+2. **Evidence, authority, and control are separate architectural questions.**
+3. **Automation boundaries are explicit state transitions.**
+4. **Architecture defines capabilities before technology is selected.**
+5. **Governed delegation separates reasoning authority from execution authority.**
+6. **Evaluation and operational learning close the loop.**
 
 Combined with process-first architecture, these give us a methodology that can remain tool-neutral while still telling an architect exactly why a specific capability belongs in the design.
 
 ---
 
-# Items to stress-test before promoting the methodology into canon
+# Items to stress-test before promoting the curriculum itself into canon
 
-1. Is the eight-step sequence complete, or does "Actors / Accountability" deserve its own explicit step?
-2. Should controls come before evidence, after evidence, or be treated as cross-cutting throughout?
-3. Should "Evaluation" be an explicit methodology step rather than an architecture concern?
-4. Is "Outcome" singular enough, or should the method explicitly require outcome + measures?
-5. How formal should process notation be for the baseline course?
-6. Should BPMN/DMN be required vocabulary or optional formalization?
-7. Should the Process Discovery Evidence Ladder rank event logs above human context in every domain?
-8. How do we represent processes with weak digital exhaust where the human narrative is the best evidence available?
-9. How should we distinguish "process state" from "agent memory" in the teaching model?
-10. How do we make architecture artifacts traceable all the way from technology choice back to business outcome?
-11. Should Tool Placement become a formal architecture decision record template?
-12. What minimum evaluation artifacts are required before a design is considered production-ready?
+The methodology questions resolved in Canon 02 v0.3 are no longer open curriculum questions:
+- the eight-step sequence is executive shorthand, not the practitioner workflow,
+- evidence, authority, and control are distinct,
+- evaluation is an explicit **Prove** pass,
+- future-state redesign is distinct from current-state observation,
+- capability specification precedes technology selection.
+
+The remaining curriculum questions are:
+
+1. How formal should process notation be for the baseline course?
+2. Should BPMN/DMN be required vocabulary or optional formalization?
+3. Should the Process Discovery Evidence Ladder rank event logs above human context in every domain?
+4. How do we represent processes with weak digital exhaust where the human narrative is the best evidence available?
+5. How should we distinguish "process state" from "agent memory" in the teaching model?
+6. What traceability mechanism best connects technology choices back through capability, architecture, process, and business outcome?
+7. Should Tool Placement become a formal architecture decision record template?
+8. What minimum **Prove** artifacts are required before a design is considered production-ready?
+9. What minimum operational evidence is required before the **Learn** pass is allowed to change process, policy, or knowledge?
 
 These should be challenged before the curriculum itself is labeled canon.
