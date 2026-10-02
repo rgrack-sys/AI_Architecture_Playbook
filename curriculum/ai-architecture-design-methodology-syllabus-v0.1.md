@@ -1,6 +1,6 @@
 # AI Architecture Design Methodology — Curriculum and Syllabus
 
-**Status:** Draft v0.3 — curriculum working draft, aligned to Canon 02 v0.3; curriculum itself is not canon  
+**Status:** Draft v0.4 — curriculum working draft, aligned to Canon 02 v0.4; curriculum itself is not canon  
 **Purpose:** Train enterprise architects to redesign business processes for an AI-enabled operating model and then select architecture patterns and tools that implement that design.  
 **Audience:** Enterprise architects, solution architects, business architects, senior technologists, and architecture leaders who may already know the technologies but need to explain what they are, why they are needed, where they belong, and when they should not be used.
 
@@ -49,7 +49,7 @@ At the end of the baseline course, an architect should be able to:
 9. Determine when model knowledge is sufficient and when authoritative external evidence is required.
 10. Redesign the future-state operating process before deriving the AI architecture.
 11. Design the information architecture needed to provide current, governed evidence for reasoning.
-12. Survey the major enterprise data structures, database/store patterns, data formats, and movement patterns, and select them based on access pattern, authority, volatility, latency, relationship, governance, and reasoning needs.
+12. Start from what the system must do with its data, derive the required access, authority, freshness, consistency, relationship, provenance, and governance characteristics, and then select the appropriate data structures, store/index patterns, formats, and movement technologies.
 13. Separate model, agent, runtime, harness, tools, state, trigger, and deterministic software responsibilities.
 14. Define evaluation, observability, provenance, and closed-loop outcome feedback before production.
 15. Translate architecture into capability requirements and only then evaluate specific products.
@@ -798,15 +798,72 @@ The architect needs to understand the major ways enterprise information is repre
 
 There is no single "AI database."
 
-Different parts of the architecture need different data structures because they have different access patterns, consistency requirements, latency requirements, relationship models, volatility, and governance obligations.
+The purpose of this module is not to teach architects to start with a list of database types and pick one.
 
-The design question is not:
+It is to teach them to start with the **required use of the information**.
 
-**"Which database should AI use?"**
+### Start with the use requirement, not the store
 
-It is:
+The first question is:
 
-**"What representation and access pattern does this evidence, state, relationship, event, or content require?"**
+> **What does the system need to do with this data?**
+
+For example, does the system need to:
+- preserve authoritative transactional state,
+- retrieve a record by identity,
+- aggregate large historical datasets,
+- traverse relationships,
+- find semantically similar content,
+- perform exact lexical search,
+- react when state changes,
+- reconstruct history,
+- reason over time or location,
+- maintain workflow state,
+- assemble task-specific evidence,
+- or temporarily cache context for low-latency execution?
+
+Only after answering that question should the architect derive:
+- the logical representation,
+- access pattern,
+- read/write pattern,
+- latency,
+- freshness and volatility,
+- consistency,
+- relationship model,
+- temporal requirements,
+- authority,
+- provenance and lineage,
+- governance,
+- retention,
+- and failure / reconciliation behavior.
+
+Those requirements determine the structure, store, index, movement pattern, and technology.
+
+### Canonical principle used by this module
+
+> **Design data from the required use backward. What the system must do with the data determines the representation, access pattern, and technology — not the other way around.**
+
+This is the data-specific application of:
+
+> **Architecture defines the required capabilities. Technology is selected to implement them.**
+
+### One source, multiple legitimate representations
+
+The same authoritative information may need several derived representations because the system has several different requirements.
+
+For example, the same business entity might be:
+- stored relationally as authoritative transactional state,
+- projected into a search index for lexical retrieval,
+- embedded into a vector index for semantic retrieval,
+- emitted as events for real-time reaction,
+- aggregated into analytical tables for historical analysis,
+- or exposed as a graph for relationship traversal.
+
+The requirement justifies the projection.
+
+The projection does not become authoritative merely because it is optimized for that use.
+
+The architect must preserve the path back to source evidence, provenance, reconciliation, and governance.
 
 ### Data in Motion as the conceptual bridge
 
@@ -1193,25 +1250,31 @@ This reinforces the canon:
 
 ### Data design decision criteria
 
-For each evidence or state requirement ask:
+For each evidence, state, event, content, or knowledge requirement ask in this order:
 
-1. What is the authoritative source?
-2. What is the logical data shape?
-3. What access pattern must be optimized?
-4. Is the data transactional, analytical, semantic, event-driven, or document-oriented?
-5. How current must it be?
-6. How volatile is it?
-7. What consistency is required?
-8. What relationships matter?
-9. What metadata and provenance must travel with it?
-10. What security, privacy, consent, residency, or policy applies?
-11. What transformation creates derived data?
-12. Can the derived form be traced back to authoritative evidence?
-13. How will the data enter task-specific agent context?
-14. What happens when the source and derived representation disagree?
+1. **What does the system need to do with this information?**
+2. Which business decision, action, state transition, or evidence requirement does that use support?
+3. What is the authoritative source?
+4. What access pattern must be optimized?
+5. What is the logical data shape required by that access pattern?
+6. Is the requirement transactional, analytical, semantic, event-driven, document-oriented, temporal, spatial, or some combination?
+7. How current must the data be?
+8. How volatile is it?
+9. What consistency is required?
+10. What relationships matter?
+11. What latency and scale must be supported?
+12. What metadata and provenance must travel with it?
+13. What security, privacy, consent, residency, retention, or purpose policy applies?
+14. What transformation creates any derived representation?
+15. Can the derived form be traced back to authoritative evidence?
+16. How will the data enter task-specific agent context or deterministic execution?
+17. What happens when the authoritative source and a derived representation disagree?
+18. Only now: what structure, store, index, movement pattern, or technology satisfies those requirements?
 
 ### Anti-patterns
 
+- Starting with "we need a graph/vector database/lakehouse" before defining the system requirement.
+- Choosing a database because the data superficially resembles its marketing category.
 - "Put everything in a vector database."
 - "Embed everything."
 - Treating the retrieval index as the source of truth.
@@ -1243,6 +1306,8 @@ Give students one AI-enabled business process with:
 - and a semantic retrieval requirement.
 
 Have them build an **AI Data Design Matrix** that identifies for each data requirement:
+- required system use,
+- business decision / action / state / evidence need,
 - authoritative source,
 - logical structure,
 - storage / index pattern,
@@ -1258,7 +1323,11 @@ Have them build an **AI Data Design Matrix** that identifies for each data requi
 - task-context use,
 - fallback when data is missing or stale.
 
-Then ask the team to defend why each data structure exists without naming a vendor.
+Then ask the team to defend each data choice in this order:
+
+**requirement -> representation -> access pattern -> derived capability -> technology**
+
+If they have to begin the explanation with the name of a database technology, they have skipped the design step.
 
 ---
 
@@ -1735,7 +1804,8 @@ The methodology should eventually ship with reusable templates.
 - fallback.
 
 ## 6. AI Data Design Matrix
-- business / evidence need,
+- required system use,
+- business decision / action / state / evidence need,
 - authoritative source,
 - logical data structure,
 - physical store / index pattern,
