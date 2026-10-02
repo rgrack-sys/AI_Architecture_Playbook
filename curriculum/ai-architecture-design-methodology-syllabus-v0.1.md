@@ -486,11 +486,12 @@ Give students:
 - and a small event log.
 
 Have them produce:
-1. an as-is process map,
+1. an evidence-backed as-is process map,
 2. a list of contradictions between sources,
-3. a decision inventory,
-4. an automation-boundary inventory,
-5. a future-state candidate map.
+3. a work decomposition inventory,
+4. a decision inventory for the places where reasoning or judgment occurs,
+5. an automation-boundary inventory,
+6. a future-state candidate map.
 
 ---
 
@@ -1063,11 +1064,14 @@ The methodology should eventually ship with reusable templates.
 ## 1. Business Problem / Outcome Card
 - problem,
 - affected process,
+- beneficiary,
+- unit of work,
 - stakeholders,
 - baseline,
 - desired outcome,
 - measures,
-- constraints.
+- constraints,
+- unacceptable outcomes.
 
 ## 2. Process Discovery Worksheet
 - scope,
@@ -1078,6 +1082,7 @@ The methodology should eventually ship with reusable templates.
 - activities,
 - decisions,
 - evidence,
+- authority,
 - handoffs,
 - waits,
 - exceptions,
@@ -1110,7 +1115,7 @@ The methodology should eventually ship with reusable templates.
 - execution mode.
 
 ## 5. Evidence Requirement Card
-- decision,
+- consequential decision or action,
 - evidence,
 - authoritative source,
 - freshness,
