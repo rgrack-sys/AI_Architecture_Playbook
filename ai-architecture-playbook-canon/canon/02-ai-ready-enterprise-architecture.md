@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.2  
+**Status:** Working Canon v0.3  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -73,6 +73,238 @@ Only then should the architecture determine the required models, agents, tools, 
 > **Capability discovery can be technology-led. Production architecture should be process-led.**
 
 This preserves room for experimentation while preventing production systems from becoming accidental consequences of a technology stack.
+
+### Executive shorthand vs. practitioner methodology
+
+The sequence:
+
+**Business problem -> desired outcome -> process -> decisions -> evidence -> controls -> architecture -> technology**
+
+is the **executive shorthand** for the methodology. It establishes direction: begin with the business and work toward the technology.
+
+It is **not a literal waterfall**.
+
+In practice, architecture work is iterative. New evidence can change the process model. Controls can constrain a decision before evidence design is complete. Architecture constraints can expose an invalid process assumption. Evaluation can force a redesign.
+
+The practitioner methodology therefore uses a set of design passes:
+
+> **Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn**
+
+Each pass exists to answer a different architectural question.
+
+#### 1. Frame
+
+Define:
+- the business problem,
+- desired outcome,
+- beneficiary,
+- unit of work,
+- scope,
+- constraints,
+- measures of success,
+- and unacceptable outcomes.
+
+The goal is to establish what the system is trying to improve and what it must not make worse.
+
+#### 2. Observe
+
+Establish how the work actually happens today.
+
+Distinguish:
+- the process people describe,
+- the process documents prescribe,
+- and the process systems and observed behavior show actually occurred.
+
+SOPs, interviews, whiteboards, task capture, and system event logs are evidence sources. When those sources disagree, the disagreement is a finding rather than noise to be silently reconciled.
+
+### Canonical principle
+
+> **Process maps used for AI architecture should be evidence-backed models of work, not workshop artwork.**
+
+#### 3. Decompose
+
+Break the current process into more than activities and decisions.
+
+Identify:
+- activities,
+- decisions,
+- actions,
+- transformations,
+- waits,
+- state changes,
+- boundaries,
+- exceptions,
+- loops,
+- escalations,
+- handoffs,
+- and outcomes.
+
+Then determine where reasoning actually occurs.
+
+This allows the architect to separate:
+- deterministic work,
+- probabilistic reasoning,
+- human judgment,
+- and external or physical action
+
+before selecting an AI pattern.
+
+### Important distinction
+
+> **A decision is not the only place architecture matters. State, handoffs, waits, actions, exceptions, and proof of completion can be equally consequential.**
+
+#### 4. Govern
+
+For each consequential decision or action, answer three separate questions:
+
+**Evidence — What must be known?**  
+What information, observations, records, or proof are required?
+
+**Authority — Who or what is allowed to decide or act?**  
+What identity, role, system, agent, or human owns the decision or action?
+
+**Control — Under what conditions may that authority be exercised?**  
+What policy, approval, separation-of-duty rule, safety limit, regulation, confidence threshold, stop condition, or escalation rule applies?
+
+These concepts are related but not interchangeable.
+
+Evidence is also not limited to decision support. It can:
+- authorize an action,
+- establish current state,
+- prove that an external or physical action completed,
+- trigger re-entry into an automated flow,
+- or demonstrate that a control was satisfied.
+
+### Canonical question
+
+> **Given this state, with this evidence, under this authority, may this system perform this action?**
+
+This is a stronger architecture question than:
+
+> Can AI do this?
+
+#### 5. Redesign
+
+Do not collapse current-state discovery and future-state design into one process step.
+
+After the current process is understood, explicitly design the AI-enabled future state.
+
+Ask:
+- What work should disappear?
+- What should become deterministic automation?
+- Where is probabilistic reasoning justified?
+- Where must a human remain?
+- What authority can be delegated?
+- What evidence can be assembled automatically?
+- Where does the process stop and wait?
+- How does it know external work actually happened?
+- What state must survive the handoff?
+- What happens when evidence is missing, stale, contradictory, or insufficient?
+- What happens when the world changes while the process is waiting?
+
+### Canonical principle
+
+> **AI architecture does not begin by inserting an agent into the existing process. It begins by redesigning the operating process around the capabilities, limits, evidence needs, and control requirements of machine reasoning.**
+
+#### 6. Architect
+
+Only after the future-state operating process is defined should the architect derive the technical responsibilities needed to execute it.
+
+The process and governance requirements determine whether the system needs:
+- systems of record,
+- governed knowledge,
+- task-specific context assembly,
+- reasoning models,
+- deterministic services,
+- tools,
+- state,
+- triggers,
+- runtime,
+- harness controls,
+- identity and permissions,
+- delegation contracts,
+- observability,
+- provenance,
+- and feedback loops.
+
+Every major architectural component should be traceable to an upstream process, evidence, authority, control, state, or outcome requirement.
+
+#### 7. Specify
+
+Translate architecture into **capability requirements before product requirements**.
+
+For example:
+
+> Retrieve authoritative policy evidence with provenance, effective date, access control, and the required response time.
+
+is a capability requirement.
+
+> Use a vector database.
+
+is an implementation choice.
+
+Likewise:
+
+> Persist workflow state across an asynchronous human approval and resume only after proof of completion.
+
+is a capability requirement.
+
+A specific workflow engine, database, platform, or cloud service is a technology choice.
+
+### Canonical principle
+
+> **Architecture defines the required capabilities. Technology is selected to implement them.**
+
+### Architecture test
+
+> **If the product names are removed from the architecture, can we still explain why every capability exists?**
+
+If not, the design probably jumped from problem to product before deriving the architecture.
+
+#### 8. Select
+
+Evaluate models, platforms, stores, frameworks, orchestration systems, process-mining tools, and cloud services against the derived capability requirements.
+
+This is the point where vendor-specific skills and implementation patterns plug into the baseline methodology.
+
+The methodology should remain stable even when products change.
+
+#### 9. Prove
+
+The system is not validated merely because the architecture diagram is coherent or the model gives plausible answers.
+
+Evaluation must test:
+- business outcome,
+- process execution,
+- reasoning quality,
+- evidence quality,
+- provenance,
+- control enforcement,
+- authority boundaries,
+- state transition correctness,
+- handoff and re-entry behavior,
+- intervention and escalation behavior,
+- failure handling,
+- latency,
+- cost,
+- residual risk,
+- and behavior relative to the pre-AI baseline.
+
+Evaluation is therefore an architectural responsibility, not only a QA activity.
+
+#### 10. Learn
+
+Operational outcomes become new evidence.
+
+Observe what happened, update state and knowledge, compare results to the intended outcome, and refine the process, controls, evidence strategy, architecture, or technology as needed.
+
+The methodology is therefore closed-loop rather than a one-time design exercise.
+
+### Canonical methodology thesis
+
+> **AI architecture is derived through process engineering. The architect first understands and redesigns the work, decisions, evidence, authority, controls, state, and outcomes; the required AI architecture is then derived from those requirements.**
+
+This does not mean every system requires a large process-transformation exercise. The depth of each pass should scale with risk, complexity, volatility, and consequence.
 
 ---
 
