@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.3  
+**Status:** Working Canon v0.4  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -384,6 +384,67 @@ Useful metadata includes:
 ### Principle
 
 > **Organize the trustworthiness and lifecycle of information, not merely the information itself.**
+
+### Requirements-driven data design
+
+The same process-first discipline applies to data architecture.
+
+Do not begin with:
+
+> "We need a vector database."
+
+or:
+
+> "This should be a graph."
+
+or:
+
+> "Put it in the lakehouse."
+
+First ask:
+
+> **What does the system need to do with this information?**
+
+The required use determines the data requirements.
+
+For each material information need, derive:
+- whether the data is authoritative state, derived knowledge, evidence, workflow state, an event, content, or a temporary representation,
+- how it must be accessed,
+- how current it must be,
+- how consistent it must be,
+- what relationships matter,
+- whether history and time matter,
+- whether semantic similarity matters,
+- whether it must trigger action as it changes,
+- what scale and latency are required,
+- what provenance and lineage must survive transformation,
+- what governance, privacy, residency, retention, and purpose restrictions apply,
+- and whether the data should be materialized, indexed, cached, federated, streamed, or retrieved on demand.
+
+Only after those requirements are understood should the architect select the structure, store, index, movement pattern, or product.
+
+### Canonical clarification
+
+> **Design data from the required use backward. What the system must do with the data determines the representation, access pattern, and technology — not the other way around.**
+
+This is a data-specific application of the broader principle:
+
+> **Architecture defines the required capabilities. Technology is selected to implement them.**
+
+### Important nuance
+
+The same authoritative information may legitimately require multiple derived representations for different uses.
+
+For example, one source may be:
+- retained relationally as authoritative transactional state,
+- projected into a search index for lexical retrieval,
+- represented in a vector index for semantic retrieval,
+- emitted as events for real-time reaction,
+- or exposed through a graph for relationship traversal.
+
+Those projections do not become the source of truth merely because they are optimized for a particular access pattern.
+
+The architecture should preserve the authoritative path, provenance, reconciliation rules, and governance across those representations.
 
 ---
 
