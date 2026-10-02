@@ -41,6 +41,7 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Architecture capability requirements before technology selection
    - Evidence-First Gate
    - AI-ready information architecture
+   - Requirements-driven data design: derive representation and technology from what the system needs the data to do
    - Governed knowledge architecture
    - Systems of record, knowledge layer, and agent context
    - Continuous knowledge synchronization
