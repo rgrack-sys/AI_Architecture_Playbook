@@ -1,6 +1,6 @@
 # AI Architecture Design Methodology — Curriculum and Syllabus
 
-**Status:** Draft v0.2 — curriculum working draft, aligned to Canon 02 v0.3; curriculum itself is not canon  
+**Status:** Draft v0.3 — curriculum working draft, aligned to Canon 02 v0.3; curriculum itself is not canon  
 **Purpose:** Train enterprise architects to redesign business processes for an AI-enabled operating model and then select architecture patterns and tools that implement that design.  
 **Audience:** Enterprise architects, solution architects, business architects, senior technologists, and architecture leaders who may already know the technologies but need to explain what they are, why they are needed, where they belong, and when they should not be used.
 
@@ -39,18 +39,21 @@ If the answer is no, we probably started with the technology.
 At the end of the baseline course, an architect should be able to:
 
 1. Explain the AI fundamentals a customer needs in order to make architecture decisions.
-2. Define a business problem and measurable outcome before discussing technology.
-3. Establish an evidence-backed current-state process model from interviews, transcripts, whiteboards, documents, screen recordings, and system event data.
-4. Decompose the work into activities, decisions, actions, waits, state changes, boundaries, exceptions, handoffs, and outcomes, and identify where reasoning actually matters.
-5. Identify automation boundaries and engineer the handoff and re-entry state explicitly.
-6. Distinguish evidence, authority, and control for consequential decisions and actions.
-7. Determine when model knowledge is sufficient and when authoritative external evidence is required.
-8. Redesign the future-state operating process before deriving the AI architecture.
-9. Design the information architecture needed to provide current, governed evidence for reasoning.
-10. Separate model, agent, runtime, harness, tools, state, trigger, and deterministic software responsibilities.
-11. Define evaluation, observability, provenance, and closed-loop outcome feedback before production.
-12. Translate architecture into capability requirements and only then evaluate specific products.
-13. Defend the design to a CIO, CDO, security leader, business owner, regulator, engineering team, and skeptical architect.
+2. Explain the major agent interoperability standards and conventions — including MCP, Agent Skills, and A2A — and distinguish the architectural boundary each one addresses.
+3. Recognize the supporting interface, event, identity, schema, observability, lineage, provenance, and content-authenticity standards that modern AI systems inherit from the broader software and data ecosystem.
+4. Define a business problem and measurable outcome before discussing technology.
+5. Establish an evidence-backed current-state process model from interviews, transcripts, whiteboards, documents, screen recordings, and system event data.
+6. Decompose the work into activities, decisions, actions, waits, state changes, boundaries, exceptions, handoffs, and outcomes, and identify where reasoning actually matters.
+7. Identify automation boundaries and engineer the handoff and re-entry state explicitly.
+8. Distinguish evidence, authority, and control for consequential decisions and actions.
+9. Determine when model knowledge is sufficient and when authoritative external evidence is required.
+10. Redesign the future-state operating process before deriving the AI architecture.
+11. Design the information architecture needed to provide current, governed evidence for reasoning.
+12. Survey the major enterprise data structures, database/store patterns, data formats, and movement patterns, and select them based on access pattern, authority, volatility, latency, relationship, governance, and reasoning needs.
+13. Separate model, agent, runtime, harness, tools, state, trigger, and deterministic software responsibilities.
+14. Define evaluation, observability, provenance, and closed-loop outcome feedback before production.
+15. Translate architecture into capability requirements and only then evaluate specific products.
+16. Defend the design to a CIO, CDO, security leader, business owner, regulator, engineering team, and skeptical architect.
 
 ---
 
@@ -177,7 +180,14 @@ The important distinctions remain:
 
 This is not an ML engineering class. The goal is to give the architect a correct mental model and enough depth to explain why an architectural capability exists.
 
+The basics now include two things:
+
+1. how the model and context system work,
+2. how an agentic system interoperates with tools, data, other agents, users, and enterprise services.
+
 ### What I teach
+
+#### A. Model and context fundamentals
 
 - Training vs. inference.
 - Tokens and context.
@@ -189,6 +199,94 @@ This is not an ML engineering class. The goal is to give the architect a correct
 - Retrieval is an evidence-acquisition technique, not a universal requirement.
 - Deterministic software still belongs in AI systems.
 
+#### B. The agent interoperability stack
+
+Teach these as different architectural boundaries rather than as competing products.
+
+**Agent Skills — reusable procedural knowledge**
+
+A Skill packages instructions, procedures, scripts, references, and assets that teach an agent how to perform a class of work.
+
+The important architectural idea is:
+
+> **Skills package HOW to perform work.**
+
+The open Agent Skills format centers on a `SKILL.md` file with metadata and instructions, with optional scripts, references, and assets. Skills are loaded progressively so detailed procedure enters context only when needed.
+
+Also distinguish the Agent Skills format from the MCP Skills extension. The format defines the skill package. The MCP extension defines one standardized way to publish and retrieve skills through MCP.
+
+**Model Context Protocol (MCP) — agent to tools, resources, and context**
+
+MCP standardizes how AI applications connect to external capabilities and information.
+
+Teach:
+- host / client / server roles,
+- tools,
+- resources,
+- prompts,
+- structured tool schemas,
+- authorization and consent,
+- remote vs. local servers,
+- long-running task extensions,
+- the distinction between exposing a capability and granting authority to use it.
+
+The architectural shorthand is:
+
+> **MCP connects the reasoning environment to tools, resources, and context.**
+
+**Agent2Agent (A2A) — agent to agent**
+
+A2A standardizes communication between independent agent systems.
+
+Teach:
+- agent discovery,
+- capability advertisement,
+- task delegation,
+- message / artifact exchange,
+- task state,
+- interoperability across frameworks and vendors,
+- why a remote agent should not need access to another agent's internal memory or implementation.
+
+The architectural shorthand is:
+
+> **A2A connects governed agents to other governed agents.**
+
+### The distinction the architect must be able to explain
+
+**Skill:** How do I perform this kind of work?  
+**MCP:** What tools, resources, or context can I use?  
+**A2A:** What other agent can I collaborate with or delegate to?
+
+These solve different problems and can be used together.
+
+#### C. Supporting standards an AI architect should recognize
+
+These are not all "AI standards." That is exactly the point. Production AI systems inherit the contracts of the software and data systems around them.
+
+**Core supporting standards**
+
+- **OpenAPI** — machine-readable contracts for HTTP APIs and services.
+- **JSON Schema** — structured input/output definition and validation; foundational to many tool contracts.
+- **AsyncAPI** — machine-readable contracts for asynchronous and event-driven APIs.
+- **CloudEvents** — common event envelope and metadata model for events moving between systems.
+- **OAuth 2.x / OpenID Connect** — authorization and identity. Agentic systems do not eliminate identity; they make delegated identity and scope more important.
+- **OpenTelemetry semantic conventions** — traces, metrics, logs, and increasingly GenAI / agent / MCP observability.
+
+**Data, knowledge, provenance, and content standards that appear later in the course**
+
+- **OpenLineage / provenance models** — where data came from and how it changed.
+- **RDF / OWL / SPARQL** — semantic graph and knowledge representation where that model is appropriate.
+- **C2PA Content Credentials** — provenance and authenticity of digital content, increasingly relevant when agents consume or generate media.
+- **Apache data formats and table standards** such as Arrow, Parquet, Avro, and Iceberg — portable representations used throughout analytical and AI data pipelines.
+
+**Emerging protocols worth recognizing, but not yet core course dependencies**
+
+- **AG-UI** — agent-to-user application interaction.
+- **A2UI** — declarative, agent-generated UI payloads.
+- **AGENTS.md** — project-level instructions for coding agents.
+
+The architect should know these exist and know what boundary they address without treating every emerging protocol as mandatory architecture.
+
 ### Why the architect needs it
 
 A customer will ask:
@@ -199,12 +297,16 @@ A customer will ask:
 - Why can't I just put all of the documents in the prompt?
 - Why do I need an API or deterministic service when the model can calculate it?
 - What exactly is an agent?
+- What is the difference between MCP and an API?
+- What is the difference between MCP and A2A?
+- Is a Skill a tool, an agent, or instructions?
+- Why do I still need OAuth, schemas, API contracts, and observability if I am using agents?
 
 The architect should be able to answer without hiding behind product vocabulary.
 
 ### Existing course material
 
-Use Canon 01 as the baseline:
+Use Canon 01 as the model baseline:
 - training vs. inference,
 - weights vs. embeddings,
 - contextual representation,
@@ -213,15 +315,32 @@ Use Canon 01 as the baseline:
 - external evidence,
 - the limits of "RAG everywhere."
 
+Use Canon 03 when connecting the basics to the larger agent system:
+- model vs. agent,
+- runtime vs. harness,
+- tools,
+- state,
+- trigger,
+- delegation.
+
 ### Exercise
 
-Explain the difference between:
+Part 1: Explain the difference between:
 1. model knowledge,
 2. retrieved evidence,
 3. enterprise system-of-record data,
 4. current task context,
 
 to a nontechnical executive in five minutes.
+
+Part 2: Given an agent that must read a policy, perform a workflow, call a claims API, delegate a specialist review to another agent, and stream progress to a user interface, identify which concerns belong to:
+- Skill,
+- MCP,
+- A2A,
+- OpenAPI / JSON Schema,
+- identity / authorization,
+- observability,
+- and application UI interaction.
 
 ---
 
@@ -669,7 +788,481 @@ Take the Evidence Requirement Cards from Module 5 and place each evidence source
 
 ---
 
-## Module 7 — Automation Boundaries and Real-World State
+## Module 7 — Data Design for AI: Structures, Stores, Motion, and Context
+
+### Topic description
+
+This is a survey, not a database engineering class.
+
+The architect needs to understand the major ways enterprise information is represented, stored, moved, indexed, related, governed, and assembled into AI context.
+
+There is no single "AI database."
+
+Different parts of the architecture need different data structures because they have different access patterns, consistency requirements, latency requirements, relationship models, volatility, and governance obligations.
+
+The design question is not:
+
+**"Which database should AI use?"**
+
+It is:
+
+**"What representation and access pattern does this evidence, state, relationship, event, or content require?"**
+
+### Data in Motion as the conceptual bridge
+
+Use the Data in Motion presentation as the teaching story, but generalize it beyond customer profiles and Adobe products.
+
+#### Data at rest — queries in motion
+
+The traditional pattern:
+- data is persisted,
+- a query is created when someone needs an answer,
+- the query scans or joins the stored data,
+- results are materialized for a report, list, decision, or downstream process.
+
+This remains entirely valid.
+
+The problem is using it as the only pattern when the process requires current state.
+
+#### Data in motion — standing logic against changing state
+
+A different pattern:
+- events arrive continuously,
+- state or profiles are updated,
+- standing rules, features, segments, models, or policies are evaluated as the state changes,
+- downstream interaction can react to the new state.
+
+The critical architectural shift is from repeatedly reconstructing context from disconnected data toward maintaining or assembling current context at the time the decision needs it.
+
+### Technical correction to the shorthand
+
+The presentation uses the phrase:
+
+> AI doesn't operate on raw data — it operates on context.
+
+Keep the teaching idea, but make it technically precise:
+
+> **Models reason over representations placed into their execution context. Architecture determines how raw, authoritative, derived, and semantic data are transformed into those representations.**
+
+Raw data is not inherently unusable. The issue is whether it has the structure, semantics, identity, freshness, authority, and context required for the task.
+
+### Profiles, entities, features, and derived context
+
+Teach the useful ideas from the Data in Motion model:
+
+- streaming events can update an entity or profile view,
+- a profile is a logical collection of related attributes about an entity, not necessarily one physical table,
+- derived classifications such as segment membership can become features or context signals,
+- changing state can trigger re-evaluation,
+- governance labels and policies can apply at the data-element level,
+- content should also be treated as data with metadata, attributes, provenance, and policy,
+- content attributes and entity/context attributes can be combined at decision time,
+- when information crosses system boundaries, meaning and policy must survive any transformation or integration.
+
+### Survey of major data structures and store patterns
+
+The goal is recognition and architectural placement, not implementation mastery.
+
+#### 1. Relational / row-oriented data
+
+Examples:
+- transactional records,
+- orders,
+- claims,
+- accounts,
+- normalized business entities.
+
+Good for:
+- strong relationships,
+- transactions,
+- constraints,
+- authoritative state,
+- SQL access.
+
+Architectural question:
+**Is this the system of record, or merely a copy optimized for another purpose?**
+
+#### 2. Columnar / analytical data
+
+Examples:
+- warehouses,
+- analytical tables,
+- Parquet-backed datasets,
+- columnar execution engines.
+
+Good for:
+- scans,
+- aggregations,
+- historical analysis,
+- feature generation,
+- large-scale analytical workloads.
+
+Teach the distinction between row-optimized transactional access and column-optimized analytical access.
+
+#### 3. Document / semi-structured data
+
+Examples:
+- JSON documents,
+- XML documents,
+- application objects,
+- API payloads.
+
+Good for:
+- flexible schemas,
+- nested structures,
+- objects that are naturally retrieved together.
+
+Important distinction:
+A document database and a document corpus for retrieval are not the same architectural responsibility.
+
+#### 4. Key-value data
+
+Good for:
+- fast lookup by key,
+- cache,
+- session state,
+- feature lookup,
+- idempotency keys,
+- small pieces of workflow state.
+
+The architect should recognize when relational semantics are unnecessary overhead.
+
+#### 5. Wide-column data
+
+Good for:
+- very large sparse datasets,
+- high write throughput,
+- access patterns organized around known partition keys.
+
+Survey only; emphasize that the access pattern must be designed before the schema.
+
+#### 6. Graph data
+
+Two useful families:
+
+**Property graphs**
+- entities and relationships with properties,
+- traversal-heavy application questions.
+
+**Semantic / RDF knowledge graphs**
+- triples / statements,
+- ontologies,
+- shared semantics,
+- inference and linked knowledge.
+
+Good for:
+- relationship-rich reasoning,
+- dependency and lineage analysis,
+- semantic knowledge representation.
+
+Do not teach "knowledge graph" as a synonym for "AI database."
+
+#### 7. Vector / embedding indexes
+
+Store numerical representations optimized for similarity search.
+
+Good for:
+- semantic retrieval,
+- nearest-neighbor search,
+- matching related content or entities.
+
+Important principle:
+
+> **A vector index is an access structure for similarity retrieval, not the authoritative source of truth.**
+
+Teach hybrid retrieval:
+- lexical / keyword,
+- metadata filters,
+- relational constraints,
+- graph relationships,
+- vector similarity,
+- reranking.
+
+#### 8. Search / inverted indexes
+
+Good for:
+- keyword and lexical search,
+- faceting,
+- filters,
+- ranking,
+- log and document search.
+
+This is often complementary to vector search rather than obsolete because vector search exists.
+
+#### 9. Time-series data
+
+Good for:
+- measurements over time,
+- telemetry,
+- sensors,
+- operational metrics,
+- financial or market sequences,
+- environmental data.
+
+Teach:
+- timestamp semantics,
+- sampling rate,
+- retention,
+- aggregation windows,
+- late-arriving data.
+
+#### 10. Geospatial data
+
+Good for:
+- location,
+- distance,
+- containment,
+- routes,
+- spatial relationships.
+
+Important when physical-world agents or business processes reason about place.
+
+#### 11. Event streams / append-only logs
+
+Examples:
+- business events,
+- clickstreams,
+- transactions,
+- CDC events,
+- device events.
+
+Good for:
+- data in motion,
+- event-driven state updates,
+- replay,
+- temporal reconstruction,
+- triggering workflows.
+
+Teach the difference between:
+- an event,
+- current state,
+- and a materialized view derived from events.
+
+#### 12. Object / blob / unstructured content stores
+
+Examples:
+- PDFs,
+- images,
+- audio,
+- video,
+- office documents,
+- scanned records.
+
+AI architectures frequently need to derive:
+- text,
+- chunks,
+- metadata,
+- embeddings,
+- captions,
+- structured facts,
+- provenance
+
+without losing the original authoritative artifact.
+
+#### 13. Multimodal content structures
+
+Treat image, audio, video, text, layout, and associated metadata as related evidence.
+
+Content fragments, versions, rights, source, audience, language, modality, and generation history may all matter to context assembly.
+
+#### 14. Entity / profile views
+
+A profile is a logical, current representation of an entity assembled from identifiers, attributes, events, derived features, relationships, and policy.
+
+Teach:
+- identity resolution,
+- merge rules,
+- source priority,
+- freshness,
+- temporal validity,
+- derived vs. authoritative attributes.
+
+A profile may be physically materialized or assembled on demand.
+
+#### 15. Feature stores and derived features
+
+Features are machine-usable derived signals.
+
+Examples:
+- segment membership,
+- risk score,
+- recency,
+- propensity,
+- aggregate behavior.
+
+Teach the risk of losing:
+- source lineage,
+- feature definition,
+- calculation time,
+- validity window,
+- training/serving consistency.
+
+#### 16. Workflow / process state
+
+This is not the same as model memory.
+
+Process state records what the business workflow currently believes has happened.
+
+Examples:
+- current case state,
+- approval status,
+- retry count,
+- pending external action,
+- completion evidence.
+
+This state often belongs in deterministic storage even when reasoning is probabilistic.
+
+#### 17. Cache and ephemeral context
+
+Useful for:
+- low-latency repeated access,
+- temporary context assembly,
+- session acceleration.
+
+The architect must define:
+- TTL,
+- invalidation,
+- authority,
+- whether stale data is safe.
+
+### Survey of data formats and interoperability representations
+
+Architects should recognize the major families:
+
+- **CSV / delimited text** — portable tabular interchange, weak typing.
+- **JSON** — ubiquitous semi-structured interchange.
+- **XML** — structured interchange with strong enterprise and industry-standard usage.
+- **JSON Schema** — structure and validation for JSON.
+- **Avro / Protocol Buffers** — schema-driven serialization, common in service and event pipelines.
+- **Parquet / ORC** — columnar analytical file formats.
+- **Arrow** — standardized in-memory columnar representation and interchange.
+- **Iceberg / Delta / Hudi** — table formats over object storage; understand the role even if implementation details vary.
+- **RDF / JSON-LD** — semantic linked-data representations.
+- **media-native formats** — images, audio, video, PDFs and documents retain value as authoritative evidence even when derived representations are created.
+
+### Data movement patterns the architect should recognize
+
+- batch ETL,
+- ELT,
+- change data capture,
+- event streaming / pub-sub,
+- request-response API access,
+- file exchange,
+- federated query,
+- stream processing,
+- materialized views,
+- cache,
+- reverse ETL / activation,
+- replication,
+- synchronization,
+- on-demand retrieval.
+
+The question is not "batch or streaming?"
+
+The question is:
+
+> **How current must this evidence be when the decision is made, and what movement pattern satisfies that requirement without destroying authority, governance, or cost discipline?**
+
+### Metadata is part of the data design
+
+For AI, the record alone is often insufficient.
+
+The design should consider:
+- identity / key,
+- source,
+- provenance,
+- event time,
+- processing time,
+- effective time,
+- freshness,
+- volatility,
+- owner,
+- policy / classification,
+- confidence,
+- review state,
+- lineage,
+- version,
+- relationships,
+- retention,
+- consent / purpose,
+- rights and permitted use.
+
+This reinforces the canon:
+
+> **Organize the trustworthiness and lifecycle of information, not merely the information itself.**
+
+### Data design decision criteria
+
+For each evidence or state requirement ask:
+
+1. What is the authoritative source?
+2. What is the logical data shape?
+3. What access pattern must be optimized?
+4. Is the data transactional, analytical, semantic, event-driven, or document-oriented?
+5. How current must it be?
+6. How volatile is it?
+7. What consistency is required?
+8. What relationships matter?
+9. What metadata and provenance must travel with it?
+10. What security, privacy, consent, residency, or policy applies?
+11. What transformation creates derived data?
+12. Can the derived form be traced back to authoritative evidence?
+13. How will the data enter task-specific agent context?
+14. What happens when the source and derived representation disagree?
+
+### Anti-patterns
+
+- "Put everything in a vector database."
+- "Embed everything."
+- Treating the retrieval index as the source of truth.
+- Copying governed data into an AI store without preserving policy and lineage.
+- Treating a profile as one mandatory physical repository.
+- Assuming real-time architecture is always better than batch.
+- Allowing event streams, caches, features, or embeddings to drift from authoritative state.
+- Treating model memory as enterprise process state.
+- Stripping metadata and provenance while transforming data for AI.
+
+### Existing course material
+
+Use:
+- Canon 02: AI-ready information architecture.
+- Canon 02: systems of record -> governed knowledge -> agent context/evidence.
+- Canon 02: volatility and continuous knowledge synchronization.
+- Data in Motion presentation: data at rest vs. data in motion, profiles, segments as derived context signals, real-time re-evaluation, element-level governance, and content as attributed data.
+
+### Exercise
+
+Give students one AI-enabled business process with:
+- transactional records,
+- documents,
+- streaming events,
+- a customer or case profile,
+- unstructured content,
+- a graph relationship,
+- historical analytics,
+- and a semantic retrieval requirement.
+
+Have them build an **AI Data Design Matrix** that identifies for each data requirement:
+- authoritative source,
+- logical structure,
+- storage / index pattern,
+- access pattern,
+- freshness / volatility,
+- movement pattern,
+- schema / format,
+- identity,
+- metadata / provenance,
+- governance,
+- transformation,
+- derived representations,
+- task-context use,
+- fallback when data is missing or stale.
+
+Then ask the team to defend why each data structure exists without naming a vendor.
+
+---
+
+## Module 8 — Automation Boundaries and Real-World State
 
 ### Topic description
 
@@ -717,7 +1310,7 @@ Design the handoff and re-entry contract in enough detail that the automated sys
 
 ---
 
-## Module 8 — From Model to Agentic System
+## Module 9 — From Model to Agentic System
 
 ### Topic description
 
@@ -755,7 +1348,7 @@ Make them decompose it into the actual execution and governance responsibilities
 
 ---
 
-## Module 9 — Evidence, Authority, Controls, Risk, and the Harness
+## Module 10 — Evidence, Authority, Controls, Risk, and the Harness
 
 ### Topic description
 
@@ -824,7 +1417,7 @@ Create a Governance Matrix for the target process:
 
 ---
 
-## Module 10 — Delegation, Domains, and Execution Authority
+## Module 11 — Delegation, Domains, and Execution Authority
 
 ### Topic description
 
@@ -870,7 +1463,7 @@ Design an enterprise-to-domain delegation:
 
 ---
 
-## Module 11 — Evaluation, Observability, and Closed-Loop Learning
+## Module 12 — Evaluation, Observability, and Closed-Loop Learning
 
 ### Topic description
 
@@ -944,7 +1537,7 @@ Build an Evaluation Plan before selecting the implementation platform.
 
 ---
 
-## Module 12 — Technology Selection: Plugging Tools into the Architecture
+## Module 13 — Technology Selection: Plugging Tools into the Architecture
 
 ### Topic description
 
@@ -1000,7 +1593,23 @@ For every proposed product, service, model, framework, or platform ask:
 - data governance,
 - eventing,
 - integration,
-- domain execution.
+- domain execution,
+- API contracts / OpenAPI,
+- asynchronous API contracts / AsyncAPI,
+- event envelope / CloudEvents,
+- agent interoperability / MCP / A2A,
+- skill packaging / distribution,
+- relational / transactional data,
+- analytical / columnar data,
+- document data,
+- graph / knowledge data,
+- vector indexes,
+- search indexes,
+- time-series / geospatial data,
+- event streams,
+- object / multimodal content,
+- feature / profile data,
+- lineage / provenance.
 
 ### Anti-pattern
 
@@ -1020,7 +1629,7 @@ Have teams map several vendors into the same capability architecture and identif
 
 ---
 
-## Module 13 — Capstone: Redesign a Real Enterprise Process
+## Module 14 — Capstone: Redesign a Real Enterprise Process
 
 ### Goal
 
@@ -1039,12 +1648,13 @@ Produce an architecture from a business process rather than a product list.
 9. Automation Boundary definitions.
 10. Future-state AI-enabled process map.
 11. Knowledge / evidence architecture.
-12. Agent/runtime/harness decomposition where needed.
-13. Delegation contracts where needed.
-14. Evaluation and observability plan.
-15. Technology capability requirements.
-16. Tool mapping and selection rationale.
-17. Executive explanation of why the design exists.
+12. AI Data Design Matrix covering authoritative source, data structure, access pattern, movement, freshness, provenance, governance, and derived representations.
+13. Agent/runtime/harness decomposition where needed.
+14. Delegation contracts where needed.
+15. Evaluation and observability plan.
+16. Technology capability requirements.
+17. Tool mapping and selection rationale.
+18. Executive explanation of why the design exists.
 
 ### Final defense
 
@@ -1124,7 +1734,27 @@ The methodology should eventually ship with reusable templates.
 - permissions,
 - fallback.
 
-## 6. Automation Boundary Contract
+## 6. AI Data Design Matrix
+- business / evidence need,
+- authoritative source,
+- logical data structure,
+- physical store / index pattern,
+- access pattern,
+- freshness / volatility,
+- consistency requirement,
+- movement pattern,
+- schema / format,
+- identity / key,
+- metadata,
+- lineage / provenance,
+- governance / policy,
+- transformation,
+- derived representations,
+- context-assembly role,
+- retention,
+- fallback / reconciliation.
+
+## 7. Automation Boundary Contract
 - trigger,
 - actor,
 - required action,
@@ -1133,7 +1763,7 @@ The methodology should eventually ship with reusable templates.
 - latency / escalation,
 - re-entry condition.
 
-## 7. Governance Matrix
+## 8. Governance Matrix
 - consequential decision or action,
 - required evidence,
 - authorized actor or system,
@@ -1144,7 +1774,7 @@ The methodology should eventually ship with reusable templates.
 - audit evidence,
 - failure behavior.
 
-## 8. Delegation Contract
+## 9. Delegation Contract
 - purpose,
 - task,
 - context,
@@ -1156,7 +1786,7 @@ The methodology should eventually ship with reusable templates.
 - expiry,
 - approvals.
 
-## 9. Tool Placement Card
+## 10. Tool Placement Card
 - required capability,
 - process role,
 - decision role,
@@ -1169,7 +1799,7 @@ The methodology should eventually ship with reusable templates.
 - observability,
 - portability.
 
-## 10. Evaluation Plan
+## 11. Evaluation Plan
 - reasoning metrics,
 - process metrics,
 - action metrics,
@@ -1208,6 +1838,136 @@ Useful as an enterprise process taxonomy and common naming framework.
 
 Reference:
 https://www.apqc.org/process-frameworks
+
+---
+
+# Agent interoperability and supporting standards reviewed
+
+These are supporting standards, protocols, and conventions for the baseline course. They are not automatically architecture requirements.
+
+## Model Context Protocol (MCP)
+Open protocol for connecting LLM applications to external tools, resources, prompts, and context. The 2026-07-28 revision is the current baseline used for this curriculum.
+
+Reference:
+https://modelcontextprotocol.io/specification/2026-07-28
+
+## Agent Skills
+Open format for reusable agent procedures centered on `SKILL.md`, with optional scripts, references, and assets.
+
+Reference:
+https://agentskills.io/specification
+
+## MCP Skills extension
+Defines a transport binding for publishing and consuming Agent Skills through MCP.
+
+Reference:
+https://skills.extensions.modelcontextprotocol.io/specification/stable/skills
+
+## Agent2Agent (A2A)
+Open standard for discovery, communication, task management, and collaboration between independent agent systems.
+
+Reference:
+https://a2a-protocol.org/
+
+## OpenAPI
+Machine-readable, language-agnostic description of HTTP APIs.
+
+Reference:
+https://spec.openapis.org/oas/latest.html
+
+## JSON Schema
+Standard vocabulary for describing and validating JSON structure.
+
+Reference:
+https://json-schema.org/specification
+
+## AsyncAPI
+Machine-readable contracts for asynchronous and event-driven APIs.
+
+Reference:
+https://www.asyncapi.com/docs/reference/specification/v3.1.0
+
+## CloudEvents
+Common specification for describing event data.
+
+Reference:
+https://cloudevents.io/
+
+## OpenID Connect / OAuth
+Identity and authorization standards used to secure human, application, tool, and delegated access.
+
+Reference:
+https://openid.net/specs/openid-connect-core-1_0.html
+
+## OpenTelemetry
+Common telemetry model and semantic conventions for traces, metrics, logs, and GenAI operations.
+
+Reference:
+https://opentelemetry.io/docs/specs/semconv/
+
+## Emerging awareness: AG-UI, A2UI, AGENTS.md
+Useful emerging conventions for agent-user interaction, declarative agent-generated UI, and coding-agent project instructions. Teach awareness and architectural boundary, not mandatory adoption.
+
+References:
+https://github.com/ag-ui-protocol/ag-ui
+https://a2ui.org/
+https://aaif.io/projects
+
+---
+
+# Data structures, formats, and provenance material reviewed
+
+## Data in Motion — The AI Version
+Internal presentation used as the conceptual source for:
+- data at rest vs. data in motion,
+- profiles as evolving collections of related attributes,
+- segments / classifications as derived context signals,
+- state-change-driven re-evaluation,
+- element-level governance,
+- content as attributed data,
+- combining profile and content attributes at decision time.
+
+## Apache Arrow
+Standardized in-memory columnar representation and interchange for analytical data.
+
+Reference:
+https://arrow.apache.org/docs/format/
+
+## Apache Parquet
+Column-oriented file format for efficient analytical storage and retrieval.
+
+Reference:
+https://parquet.apache.org/docs/overview/
+
+## Apache Avro
+Schema-driven data serialization used heavily in event and data pipelines.
+
+Reference:
+https://avro.apache.org/docs/current/specification/
+
+## Apache Iceberg
+Open table format for large analytical tables over distributed/object storage.
+
+Reference:
+https://iceberg.apache.org/spec/
+
+## OpenLineage
+Open lineage and metadata collection API for data pipelines.
+
+Reference:
+https://openlineage.io/
+
+## RDF / semantic graph standards
+W3C standards for graph-based semantic representation. Teach the mature RDF model and awareness of current RDF 1.2 evolution.
+
+Reference:
+https://www.w3.org/RDF/
+
+## C2PA Content Credentials
+Technical standard for content provenance and authenticity.
+
+Reference:
+https://spec.c2pa.org/specifications/
 
 ---
 
@@ -1357,5 +2117,11 @@ The remaining curriculum questions are:
 7. Should Tool Placement become a formal architecture decision record template?
 8. What minimum **Prove** artifacts are required before a design is considered production-ready?
 9. What minimum operational evidence is required before the **Learn** pass is allowed to change process, policy, or knowledge?
+
+10. Which agent-interoperability protocols should be required knowledge versus awareness-only as the ecosystem evolves?
+11. Where should the baseline course draw the line between data-architecture literacy and database implementation detail?
+12. Do we need a formal decision tree that maps data requirements to structures/stores, or is the AI Data Design Matrix sufficient?
+13. How should we teach profile / entity views without implying that every enterprise needs a CDP or a physically centralized profile store?
+14. Which provenance model should be the default teaching example across data, documents, and generated content?
 
 These should be challenged before the curriculum itself is labeled canon.
