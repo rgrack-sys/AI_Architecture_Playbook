@@ -292,6 +292,34 @@ Evaluation must test:
 
 Evaluation is therefore an architectural responsibility, not only a QA activity.
 
+##### Canonical control-effectiveness test
+
+> **Authority controls must be evaluated for effect reachability through alternate execution paths, not merely for declared tool permissions.**
+
+An allowlist, denied command, approval rule, or tool restriction is not proof that the controlled effect is unreachable. The architecture must test whether the same effect can still be produced indirectly through:
+
+- another permitted tool,
+- a delegated agent or service,
+- a compound sequence of individually allowed actions,
+- an alternate interface to the same resource,
+- inherited credentials or ambient authority,
+- or a control that exists in the design but is disabled, bypassed, or not enforced at runtime.
+
+The unit of evaluation is therefore the **effect the authority boundary is intended to prevent or constrain**, including every materially plausible path to that effect.
+
+##### Canonical proof-of-completion test
+
+> **Proof of completion must test an acceptance boundary: valid alternatives are accepted and invalid states are rejected. Agreement with one reference output is not sufficient evidence of correctness.**
+
+A single expected artifact, implementation, or happy-path test can reward superficial agreement while missing both false acceptance and false rejection. Completion evidence should demonstrate:
+
+- that the initial faulty or incomplete state is rejected,
+- that invalid outcomes and materially incorrect alternatives are rejected,
+- that all outcomes permitted by the requirement are accepted,
+- and that the observed result satisfies the intended business and process outcome rather than merely matching one example.
+
+The acceptance boundary—not one reference artifact—is the specification the evaluation must prove.
+
 #### 10. Learn
 
 Operational outcomes become new evidence.
