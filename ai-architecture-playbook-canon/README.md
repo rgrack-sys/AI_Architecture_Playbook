@@ -39,6 +39,8 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Current-state process truth vs. future-state process design
    - Evidence vs. authority vs. control
    - Architecture capability requirements before technology selection
+   - Effect-level reachability testing for authority controls
+   - Acceptance-boundary testing for proof of completion
    - Evidence-First Gate
    - AI-ready information architecture
    - Requirements-driven data design: derive representation and technology from what the system needs the data to do
