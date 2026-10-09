@@ -4,7 +4,7 @@ GitHub is the shared source of truth. Every computer is a local working copy.
 
 ## Standard Interface
 
-Use **Git Bash** unless explicitly stated otherwise.
+Use either **Windows PowerShell** or **Git Bash**. Do not mix their path syntax.
 
 All repositories should live under:
 
@@ -17,6 +17,19 @@ In Git Bash:
 ```bash
 cd /c/Users/rgrac/Projects
 ```
+
+In Windows PowerShell:
+
+```powershell
+Set-Location "C:\Users\rgrac\Projects"
+```
+
+Path rule:
+
+- Git Bash: `/c/Users/rgrac/Projects/<repo-name>`
+- PowerShell: `C:\Users\rgrac\Projects\<repo-name>`
+
+Commands such as `git status`, `git pull`, `git add`, `git commit`, and `git push` are the same in both shells. Only filesystem navigation and some shell utilities differ.
 
 ---
 
@@ -519,7 +532,22 @@ Force pushing can overwrite work created on another machine.
 
 # Quick Reference
 
-## Existing local repo
+## Existing local repo — Windows PowerShell
+
+```powershell
+Set-Location "C:\Users\rgrac\Projects\<repo-name>"
+git pull
+
+# WORK
+
+git status
+git add .
+git commit -m "Describe the change"
+git push
+git status -sb
+```
+
+## Existing local repo — Git Bash
 
 ```bash
 cd /c/Users/rgrac/Projects/<repo-name>
