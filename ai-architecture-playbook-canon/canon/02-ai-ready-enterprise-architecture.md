@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.4  
+**Status:** Working Canon v0.5  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -167,6 +167,8 @@ What identity, role, system, agent, or human owns the decision or action?
 What policy, approval, separation-of-duty rule, safety limit, regulation, confidence threshold, stop condition, or escalation rule applies?
 
 These concepts are related but not interchangeable.
+
+Evidence itself is input. The rules that determine what evidence is required, acceptable, and sufficient are architectural controls. The organization defines the evidence standard; architecture makes that standard executable.
 
 Evidence is also not limited to decision support. It can:
 - authorize an action,
@@ -340,23 +342,31 @@ This does not mean every system requires a large process-transformation exercise
 
 ReAct is commonly described as a loop involving reasoning, action, observation, and further reasoning.
 
-The architectural concern identified here sits **above** that loop.
+The architectural concern identified here sits **above and around** that loop.
 
-Before asking an agent to reason or act, determine whether it requires external evidence.
+Evidence-First does not prohibit preliminary reasoning. A model may need to reason about what is missing, what could have changed, which source is authoritative, or what evidence needs to be acquired next. The control point is whether the system may rely on that reasoning to establish a conclusion or take action.
+
+### Canonical principles
+
+> **The model can help determine what evidence is needed. It should not be the sole authority on what evidence is sufficient.**
+
+> **The organization defines the evidence standard. Architecture makes that standard executable.**
+
+> **Evidence itself is input. Evidence requirements are architectural controls.**
 
 ### Evidence-First Gate
 
 1. Understand the intent/question.
 2. Assess risk and domain.
 3. Assess whether relevant knowledge is volatile.
-4. Determine whether current or authoritative evidence is required.
-5. Acquire and validate that evidence when necessary.
-6. Establish provenance and freshness.
-7. Only then enter the reasoning/action loop.
+4. Determine evidence requirements, including source authority/trust, freshness, provenance, relevance, and sufficiency.
+5. Acquire the required evidence.
+6. Qualify that evidence against the applicable requirements.
+7. Only then rely on reasoning to establish a conclusion or take action.
 
 ### Canonical question
 
-> **What evidence does the agent need before answering or acting?**
+> **What evidence does the agent need before relying on its reasoning or acting?**
 
 This is stronger than:
 
@@ -378,6 +388,10 @@ Evidence acquisition becomes increasingly important when the subject is:
 - or rapidly changing.
 
 For high-risk questions, authoritative current evidence can be mandatory.
+
+Some evidence controls can be deterministic. Others require governed judgment. Freshness thresholds, provenance requirements, approved source lists, and mandatory fields can often be tested mechanically; evidence sufficiency may depend on context, risk, conflicting sources, uncertainty, and the specific claim being evaluated.
+
+When evidence does not support a claim, the system should not advance to a state that assumes the claim is true. It may instead record that the evidence is inconclusive, contradictory, unavailable, rejected, or insufficient and follow the appropriate escalation or evidence-acquisition path.
 
 ### Important nuance
 
@@ -659,6 +673,8 @@ A generalized loop is:
 This can coexist with ReAct rather than replacing it.
 
 The Evidence-First Gate governs whether the ReAct loop is allowed to begin with existing context or must first acquire better evidence.
+
+> **Evidence is not just input to reasoning. The requirements for evidence are part of the architecture that governs reasoning.**
 
 ---
 
