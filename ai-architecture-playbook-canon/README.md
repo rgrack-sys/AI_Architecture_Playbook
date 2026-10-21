@@ -42,6 +42,8 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Effect-level reachability testing for authority controls
    - Acceptance-boundary testing for proof of completion
    - Evidence-First Gate
+   - Evidence sufficiency and evidence requirements as architectural controls
+   - Organization-defined evidence standards made executable through architecture
    - AI-ready information architecture
    - Requirements-driven data design: derive representation and technology from what the system needs the data to do
    - Governed knowledge architecture
