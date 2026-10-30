@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.5  
+**Status:** Working Canon v0.6  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -321,6 +321,47 @@ A single expected artifact, implementation, or happy-path test can reward superf
 - and that the observed result satisfies the intended business and process outcome rather than merely matching one example.
 
 The acceptance boundary—not one reference artifact—is the specification the evaluation must prove.
+
+##### Canonical detection-and-intervention test
+
+> **Detection is not intervention. Every consequential automation boundary must identify not only how harmful or unauthorized behavior is observed, but who or what can interrupt it, within what latency, with what authority, and how containment is verified.**
+
+Monitoring should be designed as an operational control chain rather than treated as a synonym for control:
+
+**observation coverage -> detection -> investigation -> decision -> intervention capability -> containment evidence**
+
+Each link must be explicit. An alert does not prove that the affected process can be stopped. A detector may lack sufficient coverage, an investigator may lack evidence, a decision-maker may lack authority, or the intervention mechanism may be too slow, unavailable, or controlled by the system it is meant to constrain.
+
+For every consequential automation boundary, the architecture should therefore establish:
+
+- what behavior and effects can be observed,
+- what conditions produce a detection or escalation,
+- who or what investigates and decides,
+- who or what has independent authority to pause, revoke, isolate, roll back, or terminate execution,
+- the maximum acceptable detection and intervention latency,
+- whether the intervention path remains available during the failure being controlled,
+- and what evidence demonstrates that containment actually occurred.
+
+##### Canonical verifier-independence and dual-acceptance test
+
+> **Proof of completion must identify who verifies, what evidence the verifier receives, when verification occurs, and whether the verifier is independent of the producing context.**
+
+Independence is not established merely by calling the verifier a critic or by using a second model call. The verifier may still share the producer's assumptions, instructions, context omissions, tools, credentials, or failure modes. The required degree of independence should scale with the consequence of the action and may include separation of context, authority, implementation, evidence source, model, organization, or control plane.
+
+Proof of completion must separately accept both:
+
+1. **The intended business outcome** — the required result was achieved.
+2. **The governed process and control behavior** — the result was produced through the authorized process, with required evidence, controls, provenance, state transitions, and interventions intact.
+
+A successful outcome does not excuse a control failure. Control compliance does not compensate for a failed business outcome.
+
+##### Canonical integrated-configuration test
+
+> **A material model or harness change must be evaluated as a change to the integrated operating configuration.**
+
+The harness is not a neutral container. Observation layout, context assembly, tool schemas, instructions, permissions, control logic, runtime behavior, and verification design can materially change what the model can perceive and do. A model that performs well in one harness may fail in another, and a harness that appears weak with one fixed model may support better performance after compatible training or adaptation.
+
+Evaluation must therefore version the model and harness together and re-test their combined behavior after material changes. Fixed-model A/B testing remains useful, but it is not sufficient evidence for attributing failure or establishing the fitness of the integrated system.
 
 #### 10. Learn
 
