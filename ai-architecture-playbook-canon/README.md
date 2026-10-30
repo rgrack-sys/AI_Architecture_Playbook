@@ -41,6 +41,9 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Architecture capability requirements before technology selection
    - Effect-level reachability testing for authority controls
    - Acceptance-boundary testing for proof of completion
+   - Detection vs. intervention and verified containment
+   - Verifier independence and separate acceptance of business outcomes and governed process behavior
+   - Integrated model-harness configuration testing
    - Evidence-First Gate
    - Evidence sufficiency and evidence requirements as architectural controls
    - Organization-defined evidence standards made executable through architecture
