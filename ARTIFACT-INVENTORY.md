@@ -1,6 +1,6 @@
 # AI Architecture Playbook Artifact Inventory
 
-**Last reconciled:** October 21, 2026
+**Last reconciled:** November 2, 2026
 
 GitHub is the project source of truth. ChatGPT Library is a durable artifact surface, but it does not synchronize automatically with the repository.
 
@@ -19,6 +19,12 @@ GitHub is the project source of truth. ChatGPT Library is a durable artifact sur
 | `linkedin_post_2_automation_boundaries-posted.md` | `linkedin/02_automation_boundaries.md` | Added with normalized series filename |
 | `03_evidence_before_reasoning.md` and identical numbered copies | `linkedin/03_evidence_before_reasoning.md` | Added once; duplicates excluded |
 | Post 4 final — Evidence Is an Architectural Control | `linkedin/04_evidence_is_an_architectural_control.md` | Final posted text captured October 21, 2026 |
+
+## Agent workflow specifications
+
+| Artifact | Repository path | Status |
+| --- | --- | --- |
+| `linkedin-publishing-agent` V1 build specification | `linkedin/agent/v1-build-spec.md` | Added; implementation target is a separate repository |
 
 ## Library-only binary artifacts
 
