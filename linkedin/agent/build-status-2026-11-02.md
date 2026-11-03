@@ -96,6 +96,51 @@ The adapter now:
 
 Validation expanded from 10 to **16 unit/integration/acceptance tests**. The merged main commit passed the complete six-job Ubuntu/Windows, Python 3.10/3.12/3.14 CI matrix in GitHub Actions run `41685374351`. The current Playbook repository structure was separately inspected through the authenticated GitHub connection to verify the configured source boundaries and the need to exclude archived canon.
 
+## Milestone 3 — model-backed researcher/drafter layer
+
+Implemented November 3, 2026 and merged through `linkedin-publishing-agent` PR #2.
+
+Current main commit:
+
+`4d83bd1ccb520b47d799f433dfa2f8c6d6808d1f` — `Implement model-backed researcher and drafter layer`
+
+The workflow now inserts explicit model-reasoning states between evidence retrieval and drafting:
+
+```text
+EVIDENCE_READY
+  -> RESEARCH_ANALYSIS
+  -> RESEARCH_READY
+  -> DRAFTING
+  -> AWAITING_AUTHOR_DRAFT_REVIEW
+```
+
+The researcher consumes only the commit-pinned `EvidencePack` and produces a versioned `ResearchAnalysis`. Material ideas remain classified as `CANON`, `SUPPORTING`, `CANON_CANDIDATE`, `CONFLICT`, `EXTERNAL`, or `GAP`.
+
+Deterministic controls now enforce source boundaries around the model:
+
+- `CANON` ideas must cite only evidence already classified as canonical;
+- supporting material cannot be promoted to canon through model output;
+- `CANON_CANDIDATE` ideas must cite at least one supplied evidence item;
+- an empty evidence pack fails before model invocation rather than allowing the model to fill the corpus gap;
+- unknown evidence references are rejected;
+- `GAP` ideas cannot be used as factual draft support;
+- the governed primary argument selected by research must appear in the draft;
+- unresolved gaps and critic-attention items remain visible in draft metadata;
+- model/provider/response/token provenance and the Playbook snapshot SHA are retained.
+
+The drafter produces paired artifacts:
+
+- `draft-vNNN.md` — human-readable post text;
+- `draft-result-vNNN.json` — used research idea IDs, unresolved gaps, critic-attention points, model provenance, and LinkedIn safety count.
+
+Author revision instructions are treated as constraints. In particular, instructions such as “change nothing else” require preservation of unrelated approved text.
+
+The first real model provider implementation uses the OpenAI Responses API behind a provider-neutral `StructuredModelClient`. Requests use strict structured output, `store=false`, explicit reasoning effort, and expose no web/file/MCP tools. The model is configurable; the current default is `gpt-6.1-sol`.
+
+Validation expanded to **30 unit/integration/acceptance tests**. PR #2 passed the complete six-job Ubuntu/Windows, Python 3.10/3.12/3.14 CI matrix before merge, and merged main commit `4d83bd1ccb520b47d799f433dfa2f8c6d6808d1f` passed the same matrix in GitHub Actions run `41690338787`.
+
+A real OpenAI network call has deliberately not been executed in CI because no API credential is stored or exposed in the repository. A live local smoke command is available once `OPENAI_API_KEY` is configured.
+
 ## Intentionally not connected
 
-No real drafter/critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The next milestone is the model-backed researcher/drafter layer operating on the commit-pinned evidence pack.
+No independent real critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. After the live researcher/drafter smoke test, the next architectural milestone is the independent critic adapter.
