@@ -94,7 +94,7 @@ The adapter now:
 - resolves GitHub authentication from an explicit token, `PLAYBOOK_GITHUB_TOKEN`, `GITHUB_TOKEN`, or the existing `gh` CLI login without persisting credentials;
 - exposes a CLI evidence-pack smoke command.
 
-Validation expanded from 10 to **16 unit/integration/acceptance tests**. The implementation commit before documentation-only follow-up changes passed the complete six-job Ubuntu/Windows, Python 3.10/3.12/3.14 CI matrix. The current Playbook repository structure was separately inspected through the authenticated GitHub connection to verify the configured source boundaries and the need to exclude archived canon.
+Validation expanded from 10 to **16 unit/integration/acceptance tests**. The merged main commit passed the complete six-job Ubuntu/Windows, Python 3.10/3.12/3.14 CI matrix in GitHub Actions run `41685374351`. The current Playbook repository structure was separately inspected through the authenticated GitHub connection to verify the configured source boundaries and the need to exclude archived canon.
 
 ## Intentionally not connected
 
