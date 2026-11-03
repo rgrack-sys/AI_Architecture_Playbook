@@ -46,11 +46,32 @@ Local Git bundle SHA-256:
 
 `8ce702940d9a3460a3a7b4d202fb03200d6dd529c30c45fa909d37f3fe5e1b6a`
 
-## GitHub publication blocker
+## GitHub publication
 
-The target GitHub repository does not yet exist. The available GitHub connector can read/write existing repositories but does not expose repository creation. A write attempt to `rgrack-sys/linkedin-publishing-agent` returned GitHub 404 because the repository is absent.
+The target repository now exists and the verified V1 core has been published to:
 
-Per `GIT-WORKFLOW.md`, the next step is to create the repository once, then publish this verified source into it. After the repository exists, the connector can write the project files and verify the resulting branch state.
+`rgrack-sys/linkedin-publishing-agent`
+
+Published main commit:
+
+`aaa9f6b4c5329ca9e0b6a26637bde8e3b3271f7a` — `Bootstrap governed LinkedIn publishing agent V1 core`
+
+The published Git tree was verified against the validated local source by Git blob SHA for all tracked source files.
+
+GitHub Actions CI run `41663966248` completed successfully across the full configured matrix:
+
+- Ubuntu: Python 3.10, 3.12, 3.14
+- Windows: Python 3.10, 3.12, 3.14
+
+All six jobs passed.
+
+## Publication verification
+
+- repository visibility: private;
+- default branch: `main`;
+- GitHub connector permissions: pull + push available;
+- repository tree contains the expected source, tests, docs, workflow, and project-standard metadata;
+- CI conclusion: **success**.
 
 ## Intentionally not connected
 
