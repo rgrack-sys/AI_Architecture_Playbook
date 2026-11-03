@@ -186,6 +186,33 @@ That script may be:
 
 The architectural goal is to place each responsibility where it belongs rather than force every problem into model reasoning.
 
+### Model-invocation necessity gate
+
+> **The fact that we can call an AI model doesn't mean we should.**
+
+Model-backed reasoning is an architectural capability, not a default implementation choice. Before introducing a model call into a workflow, require an explicit justification against the available deterministic alternatives.
+
+#### Architecture review checklist
+
+1. **What capability are we introducing?** Model-backed reasoning.
+2. **Why is it necessary?** Deterministic software cannot adequately perform that particular task.
+3. **Where does it belong?** Behind a defined interface in the agent architecture.
+4. **How do we govern it?** Authentication, cost controls, evidence boundaries, logging, and evaluation.
+5. **Can we replace it?** Yes. The architecture should remain model-provider independent.
+
+**Decision rule:** If a deterministic approach adequately meets the task's correctness, maintainability, latency, and control requirements, prefer it. Invoke a model when its reasoning capability adds demonstrable value relative to that alternative. Keep data collection, filtering, validation, state transitions, and other predictable work in ordinary software where appropriate.
+
+**Implementation implication:** Put justified model calls behind an explicit, testable interface; preserve inputs, outputs, provenance, failure handling, and budget controls. The agent should remain usable in offline tests through a deterministic fake or mock model adapter.
+
+#### Stress test
+
+- **Counterargument:** A model call can be cheaper to implement than complex bespoke deterministic logic, especially for language ambiguity or unstructured inputs.
+- **Response:** The rule does not prohibit a model. It requires comparing total cost, accuracy, operational risk, and maintainability before choosing it.
+- **Tradeoff:** A necessity gate adds design effort and may rule out useful experimentation if imposed too rigidly. Lightweight prototypes can explore model capabilities, while production calls require an explicit justification.
+- **Failure modes:** Treating AI as the default for simple transformations; quietly growing API usage; leaking credentials or evidence across boundaries; or binding core workflow logic to a single provider.
+- **Skeptical review question:** What breaks, degrades, or becomes unreasonably complex if this specific model call is removed?
+- **Revision condition:** Reassess when deterministic methods, model capabilities, cost, latency, or governance requirements change materially.
+
 ---
 
 ## 6. Instruction design becomes executable architecture
