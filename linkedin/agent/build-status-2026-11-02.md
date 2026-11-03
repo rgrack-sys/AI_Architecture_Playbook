@@ -174,7 +174,7 @@ Two cleanup findings from the live run were then fixed:
 1. equivalent unresolved-gap wording is deduplicated deterministically using conservative normalized/leading-clause comparison;
 2. Markdown draft and locked-text artifacts now end with a trailing newline.
 
-The test suite expanded to **33 unit/integration/acceptance tests**.
+The test suite expanded to **33 unit/integration/acceptance tests**. Merged agent main commit `d63a7832c02c6fc86cb0e5fd6420a2db2834b4ab` passed the full six-job Ubuntu/Windows, Python 3.10/3.12/3.14 matrix in GitHub Actions run `41722112192`.
 
 ### Autonomous component/runtime documentation standard
 
