@@ -73,6 +73,29 @@ All six jobs passed.
 - repository tree contains the expected source, tests, docs, workflow, and project-standard metadata;
 - CI conclusion: **success**.
 
+## Milestone 2 — real Playbook corpus/GitHub adapter
+
+Implemented November 3, 2026 and merged through `linkedin-publishing-agent` PR #1.
+
+Current main commit:
+
+`93812fdd3f630ce9662103015207b0b136e21d31` — `Implement real Playbook corpus/GitHub adapter`
+
+The adapter now:
+
+- resolves the Playbook default branch to a specific commit SHA and tree SHA;
+- retrieves candidate content by blob SHA from that immutable snapshot;
+- reads current canon, prior LinkedIn posts, and curriculum material;
+- classifies current canon as `CANON` and other retrieved material as `SUPPORTING`;
+- excludes archived canon under `canon/archive/`;
+- excludes LinkedIn agent metadata, assets, and publication metadata from content retrieval;
+- fails closed if GitHub returns a truncated repository tree;
+- records the repository, branch, commit SHA, and tree SHA in the evidence pack;
+- resolves GitHub authentication from an explicit token, `PLAYBOOK_GITHUB_TOKEN`, `GITHUB_TOKEN`, or the existing `gh` CLI login without persisting credentials;
+- exposes a CLI evidence-pack smoke command.
+
+Validation expanded from 10 to **16 unit/integration/acceptance tests**. The implementation commit before documentation-only follow-up changes passed the complete six-job Ubuntu/Windows, Python 3.10/3.12/3.14 CI matrix. The current Playbook repository structure was separately inspected through the authenticated GitHub connection to verify the configured source boundaries and the need to exclude archived canon.
+
 ## Intentionally not connected
 
-No real model, image-generation provider, LinkedIn publisher, or Playbook writeback adapter has been connected yet. That is deliberate: the deterministic workflow has been implemented and validated first.
+No real drafter/critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The next milestone is the model-backed researcher/drafter layer operating on the commit-pinned evidence pack.
