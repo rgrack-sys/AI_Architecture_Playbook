@@ -141,6 +141,62 @@ Validation expanded to **30 unit/integration/acceptance tests**. PR #2 passed th
 
 A real OpenAI network call has deliberately not been executed in CI because no API credential is stored or exposed in the repository. A live local smoke command is available once `OPENAI_API_KEY` is configured.
 
+## Milestone 4 — live researcher/drafter validation, cleanup, and runtime documentation
+
+Completed November 3, 2026 and merged through `linkedin-publishing-agent` PR #5.
+
+Current agent main commit:
+
+`d63a7832c02c6fc86cb0e5fd6420a2db2834b4ab` — `Clean live draft artifacts and document autonomous runtime topology`
+
+A live billable smoke test was executed on Hugo-1 using the project Python 3.12 virtual environment. The real execution path completed:
+
+```text
+GitHub Playbook
+  -> commit-pinned EvidencePack
+  -> OpenAI Researcher
+  -> deterministic source-boundary validation
+  -> OpenAI Drafter
+  -> deterministic draft validation
+```
+
+Observed live behavior:
+
+- Researcher and Drafter both returned real OpenAI responses using `gpt-6.1-sol`.
+- The run used Playbook commit `54cb32a293a326fda1b374424dfc97045d674697`.
+- The Researcher kept established material separated as `CANON` / `SUPPORTING`.
+- The new explicit-authority design discipline remained a `CANON_CANDIDATE`, not established canon.
+- Authority assignment/enforcement remained an explicit `GAP`; the Drafter did not turn the gap into factual support.
+- The draft used the governed primary argument and returned a LinkedIn safety count of 2,336.
+
+Two cleanup findings from the live run were then fixed:
+
+1. equivalent unresolved-gap wording is deduplicated deterministically using conservative normalized/leading-clause comparison;
+2. Markdown draft and locked-text artifacts now end with a trailing newline.
+
+The test suite expanded to **33 unit/integration/acceptance tests**.
+
+### Autonomous component/runtime documentation standard
+
+The agent repository now maintains:
+
+- `docs/autonomous-component-inventory.md` — what each agent/autonomous function does, implementation language/module, execution environment, remote services, state/artifacts, commands, configuration names, authority and operational status;
+- `docs/autonomous-component-documentation-standard.md` — required documentation fields and same-change update rule;
+- `docs/glossary.md` — common definitions and overloaded acronyms.
+
+The inventory explicitly distinguishes:
+
+- where the application code executes;
+- where remote model/service execution occurs;
+- where durable state is stored;
+- where Continuous Integration (CI) tests execute.
+
+This documentation discipline was propagated into `rgrack-sys/project-bootstrap` standard **v0.3.0** and merged there at commit:
+
+`e54b98a7db94a9bc6f60a3fe75ae76f9b33f0f62`
+
+The project-bootstrap v0.3 main CI matrix passed on Ubuntu and Windows across Python 3.10, 3.12, and 3.14. The LinkedIn agent metadata now targets project standard v0.3.0.
+
 ## Intentionally not connected
 
-No independent real critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. After the live researcher/drafter smoke test, the next architectural milestone is the independent critic adapter.
+No independent real critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The next architectural milestone is the independent critic adapter.
