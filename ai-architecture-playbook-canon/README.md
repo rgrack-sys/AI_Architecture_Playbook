@@ -61,6 +61,7 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Runtime vs. harness
    - Agent assembly formula
    - Deterministic code in agentic systems
+   - Model-invocation necessity gate and five-question architecture review checklist
    - Instruction design as executable architecture
    - Governed Data / Evidence Boundary
    - Harness-to-harness delegation
@@ -81,3 +82,5 @@ Future conversations should **refine the canon rather than reinvent it**.
 > AI architecture is derived through process engineering. The architect first understands and redesigns the work, decisions, evidence, authority, controls, state, and outcomes; the required AI architecture is then derived from those requirements.
 
 > AI architecture is not traditional architecture plus a model. It is an architecture for governed reasoning, evidence, delegation, and controlled action.
+
+> The fact that we can call an AI model doesn't mean we should.
