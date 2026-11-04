@@ -197,6 +197,98 @@ This documentation discipline was propagated into `rgrack-sys/project-bootstrap`
 
 The project-bootstrap v0.3 main CI matrix passed on Ubuntu and Windows across Python 3.10, 3.12, and 3.14. The LinkedIn agent metadata now targets project standard v0.3.0.
 
+## Milestone 5 — independent model-backed Critic
+
+Implemented November 3, 2026 and merged through `linkedin-publishing-agent` PR #6.
+
+Current agent main commit:
+
+`0d942d1a86b02e32af23e83873f064e8de0f7d58` — `Implement independent model-backed Critic agent`
+
+The Critic now performs an adversarial review after author draft approval and before text lock.
+
+The enforced context boundary is:
+
+```text
+Critic input = current draft + commit-pinned EvidencePack
+```
+
+The Critic does **not** receive:
+
+- `ResearchAnalysis`;
+- `DraftResult`;
+- drafter rationale;
+- author feedback/history;
+- drafter chain-of-thought.
+
+This is context separation rather than a requirement for a different model vendor. The implementation uses a fresh stateless structured request through the same provider-neutral `StructuredModelClient` boundary.
+
+The Critic checks:
+
+- technical correctness;
+- conflict with canon;
+- unsupported claims;
+- overclaims;
+- novelty / prior-art claims;
+- terminology;
+- hidden assumptions;
+- counterexamples;
+- enterprise applicability;
+- series repetition;
+- logic;
+- clarity;
+- questions requiring external verification.
+
+Findings use the severity scale:
+
+`BLOCKER / MAJOR / MINOR / NOTE`
+
+Evidence controls remain deterministic around the model:
+
+- every cited support item must be a real EvidencePack evidence ID;
+- unknown evidence IDs are rejected;
+- duplicate finding IDs are rejected;
+- `CANON_CONFLICT` findings must cite canonical evidence;
+- `NOVELTY_PRIOR_ART` conclusions require supplied evidence;
+- where supplied evidence is insufficient, the Critic must use `EXTERNAL_VERIFICATION_NEEDED` rather than treating pretrained model knowledge as proof;
+- a failed structured result can receive one bounded corrective retry without expanding the source set.
+
+The resulting `critique-vNNN.json` artifact preserves:
+
+- structured findings;
+- a harness-generated context-separation note;
+- model/provider/response/token provenance;
+- Playbook commit SHA;
+- SHA-256 of the exact draft reviewed;
+- explicit context inputs: `["draft", "evidence_pack"]`.
+
+A new operator/live-test command is available:
+
+```bash
+linkedin-publishing-agent critic --post-id <post-id>
+```
+
+It reviews the latest `draft-vNNN.md` by default, can target a specific draft version, and writes the next versioned critique artifact. In the governed stateful workflow, the Critic still runs only after Richard authorizes the transition into `CRITIC_REVIEW`.
+
+Documentation was updated in the same change:
+
+- `docs/model-backed-critic.md`;
+- `docs/prompts/critic.md`;
+- `docs/autonomous-component-inventory.md`;
+- `docs/architecture.md`;
+- `docs/operating-rules.md`;
+- `docs/glossary.md`.
+
+The glossary now also defines Independent Critic, context separation, adversarial review, prior art, critique severity, Retrieval-Augmented Generation (RAG), and ReAct in project context.
+
+Validation expanded to **44 unit/integration/acceptance tests**.
+
+PR #6 passed all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs in GitHub Actions run `41776700496`.
+
+Merged main commit `0d942d1a86b02e32af23e83873f064e8de0f7d58` passed the same complete matrix in GitHub Actions run `41776840685`.
+
+A live billable Critic API call has not yet been run. The real adapter is implemented and CI-validated; the next live validation step is to run the Critic against the existing `live-smoke-001` draft/evidence workspace on Hugo-1.
+
 ## Intentionally not connected
 
-No independent real critic model, image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The next architectural milestone is the independent critic adapter.
+No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic is implemented and CI-validated; its live OpenAI smoke test remains pending. After that validation, the next architectural milestone is the real visual-design/image-generation path.
