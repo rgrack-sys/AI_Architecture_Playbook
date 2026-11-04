@@ -349,6 +349,51 @@ Merged main commit `5564f27ece39bf68bcbf52401a7d9ee7b67a89e7` passed the same co
 
 The current `live-smoke-001` post must now rerun the Critic on `draft-v002` with refreshed evidence before `TEXT_LOCKED`.
 
+## Milestone 7 — deterministic pre-lock Critic convergence
+
+Implemented November 4, 2026 and merged through `linkedin-publishing-agent` PR #9.
+
+Current agent main commit:
+
+`b5051e41a49ce564b306f017cfd0d21960a92e49` — `Add deterministic pre-lock Critic convergence rule`
+
+The Critic/revision loop now has an explicit stopping rule so the workflow does not become an endless perfection loop.
+
+A candidate draft is eligible for `TEXT_LOCKED` only when all of the following are true:
+
+- the latest critique's recorded `draft_sha256` matches the exact current draft artifact;
+- the structured series review is `PASS`;
+- no `BLOCKER` or `MAJOR` findings remain.
+
+Remaining `MINOR` and `NOTE` findings still require explicit Richard disposition, but they do not automatically force another Critic cycle. If the text is changed in response to one of those findings, the artifact hash changes and the new draft must receive one final Critic pass.
+
+The deterministic convergence evaluator is implemented in `services/convergence.py`.
+
+The stateful orchestrator now:
+
+- clears the current Critic result when a post-Critic revision changes the draft;
+- permits an author-approved transition from `AWAITING_AUTHOR_CRITIQUE_REVIEW` back to `CRITIC_REVIEW`;
+- blocks text lock when the Critic result is missing or stale;
+- blocks text lock when series review is not PASS;
+- blocks text lock while BLOCKER/MAJOR findings remain;
+- separately requires explicit human disposition of remaining MINOR/NOTE findings.
+
+Validation expanded to **55 unit/integration/acceptance tests**.
+
+PR #9 passed the full six-job Ubuntu/Windows × Python 3.10/3.12/3.14 matrix in GitHub Actions run `41925581905`.
+
+Merged main commit `b5051e41a49ce564b306f017cfd0d21960a92e49` passed the same complete matrix in GitHub Actions run `41925817020`.
+
+### Current human-in-the-loop post status
+
+The series-aware Critic rerun on `draft-v002` returned `series_review: PASS` and one `MINOR / LOGIC` finding. Richard accepted that finding and the draft was revised to `draft-v003`.
+
+The final Critic pass on `draft-v003` again returned `series_review: PASS` and one `MINOR / ENTERPRISE_APPLICABILITY` finding: the authority checklist still allowed task scope to be mistaken for actual permission. The recommended bounded remedy is to sharpen the positive authorization question to identify the class of permitted action explicitly:
+
+`What actions is the agent explicitly authorized to take—recommend, approve, execute, or escalate—and where does that authority come from?`
+
+Richard approved that one-line change and the new convergence rule. The next post artifact is `draft-v004`; it requires one final Critic pass on that exact artifact. If series review remains PASS and there are no BLOCKER/MAJOR findings, Richard may disposition any remaining MINOR/NOTE findings and lock the text without another Critic cycle.
+
 ## Intentionally not connected
 
-No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic and series-continuity gate are implemented and CI-validated. The current human-in-the-loop post still requires a live series-aware Critic rerun on draft-v002 before text lock; after that disposition, the next architectural milestone is the real visual-design/image-generation path.
+No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic, series-continuity gate, and pre-lock convergence rule are implemented and CI-validated. The current human-in-the-loop post now requires draft-v004 plus one final Critic pass before text lock; after that disposition, the next architectural milestone is the real visual-design/image-generation path.
