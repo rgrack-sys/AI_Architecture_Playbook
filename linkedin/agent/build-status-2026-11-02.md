@@ -394,6 +394,69 @@ The final Critic pass on `draft-v003` again returned `series_review: PASS` and o
 
 Richard approved that one-line change and the new convergence rule. The next post artifact is `draft-v004`; it requires one final Critic pass on that exact artifact. If series review remains PASS and there are no BLOCKER/MAJOR findings, Richard may disposition any remaining MINOR/NOTE findings and lock the text without another Critic cycle.
 
+## Milestone 8 — source-linked review capture ledger
+
+Implemented November 4, 2026 and merged through `linkedin-publishing-agent` PR #10.
+
+Current agent main commit:
+
+`9a2ef5696090c9f9afdf00b4e07c56a01589ad87` — `Add source-linked review capture ledger`
+
+The workflow now has a deterministic way to preserve useful Critic observations and follow-on ideas without forcing them into the current post or losing them.
+
+Supported capture kinds are:
+
+- `FOLLOW_ON_POST`;
+- `CRITIC_OBSERVATION`;
+- `RESEARCH_QUESTION`;
+- `CANON_CANDIDATE`;
+- `ARCHITECTURE_BACKLOG`.
+
+Each capture preserves:
+
+- author-created title and note;
+- originating critique version;
+- source finding ID(s);
+- snapshots of the source findings;
+- reviewed-draft SHA-256;
+- Playbook commit SHA;
+- author and timestamp;
+- tags and status.
+
+The deterministic Review Capture Service writes:
+
+- immutable `captures/capture-vNNN.json` artifacts;
+- append-only `captures.jsonl`.
+
+The CLI now exposes:
+
+```bash
+linkedin-publishing-agent capture ...
+linkedin-publishing-agent captures <post-id>
+```
+
+Capturing an item does **not** promote it to canon. `CANON_CANDIDATE` is a backlog classification only and still requires the normal canon vetting process.
+
+Because `workspace/*` remains intentionally Git-ignored, the local capture ledger is operational evidence rather than the shared source of truth. Until the real Playbook writeback/archive adapter is connected, durable editorial backlog items must also be synchronized into this Playbook repository through the normal Git workflow.
+
+Validation expanded to **59 unit/integration/acceptance tests**.
+
+PR #10 passed the full six-job Ubuntu/Windows × Python 3.10/3.12/3.14 matrix in GitHub Actions run `41929272191`.
+
+Merged main commit `9a2ef5696090c9f9afdf00b4e07c56a01589ad87` passed the same complete matrix in GitHub Actions run `41929531367`.
+
+### First durable backlog item
+
+The authority-boundary Critic observation from `live-smoke-001 / critique-v004 / F1` has been preserved as:
+
+`linkedin/backlog/content-backlog.md#bl-001--what-makes-an-authority-boundary-sufficiently-explicit`
+
+The backlog item preserves the deeper question raised by the Critic without expanding the current post:
+
+> What dimensions are required to define an authority boundary sufficiently for an enterprise AI agent?
+
+The initial candidate dimensions — action, scope, limits, conditions/prerequisites, approval, resources, duration, revocation, and exceptions — are explicitly marked as **not canon** and require research/stress-testing before use.
+
 ## Intentionally not connected
 
-No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic, series-continuity gate, and pre-lock convergence rule are implemented and CI-validated. The current human-in-the-loop post now requires draft-v004 plus one final Critic pass before text lock; after that disposition, the next architectural milestone is the real visual-design/image-generation path.
+No real image-generation provider, visual inspection model, LinkedIn publisher, or automatic Playbook writeback adapter has been connected yet. The independent Critic, series-continuity gate, pre-lock convergence rule, and review capture ledger are implemented and CI-validated. The current authority-boundary post has completed its final Critic pass on draft-v004; the remaining MINOR finding is preserved in the backlog so Richard can disposition it without losing the follow-on idea. After text lock, the next architectural milestone is the real visual-design/image-generation path.
