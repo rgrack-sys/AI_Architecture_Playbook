@@ -305,6 +305,50 @@ A direct `sha256sum` of `workspace/live-smoke-001/draft-v001.md` produced the sa
 
 The Critic is therefore **live-validated**, not only CI-tested. The validation status was merged into `linkedin-publishing-agent` through PR #7 at commit `3356d8293d430c0bd8b93fdc9326145bc81edc70`.
 
+## Milestone 6 — explicit series continuity gate before text lock
+
+Implemented November 4, 2026 and merged through `linkedin-publishing-agent` PR #8.
+
+Current agent main commit:
+
+`5564f27ece39bf68bcbf52401a7d9ee7b67a89e7` — `Add explicit series continuity review before text lock`
+
+Cross-post consistency and non-repetition are now a formal Critic responsibility rather than an implicit editorial expectation.
+
+The corpus adapter now includes a bounded set of prior LinkedIn posts as explicit SUPPORTING series evidence using `S1`, `S2`, etc., separate from topical retrieval. This gives the Critic actual prior-post content rather than only filenames.
+
+Every Critic response must persist a structured `series_review` that explicitly evaluates:
+
+- **Consistency** — whether terminology, distinctions, and claims remain consistent with supplied prior-post evidence and canon;
+- **Progression** — the incremental contribution of the current post beyond earlier posts;
+- **Repetition** — what materially repeats prior posts and whether that repetition is necessary setup;
+- **Drift** — whether established terminology or distinctions changed meaning without being called out.
+
+Series-review status is one of:
+
+`PASS / FINDING / INSUFFICIENT_EVIDENCE`
+
+Deterministic controls require prior-post evidence IDs for PASS/FINDING, reject non-LinkedIn evidence as prior-post support, require a linked `SERIES_CONTINUITY` or `SERIES_REPETITION` finding when status is FINDING, and require `INSUFFICIENT_EVIDENCE` rather than silently skipping the comparison when prior-post evidence is inadequate.
+
+For older workspaces created before this series-evidence requirement, the Critic CLI can explicitly refresh evidence without overwriting the original drafting EvidencePack:
+
+```bash
+linkedin-publishing-agent critic \
+  --post-id <post-id> \
+  --draft-version <n> \
+  --refresh-evidence
+```
+
+The refreshed evidence is preserved as `critic-evidence-pack-vNNN.json`, while the original `evidence-pack.json` remains immutable.
+
+Validation expanded to **49 unit/integration/acceptance tests**.
+
+PR #8 passed the complete six-job Ubuntu/Windows × Python 3.10/3.12/3.14 matrix in GitHub Actions run `41903094595`.
+
+Merged main commit `5564f27ece39bf68bcbf52401a7d9ee7b67a89e7` passed the same complete matrix in GitHub Actions run `41903408577`.
+
+The current `live-smoke-001` post must now rerun the Critic on `draft-v002` with refreshed evidence before `TEXT_LOCKED`.
+
 ## Intentionally not connected
 
-No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic is implemented, CI-validated, and live-validated. The next architectural milestone is the real visual-design/image-generation path.
+No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic and series-continuity gate are implemented and CI-validated. The current human-in-the-loop post still requires a live series-aware Critic rerun on draft-v002 before text lock; after that disposition, the next architectural milestone is the real visual-design/image-generation path.
