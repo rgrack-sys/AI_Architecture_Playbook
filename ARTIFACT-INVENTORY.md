@@ -25,7 +25,7 @@ GitHub is the project source of truth. ChatGPT Library is a durable artifact sur
 | Artifact | Repository path | Status |
 | --- | --- | --- |
 | `linkedin-publishing-agent` V1 build specification | `linkedin/agent/v1-build-spec.md` | Added; implementation target is a separate repository |
-| `linkedin-publishing-agent` V1 core build status | `linkedin/agent/build-status-2026-11-02.md` | Independent model-backed Critic live-validated on Hugo-1; exact reviewed-draft SHA-256 verified; PR #7 records live status; 44 tests; six-job PR and merged-main CI passed |
+| `linkedin-publishing-agent` V1 core build status | `linkedin/agent/build-status-2026-11-02.md` | Series continuity gate merged through PR #8; required consistency/progression/repetition/drift review; 49 tests; six-job PR and merged-main CI passed; live draft-v002 series-aware Critic rerun pending |
 
 ## Library-only binary artifacts
 
