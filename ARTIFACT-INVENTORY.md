@@ -48,3 +48,17 @@ The Library copies of `README.md`, `GIT-WORKFLOW.md`, `01-ai-foundations.md`, `0
 ## Duplicate handling
 
 `03_evidence_before_reasoning.md`, `03_evidence_before_reasoning(1).md`, and `03_evidence_before_reasoning(2).md` were byte-equivalent in content. The repository retains one normalized file.
+
+## Overlimit conversation recovery — 2026-11-04
+
+The terminal portion of the overlimit LinkedIn development chat is archived in the private `rgrack-sys/linkedin-publishing-agent` repository as `docs/overlimit conversation.md` (commit `3e522b0c1e14672cd3c6026df019e7e0565e0f0f`). It is a partial, 552-line transcript, not proof of full original chat coverage.
+
+The non-canonical audit records are:
+
+| Artifact | Repository path | Status |
+| --- | --- | --- |
+| Recovered decision register | `linkedin/agent/recovery/2026-11-04-decision-register.md` | Documented decisions, source-linked; distinguishes approval from executed state |
+| Preservation gap analysis | `linkedin/agent/recovery/2026-11-04-gap-analysis.md` | Open verification and archival gaps, prioritized |
+| Session handoff | `linkedin/agent/recovery/2026-11-04-session-handoff.md` | Resumption instructions; TEXT_LOCKED and publication remain unverified |
+
+No new canon was promoted by this audit. Local working artifacts in Git-ignored `workspace/live-smoke-001` have not been independently verified or published to GitHub.
