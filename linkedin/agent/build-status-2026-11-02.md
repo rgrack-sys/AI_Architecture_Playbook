@@ -287,8 +287,24 @@ PR #6 passed all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs in GitHub Acti
 
 Merged main commit `0d942d1a86b02e32af23e83873f064e8de0f7d58` passed the same complete matrix in GitHub Actions run `41776840685`.
 
-A live billable Critic API call has not yet been run. The real adapter is implemented and CI-validated; the next live validation step is to run the Critic against the existing `live-smoke-001` draft/evidence workspace on Hugo-1.
+A live billable Critic API call was executed successfully on Hugo-1 against the existing `live-smoke-001` workspace.
+
+The live Critic returned one `MINOR / CLARITY` finding on the final three-question authority checklist. The Critic observed that the checklist identifies the bounded task, where authority resides, and what remains outside the delegated authority, but does not explicitly ask for the positive authorization grant: what actions the agent is actually allowed to perform.
+
+The finding cited canonical evidence `C3`, recommended testing the checklist with the same bounded task under two different mandates (propose versus execute), and did not invent external prior-art or technical claims.
+
+The live `critique-v001.json` artifact recorded:
+
+- provider: `openai`;
+- model: `gpt-6.1-sol`;
+- Playbook commit: `54cb32a293a326fda1b374424dfc97045d674697`;
+- context inputs: exactly `["draft", "evidence_pack"]`;
+- reviewed draft SHA-256: `109c8c8274a4c9faed30d3a5be516cd547802e01d6bb39d9bbd1a87ccb5a8eed`.
+
+A direct `sha256sum` of `workspace/live-smoke-001/draft-v001.md` produced the same hash. This proves the persisted critique references the exact draft artifact that was reviewed.
+
+The Critic is therefore **live-validated**, not only CI-tested. The validation status was merged into `linkedin-publishing-agent` through PR #7 at commit `3356d8293d430c0bd8b93fdc9326145bc81edc70`.
 
 ## Intentionally not connected
 
-No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic is implemented and CI-validated; its live OpenAI smoke test remains pending. After that validation, the next architectural milestone is the real visual-design/image-generation path.
+No real image-generation provider, visual inspection model, LinkedIn publisher, or Playbook writeback adapter has been connected yet. The independent Critic is implemented, CI-validated, and live-validated. The next architectural milestone is the real visual-design/image-generation path.
