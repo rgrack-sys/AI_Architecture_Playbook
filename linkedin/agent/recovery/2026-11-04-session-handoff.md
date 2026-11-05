@@ -82,3 +82,27 @@ done
 ```
 
 If `author-decisions-v004.md` exists, inspect its contents as proposed/recorded disposition evidence, but do not infer `TEXT_LOCKED` without a governed state transition. Never fabricate `state.json` or discard current immutable artifacts. 
+
+## Updated path: reviewed-artifact recovery is now implemented (2026-11-04)
+
+Agent source merged at `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`, PR #13. Its six-job Ubuntu/Windows × Python matrix passed. Pull on Hugo-1 before using the command. The older section above saying `status` always crashes predates this fix.
+
+**First run only a read-only eligibility check:**
+
+```bash
+cd ~/Projects/linkedin-publishing-agent
+git pull --ff-only
+source .venv/bin/activate
+linkedin-publishing-agent status live-smoke-001
+linkedin-publishing-agent lock-reviewed \
+  --post-id live-smoke-001 \
+  --draft-version 4 \
+  --critique-version 4 \
+  --expected-draft-sha256 83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952 \
+  --disposition "F1=DEFER:Preserve detailed authorization dimensions in BL-001; no change to draft-v004." \
+  --check
+```
+
+A PASS means **eligible**, not locked. If and only if the author approves that finding disposition and exact draft, rerun this command with `--approve-text-lock` replacing `--check`. The command will create a new, truthful observed-artifact adoption checkpoint and a real author-gated `TEXT_LOCKED` transition. It does not reconstruct historical state transitions or authorize publishing. Review the persisted decisions and locked-text hash, then curate/copy/commit the approval proof to a tracked folder in the **private agent** repository. See `docs/reviewed-artifact-recovery.md`.
+
+The implementation does not hydrate downstream visual/publisher in-memory state. Live visual-production resume remains separate work.

@@ -53,3 +53,11 @@ The operator subsequently ran both capture commands successfully:
 **Code-level diagnosis:** Standalone CLI `draft` writes evidence/research/draft artifacts without `state.json`; standalone `critic` and `capture` do not advance orchestrator state. Only the orchestrator's `start_post` creates `PostState` and the state/event log; `status` unconditionally tries to load it. The absence of a state file is therefore consistent with an **artifact-only workflow**, not a failed prior state transition or missing draft. Do not recreate state or infer author approvals. Follow-up tracked in private agent issue [#12](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/12).
 
 **GAP-03 stays OPEN:** There is no persisted `TEXT_LOCKED` transition on this CLI path, and the `author-decisions-v004.md` plus `text-locked.md` file presence remains to be checked separately. A valid Critic hash + series PASS + no high-severity finding establishes eligibility only, not approval or a lock.
+
+## Recovery implementation milestone (2026-11-04)
+
+[Agent PR #13](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/13) was merged into `main` at `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`. The six GitHub Actions PR jobs passed: Ubuntu/Windows with Python 3.10, 3.12, 3.14.
+
+The new `lock-reviewed` command allows **read-only preflight** (`--check`) and a separately **explicitly authorized** (`--approve-text-lock`) adoption+TEXT_LOCKED transition. It validates the exact latest reviewed draft hash, the latest Critic's hash, series PASS, no BLOCKER/MAJOR, and complete written dispositions for MINOR/NOTE findings. It records `review-adoption-vNNN.json`, `author-text-lock-vNNN.json`, `text-locked.md`, `events.jsonl`, and `state.json` without inventing prior state transitions.
+
+**Important:** This was code/CI verification only. No live lock was performed on Hugo-1; the operator still needs to run read-only preflight, decide the F1 disposition, and explicitly approve the lock. GAP-03 remains **OPEN** until that evidence exists. GAP-02 (local artifact archival) and GAP-04 (automatic writeback) remain **OPEN**. Issue #12 tracks any remaining artifact-only status enhancements (e.g., richer read-only summary and operator acceptance). No publication or canon promotion occurred.

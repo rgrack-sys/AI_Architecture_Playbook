@@ -460,3 +460,13 @@ The initial candidate dimensions — action, scope, limits, conditions/prerequis
 ## Intentionally not connected
 
 No real image-generation provider, visual inspection model, LinkedIn publisher, or automatic Playbook writeback adapter has been connected yet. The independent Critic, series-continuity gate, pre-lock convergence rule, and review capture ledger are implemented and CI-validated. The current authority-boundary post has completed its final Critic pass on draft-v004; the remaining MINOR finding is preserved in the backlog so Richard can disposition it without losing the follow-on idea. After text lock, the next architectural milestone is the real visual-design/image-generation path.
+
+## Milestone 9 — artifact-only reviewed-text recovery (2026-11-04)
+
+[linkedin-publishing-agent PR #13](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/13) merged at `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`.
+
+The repository now has `services/recovery.py` and a `lock-reviewed` CLI command. The standalone path can no longer be mistaken for fully initialized state: `status` responds with `ARTIFACT_ONLY` if `state.json` is absent. A read-only `lock-reviewed --check` validates exact draft and Critic hashes, series PASS, no BLOCKER/MAJOR findings, and complete dispositions for remaining MINOR/NOTE findings.
+
+Only an explicit `--approve-text-lock` operation records the author decision, an observed-artifacts adoption event, and an actual `StateMachine` TEXT_LOCKED transition. The implementation preserves the exact locked bytes and marks prior transitions as **not reconstructed**. Twelve targeted tests and the full six-job PR matrix passed.
+
+**Operator status:** The live `live-smoke-001` lock is **not yet executed or proven** on Hugo-1. This is infrastructure ready for a human decision, not text-lock approval. Raw artifacts remain local/Git-ignored until carefully archived. Real visual and publisher adapters remain disconnected. No new canon.

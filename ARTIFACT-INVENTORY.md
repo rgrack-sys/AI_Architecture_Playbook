@@ -62,3 +62,13 @@ The non-canonical audit records are:
 | Session handoff | `linkedin/agent/recovery/2026-11-04-session-handoff.md` | Resumption instructions; TEXT_LOCKED and publication remain unverified |
 
 No new canon was promoted by this audit. Local working artifacts in Git-ignored `workspace/live-smoke-001` have not been independently verified or published to GitHub.
+
+## Reviewed-artifact recovery source addition — 2026-11-04
+
+| Artifact | Repository path | Status |
+| --- | --- | --- |
+| Recovery service, CLI and tests | `rgrack-sys/linkedin-publishing-agent` PR #13, commit `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740` | Implemented, six PR CI jobs passed |
+| Recovery operator guide | `linkedin-publishing-agent/docs/reviewed-artifact-recovery.md` | Added |
+| Live author disposition / text-lock record | Hugo-1 `workspace/live-smoke-001/` | **Pending** author approval and execution; not yet Git archived |
+
+This implementation is not canon. The exact post-specific author approval, lock artifacts, and Git archival must still be performed.
