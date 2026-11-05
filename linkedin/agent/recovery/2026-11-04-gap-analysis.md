@@ -61,3 +61,9 @@ The operator subsequently ran both capture commands successfully:
 The new `lock-reviewed` command allows **read-only preflight** (`--check`) and a separately **explicitly authorized** (`--approve-text-lock`) adoption+TEXT_LOCKED transition. It validates the exact latest reviewed draft hash, the latest Critic's hash, series PASS, no BLOCKER/MAJOR, and complete written dispositions for MINOR/NOTE findings. It records `review-adoption-vNNN.json`, `author-text-lock-vNNN.json`, `text-locked.md`, `events.jsonl`, and `state.json` without inventing prior state transitions.
 
 **Important:** This was code/CI verification only. No live lock was performed on Hugo-1; the operator still needs to run read-only preflight, decide the F1 disposition, and explicitly approve the lock. GAP-03 remains **OPEN** until that evidence exists. GAP-02 (local artifact archival) and GAP-04 (automatic writeback) remain **OPEN**. Issue #12 tracks any remaining artifact-only status enhancements (e.g., richer read-only summary and operator acceptance). No publication or canon promotion occurred.
+
+### CI evidence for recovery PR #13
+
+- PR CI: GitHub Actions run `41942987787`, all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs passed.
+- Merged-main CI: GitHub Actions run `41943185191` for `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`, all six jobs passed.
+- Live `live-smoke-001` preflight, human disposition, lock execution, and durable archival remain **pending**.

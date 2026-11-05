@@ -470,3 +470,9 @@ The repository now has `services/recovery.py` and a `lock-reviewed` CLI command.
 Only an explicit `--approve-text-lock` operation records the author decision, an observed-artifacts adoption event, and an actual `StateMachine` TEXT_LOCKED transition. The implementation preserves the exact locked bytes and marks prior transitions as **not reconstructed**. Twelve targeted tests and the full six-job PR matrix passed.
 
 **Operator status:** The live `live-smoke-001` lock is **not yet executed or proven** on Hugo-1. This is infrastructure ready for a human decision, not text-lock approval. Raw artifacts remain local/Git-ignored until carefully archived. Real visual and publisher adapters remain disconnected. No new canon.
+
+### CI evidence for recovery PR #13
+
+- PR CI: GitHub Actions run `41942987787`, all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs passed.
+- Merged-main CI: GitHub Actions run `41943185191` for `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`, all six jobs passed.
+- Live `live-smoke-001` preflight, human disposition, lock execution, and durable archival remain **pending**.
