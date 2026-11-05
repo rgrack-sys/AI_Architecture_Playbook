@@ -106,3 +106,9 @@ linkedin-publishing-agent lock-reviewed \
 A PASS means **eligible**, not locked. If and only if the author approves that finding disposition and exact draft, rerun this command with `--approve-text-lock` replacing `--check`. The command will create a new, truthful observed-artifact adoption checkpoint and a real author-gated `TEXT_LOCKED` transition. It does not reconstruct historical state transitions or authorize publishing. Review the persisted decisions and locked-text hash, then curate/copy/commit the approval proof to a tracked folder in the **private agent** repository. See `docs/reviewed-artifact-recovery.md`.
 
 The implementation does not hydrate downstream visual/publisher in-memory state. Live visual-production resume remains separate work.
+
+## 2026-11-05 progress: operator-confirmed lock approval; archival next
+
+The Hugo-1 `lock-reviewed --check` returned eligible. Subsequent operator output confirms SHA match between reviewed and locked text and a populated `approvals.text_locked` entry recorded by `Richard Grack` at `2026-11-05T13:45:09.979695+00:00`. The approval instruction includes SHA-256 `83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952` and cites `author-text-lock-v004.json`. The complete `state` and event-log file contents were not supplied; inspect before claiming comprehensive state/event verification.
+
+**Next:** Curate the actual local files into `docs/decisions/live-smoke-001/` inside the **private** agent repo, inspect for secrets, include SHA-256 manifest, commit/push and verify. The Git-ignored workspace is not yet remotely archived. Do not proceed to publishing or assume downstream adapter hydration.

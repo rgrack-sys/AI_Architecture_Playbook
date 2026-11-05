@@ -67,3 +67,9 @@ The new `lock-reviewed` command allows **read-only preflight** (`--check`) and a
 - PR CI: GitHub Actions run `41942987787`, all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs passed.
 - Merged-main CI: GitHub Actions run `41943185191` for `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`, all six jobs passed.
 - Live `live-smoke-001` preflight, human disposition, lock execution, and durable archival remain **pending**.
+
+## 2026-11-05 operator verification: author lock approval recorded
+
+The operator reported a successful `lock-reviewed --check` preflight: `eligible_for_author_lock=true`, reviewed draft SHA-256 `83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952`, F1 `DEFER` to BL-001, and `state_mutated=false`. The operator subsequently reported an exact SHA match between `draft-v004.md` and `text-locked.md` and supplied a populated `status` approval block `approvals.text_locked` with `by=Richard Grack`, `at=2026-11-05T13:45:09.979695+00:00` and explicit reviewed draft/hash and `author-text-lock-v004.json` reference.
+
+**Updated GAP-03:** Author approval record and locked-text integrity are **operator-confirmed**. The full `state` value and event-log files were not directly inspected through this chat. Confirm `state=TEXT_LOCKED` and archive the actual `review-adoption-v004.json`, `author-text-lock-v004.json`, `state.json`, `events.jsonl`, `critique-v004.json`, and locked text into private GitHub. **GAP-02 and GAP-04 remain open** until the files are committed / automatic writeback exists. Do not claim archival completion yet.

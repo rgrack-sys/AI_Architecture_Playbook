@@ -476,3 +476,7 @@ Only an explicit `--approve-text-lock` operation records the author decision, an
 - PR CI: GitHub Actions run `41942987787`, all six Ubuntu/Windows × Python 3.10/3.12/3.14 jobs passed.
 - Merged-main CI: GitHub Actions run `41943185191` for `a7e6a1cfa2f7f2cbeec47974cf7dfa86cb054740`, all six jobs passed.
 - Live `live-smoke-001` preflight, human disposition, lock execution, and durable archival remain **pending**.
+
+## Live operator milestone — 2026-11-05
+
+The `live-smoke-001` preflight returned `eligible_for_author_lock=true` and `ARTIFACT_ONLY` before authorization. Following the lock operation, the operator reported identical `draft-v004.md` and `text-locked.md` SHA-256 hashes and supplied an `approvals.text_locked` entry with `by=Richard Grack`, timestamp `2026-11-05T13:45:09.979695+00:00`, and a reference to `author-text-lock-v004.json`. **The approval and integrity checks are operator-verified; full state/event file verification and Git archival remain outstanding.** This is not a publication receipt or canon promotion.
