@@ -43,3 +43,13 @@ The operator subsequently ran both capture commands successfully:
 - `captures live-smoke-001` displayed both entries with `[OPEN]`.
 
 **GAP-05 execution uncertainty is resolved** based on these terminal outputs. Durable GitHub reconciliation is recorded under BL-001; no extra backlog item is warranted. GAP-02 (local artifact preservation), GAP-04 (automated writeback), and GAP-03 (human disposition and actual text lock) remain open. This report does not assert direct filesystem inspection.
+
+## Follow-up: v004 file hash verified; missing orchestrator state (2026-11-04)
+
+**Verified by operator:** `draft-v004.md` SHA-256 is `83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952`, matching the final Critic artifact. This closes the **draft-v004 hash-matching sub-check of GAP-02**, but other artifacts remain uninspected and unarchived.
+
+**Observed:** `linkedin-publishing-agent status live-smoke-001` raises `FileNotFoundError` for `workspace/live-smoke-001/state.json`.
+
+**Code-level diagnosis:** Standalone CLI `draft` writes evidence/research/draft artifacts without `state.json`; standalone `critic` and `capture` do not advance orchestrator state. Only the orchestrator's `start_post` creates `PostState` and the state/event log; `status` unconditionally tries to load it. The absence of a state file is therefore consistent with an **artifact-only workflow**, not a failed prior state transition or missing draft. Do not recreate state or infer author approvals. Follow-up tracked in private agent issue [#12](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/12).
+
+**GAP-03 stays OPEN:** There is no persisted `TEXT_LOCKED` transition on this CLI path, and the `author-decisions-v004.md` plus `text-locked.md` file presence remains to be checked separately. A valid Critic hash + series PASS + no high-severity finding establishes eligibility only, not approval or a lock.

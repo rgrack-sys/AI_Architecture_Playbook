@@ -48,3 +48,16 @@ The operator provided the terminal results for both `linkedin-publishing-agent c
 | `CAP-002` | `CRITIC_OBSERVATION` | `live-smoke-001 / critique-v004.json / F1` | Action class alone may not sufficiently define authority | `OPEN` | Linked to existing `BL-001` |
 
 The successful commands used tags `authority, follow-on` (CAP-001) and `authority, critic` (CAP-002), preserving two distinct kinds of capture for the same finding. **No duplicate BL-002 was created**; both belong to one underlying deferred research question. Their report here does **not** establish an author disposition of v004/F1, `TEXT_LOCKED`, or publication.
+
+## Follow-up verification — 2026-11-04, Hugo-1
+
+Operator command output demonstrates:
+
+```text
+sha256sum workspace/live-smoke-001/draft-v004.md
+83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952  workspace/live-smoke-001/draft-v004.md
+```
+
+This **confirms the local candidate exactly matches** the reviewed-draft SHA-256 recorded by `critique-v004`. The local bytes were not uploaded to GitHub, but the SHA measurement is direct operator evidence.
+
+The command `linkedin-publishing-agent status live-smoke-001` raises `FileNotFoundError` for `workspace/live-smoke-001/state.json`. Inspection of `cli.py`, `services/storage.py`, and `services/orchestrator.py` establishes that the **standalone draft/critic/capture CLI creates versioned artifacts without initializing a stateful `PostState`**, while `status` assumes the orchestrator-created `state.json` exists. This is an execution-path integration gap, not evidence of loss/corruption. **Do not synthesize `state.json`, assert `TEXT_LOCKED`, or restart `start_post` over the existing workspace.** Agent issue: [#12](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/12).

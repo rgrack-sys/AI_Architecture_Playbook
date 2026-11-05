@@ -60,3 +60,25 @@ If the hash differs or any artifact is missing, stop and reconcile against the a
 
 ## Handoff rule to consider for future approval
 Each new session should read: (a) current canon and repo, (b) latest handoff, (c) open questions and Critic backlog, (d) exact artifact/commit evidence. Every session should end by documenting new decisions, exclusions, provenance and unverified tasks. This is a **workflow proposal**, not an approved canon change.
+
+## Important state/status discovery (2026-11-04)
+
+The operator confirmed `sha256sum workspace/live-smoke-001/draft-v004.md` = `83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952`, matching `critique-v004` exactly.
+
+The attempted `linkedin-publishing-agent status live-smoke-001` failed because `workspace/live-smoke-001/state.json` is missing. **Do not run that status command again expecting valid state until the CLI is fixed.** The current standalone `draft/critic/capture` route does not initialize orchestrator state; the `status` command does not handle artifact-only workspaces. See [agent issue #12](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/12).
+
+**Safe next diagnostic (read-only):**
+
+```bash
+cd ~/Projects/linkedin-publishing-agent
+ls -la workspace/live-smoke-001/
+for p in author-decisions-v004.md text-locked.md events.jsonl; do
+  if test -f "workspace/live-smoke-001/$p"; then
+    echo "PRESENT: $p"
+  else
+    echo "ABSENT: $p"
+  fi
+done
+```
+
+If `author-decisions-v004.md` exists, inspect its contents as proposed/recorded disposition evidence, but do not infer `TEXT_LOCKED` without a governed state transition. Never fabricate `state.json` or discard current immutable artifacts. 
