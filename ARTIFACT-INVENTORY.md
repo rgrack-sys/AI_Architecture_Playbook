@@ -76,3 +76,7 @@ This implementation is not canon. The exact post-specific author approval, lock 
 ### Verified private Git archive for live-smoke-001 — 2026-11-05
 
 The locked text, exact draft, Critic evidence, author disposition, approval, adoption and state/event records, two captures, and SHA-256 manifest are now in private `rgrack-sys/linkedin-publishing-agent` `docs/decisions/live-smoke-001/` at [commit `29851bf`](https://github.com/rgrack-sys/linkedin-publishing-agent/commit/29851bfaf1f59fd623c33aa5211b682bc4a1d689). The verified repository state is `TEXT_LOCKED`, with `publication_approved=false`; no graphic or publication stage is yet complete. Earlier pending-archive notes are historical and superseded by this entry.
+
+### Storage boundary made explicit in agent CLI — 2026-11-05
+
+The private agent repository now provides `artifacts <post-id>` and the `status.artifact_locations` object to distinguish the ignored runtime `workspace/<post-id>/` from tracked decision evidence `docs/decisions/<post-id>/`. It compares local hashes, reports local HEAD archive tracking, and does not claim remote GitHub push confirmation. Implemented in [agent PR #14](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/14), merged at `47e690eb066eae1fa7e9a270032381ce3b7ec6df`; README, `docs/artifact-storage.md`, Git workflow and other docs were updated. Not a change to canon or publication status.

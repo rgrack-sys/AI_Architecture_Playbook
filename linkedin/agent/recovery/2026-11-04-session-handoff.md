@@ -123,3 +123,9 @@ The archive at `docs/decisions/live-smoke-001/` contains reviewed draft, exactly
 **Resolution:** GAP-02 for the current `live-smoke-001` draft/review/approval artifact set is CLOSED; GAP-03 for `live-smoke-001` is CLOSED; GAP-05 was already CLOSED based on successful CLI capture execution. GAP-04, automated writeback/long-term synchronization design, remains OPEN. Earlier conversation coverage (GAP-01), future workflow discipline, binary asset gaps, and downstream visual/publisher integrations remain separate outstanding items. This archival verification is not authorization to publish and does not itself promote new canon.
 
 **Resume point:** text lock is verified and durably Git-archived. Next work is visual-design/image-generation integration and explicit later human approvals. Current CLI/orchestrator does not yet hydrate downstream in-memory components from the archived post; do not assume it can resume automatically.
+
+## 2026-11-05 operator discoverability update
+
+[Agent PR #14](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/14), merged commit `47e690eb066eae1fa7e9a270032381ce3b7ec6df`, adds `linkedin-publishing-agent artifacts live-smoke-001` and `artifact_locations` to `status`. The CLI now shows `workspace/live-smoke-001/` as the local Git-ignored runtime and `docs/decisions/live-smoke-001/` as curated Git-tracked evidence, compares locked-text SHA-256, reports local commit inclusion, and leaves GitHub remote-push verification unknown until independently checked. See agent `docs/artifact-storage.md`. PR CI passed on Windows and Linux across Python 3.10/3.12/3.14.
+
+**Resume:** On Hugo-1, pull the agent repository first. Graphic work begins with a visual brief derived from the approved locked text, followed by image generation, independent visual QA, and a separate author approval. The real visual integrations are still not implemented, and publication remains unapproved.

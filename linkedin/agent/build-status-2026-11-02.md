@@ -490,3 +490,11 @@ The archive at `docs/decisions/live-smoke-001/` contains reviewed draft, exactly
 
 **Resolution:** GAP-02 for the current `live-smoke-001` draft/review/approval artifact set is CLOSED; GAP-03 for `live-smoke-001` is CLOSED; GAP-05 was already CLOSED based on successful CLI capture execution. GAP-04, automated writeback/long-term synchronization design, remains OPEN. Earlier conversation coverage (GAP-01), future workflow discipline, binary asset gaps, and downstream visual/publisher integrations remain separate outstanding items. This archival verification is not authorization to publish and does not itself promote new canon.
 
+
+## Storage visibility improvement — 2026-11-05
+
+[Agent PR #14](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/14) merged into `main` as commit `47e690eb066eae1fa7e9a270032381ce3b7ec6df`, after six CI test jobs passed (Ubuntu/Windows × Python 3.10, 3.12, 3.14).
+
+The command `linkedin-publishing-agent artifacts <post-id>` now explicitly reports the local Git-ignored runtime `workspace/<post-id>/` and Git-curated `docs/decisions/<post-id>/` directories, exact locked-text file paths and SHA-256 agreement, whether the archive is committed in local HEAD, and an optional GitHub navigation URL. It represents remote push verification as unknown (`null`), because CLI does **not** contact GitHub to assert the upload. The existing `status <post-id>` includes the same `artifact_locations` details without altering its state fields; it also avoids creating absent directories. New read-only tests and `docs/artifact-storage.md`, README, recovery/operating rules, inventory, Git workflow updates shipped with the change.
+
+**Scope:** Runtime storage observability only—does not add publishing, graphic generation, remote writeback or canon promotion. The `live-smoke-001` decision archive remains verified separately in agent Git commit `29851bfaf1f59fd623c33aa5211b682bc4a1d689`.
