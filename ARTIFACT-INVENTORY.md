@@ -80,3 +80,7 @@ The locked text, exact draft, Critic evidence, author disposition, approval, ado
 ### Storage boundary made explicit in agent CLI — 2026-11-05
 
 The private agent repository now provides `artifacts <post-id>` and the `status.artifact_locations` object to distinguish the ignored runtime `workspace/<post-id>/` from tracked decision evidence `docs/decisions/<post-id>/`. It compares local hashes, reports local HEAD archive tracking, and does not claim remote GitHub push confirmation. Implemented in [agent PR #14](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/14), merged at `47e690eb066eae1fa7e9a270032381ce3b7ec6df`; README, `docs/artifact-storage.md`, Git workflow and other docs were updated. Not a change to canon or publication status.
+
+### Manual visual V001/V002 governance pilot — 2026-11-05
+
+Visual source and raster pilot bundle generated locally for `live-smoke-001` (original PNG, editable SVG reconstruction and V002 revision, provisional QA, manifests and validation scripts). Governance documents/index are present on [agent draft PR #16](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/16). **The full ZIP contents are not yet pushed to agent GitHub** and require the operator's explicit import before the PR can merge. Operational visual automation is tracked in [issue #15](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/15). Graphic and publication approvals remain pending.
