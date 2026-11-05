@@ -72,3 +72,7 @@ No new canon was promoted by this audit. Local working artifacts in Git-ignored 
 | Live author disposition / text-lock record | Hugo-1 `workspace/live-smoke-001/` | **Pending** author approval and execution; not yet Git archived |
 
 This implementation is not canon. The exact post-specific author approval, lock artifacts, and Git archival must still be performed.
+
+### Verified private Git archive for live-smoke-001 — 2026-11-05
+
+The locked text, exact draft, Critic evidence, author disposition, approval, adoption and state/event records, two captures, and SHA-256 manifest are now in private `rgrack-sys/linkedin-publishing-agent` `docs/decisions/live-smoke-001/` at [commit `29851bf`](https://github.com/rgrack-sys/linkedin-publishing-agent/commit/29851bfaf1f59fd623c33aa5211b682bc4a1d689). The verified repository state is `TEXT_LOCKED`, with `publication_approved=false`; no graphic or publication stage is yet complete. Earlier pending-archive notes are historical and superseded by this entry.

@@ -480,3 +480,13 @@ Only an explicit `--approve-text-lock` operation records the author decision, an
 ## Live operator milestone — 2026-11-05
 
 The `live-smoke-001` preflight returned `eligible_for_author_lock=true` and `ARTIFACT_ONLY` before authorization. Following the lock operation, the operator reported identical `draft-v004.md` and `text-locked.md` SHA-256 hashes and supplied an `approvals.text_locked` entry with `by=Richard Grack`, timestamp `2026-11-05T13:45:09.979695+00:00`, and a reference to `author-text-lock-v004.json`. **The approval and integrity checks are operator-verified; full state/event file verification and Git archival remain outstanding.** This is not a publication receipt or canon promotion.
+
+
+## Final verification — 2026-11-05: locked text and evidence archived in private GitHub
+
+**Verified through the live GitHub connector**, not merely inferred from terminal output. The private agent repository `main` has commit [`29851bfaf1f59fd623c33aa5211b682bc4a1d689`](https://github.com/rgrack-sys/linkedin-publishing-agent/commit/29851bfaf1f59fd623c33aa5211b682bc4a1d689), message "Archive approved authority-boundary text lock and Critic evidence".
+
+The archive at `docs/decisions/live-smoke-001/` contains reviewed draft, exactly matching locked text, critique and refreshed Critic evidence, author decision/approval, adoption checkpoint, `state.json`, `events.jsonl`, both local captures, original evidence and `SHA256SUMS`. The manifest records the SHA-256 of both `draft-v004.md` and `text-locked.md` as `83bdd47ccd157d5a33250b6ade5f18843230e7097452118580b02445802e8952`. The archive's `state.json` explicitly reports `TEXT_LOCKED`, with `approvals.text_locked.by = Richard Grack` at `2026-11-05T13:45:09.979695+00:00`. The approval record disposition is `F1=DEFER` to BL-001; `publication_approved=false` and `canon_promoted=false`. The event log includes an explicit adoption from `ARTIFACT_ONLY` and the authorized `AWAITING_AUTHOR_CRITIQUE_REVIEW -> TEXT_LOCKED` transition; no fictitious prior history.
+
+**Resolution:** GAP-02 for the current `live-smoke-001` draft/review/approval artifact set is CLOSED; GAP-03 for `live-smoke-001` is CLOSED; GAP-05 was already CLOSED based on successful CLI capture execution. GAP-04, automated writeback/long-term synchronization design, remains OPEN. Earlier conversation coverage (GAP-01), future workflow discipline, binary asset gaps, and downstream visual/publisher integrations remain separate outstanding items. This archival verification is not authorization to publish and does not itself promote new canon.
+
