@@ -37,3 +37,14 @@
 
 ## Canon policy
 No new canonical principles or authority-schema dimensions were promoted by this audit. Each recovered decision retains its own evidence and verification classification. For unresolved items, see [gap analysis](2026-11-04-gap-analysis.md) and [session handoff](2026-11-04-session-handoff.md).
+
+## Addendum — local capture commands verified from operator output (2026-11-04)
+
+The operator provided the terminal results for both `linkedin-publishing-agent capture` commands and a subsequent `linkedin-publishing-agent captures live-smoke-001` listing. This is **direct command-output evidence of successful local capture execution**, stronger than the prior transcript's proposed commands. The Git-ignored file bytes and timestamps have not yet been independently inspected.
+
+| Local capture ID | Kind | Source | Title | CLI status | GitHub reconciliation |
+| --- | --- | --- | --- | --- | --- |
+| `CAP-001` | `FOLLOW_ON_POST` | `live-smoke-001 / critique-v004.json / F1` | What makes an authority boundary sufficiently explicit? | `OPEN` | Linked to existing `BL-001` |
+| `CAP-002` | `CRITIC_OBSERVATION` | `live-smoke-001 / critique-v004.json / F1` | Action class alone may not sufficiently define authority | `OPEN` | Linked to existing `BL-001` |
+
+The successful commands used tags `authority, follow-on` (CAP-001) and `authority, critic` (CAP-002), preserving two distinct kinds of capture for the same finding. **No duplicate BL-002 was created**; both belong to one underlying deferred research question. Their report here does **not** establish an author disposition of v004/F1, `TEXT_LOCKED`, or publication.

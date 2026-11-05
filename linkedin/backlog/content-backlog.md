@@ -70,3 +70,16 @@ Before using it in a post or canon:
 4. test whether the dimensions are mutually distinct and operationally useful;
 5. determine which controls can be deterministic versus governed judgment.
 
+
+## Local Review Capture Ledger reconciliation — 2026-11-04
+
+The operator supplied Hugo-1 CLI output proving the local workflow successfully executed two source-linked captures and listed both as **OPEN**:
+
+| Capture ID | Kind | Exact local title | Tags | Shared source |
+| --- | --- | --- | --- | --- |
+| `CAP-001` | `FOLLOW_ON_POST` | What makes an authority boundary sufficiently explicit? | `authority`, `follow-on` | `live-smoke-001 / critique-v004.json / F1` |
+| `CAP-002` | `CRITIC_OBSERVATION` | Action class alone may not sufficiently define authority | `authority`, `critic` | `live-smoke-001 / critique-v004.json / F1` |
+
+**Reconciliation:** Both represent two classifications of **BL-001**, not two different architectural questions. Keep this single backlog item OPEN. The capture service wrote the local artifacts according to its executed command responses, but the underlying Git-ignored JSON/JSONL bytes and timestamps have not been independently audited. This GitHub note is the durable shared index; the local full capture objects remain on Hugo-1 until archived/synchronized.
+
+**Authority:** These captures do not approve the Critic v004/F1 disposition, promote a canon candidate, perform `TEXT_LOCKED`, or authorize publication.

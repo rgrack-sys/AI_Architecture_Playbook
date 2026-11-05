@@ -10,6 +10,14 @@
 - Playbook backlog: `linkedin/backlog/content-backlog.md`, BL-001.
 - Recovery notes: [decision register](2026-11-04-decision-register.md) and [gap analysis](2026-11-04-gap-analysis.md).
 
+## Newly confirmed from Hugo-1 command output (2026-11-04)
+
+The operator created and listed two local immutable capture entries:
+- `CAP-001` — `FOLLOW_ON_POST`, **OPEN**, title: “What makes an authority boundary sufficiently explicit?”
+- `CAP-002` — `CRITIC_OBSERVATION`, **OPEN**, title: “Action class alone may not sufficiently define authority”
+
+Both refer to `critique-v004.json / F1` and are reconciled to **one** existing Playbook backlog item, `BL-001`. These are successful reported CLI operations; capture JSON/ledger files were not directly inspected. **Capturing does not record final author disposition or lock the text.**
+
 ## Current verified editorial state
 - Working title/theme: enterprise agent authority boundaries; task delegated and authority delegated are distinct decisions.
 - Post ID: `live-smoke-001`.
@@ -31,7 +39,7 @@ git status -sb
 ls -la workspace/live-smoke-001/
 sha256sum workspace/live-smoke-001/draft-v004.md
 linkedin-publishing-agent status live-smoke-001
-linkedin-publishing-agent captures live-smoke-001
+linkedin-publishing-agent captures live-smoke-001  # already run; CAP-001 and CAP-002 are OPEN
 
 # Verify any author decision, persisted workflow approval and lock evidence:
 test -f workspace/live-smoke-001/author-decisions-v004.md && cat workspace/live-smoke-001/author-decisions-v004.md
