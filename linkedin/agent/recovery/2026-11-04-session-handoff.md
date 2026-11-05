@@ -150,3 +150,10 @@ Private agent [draft PR #16](https://github.com/rgrack-sys/linkedin-publishing-a
 **No new canon promoted, no `GRAPHIC_LOCKED` approval, no publication.**
 
 Next on Hugo-1: switch to the PR #16 feature branch, import the incremental `authority-boundaries-v003-git-import.zip` into the repo root without overwriting V001/V002, run `python docs/decisions/live-smoke-001/visuals/tools/validate_v003.py`, run `linkedin-publishing-agent visual-preflight --post-id live-smoke-001 --visual-version 3`, then `sha256sum -c SHA256SUMS-v003` in the visuals directory. Review mobile and full-resolution images, commit/push only if verified and keep the draft PR unmerged until QA, artifact verification and author decision.
+
+
+## Localized visual edit correction — 2026-11-05
+
+The user correctly identified that repeated V003/V004 redesigns were unnecessary regressions: the required change to the preferred styled infographic was only removing a small gold arrow from Granted Authority into AI Agent. We produced a **localized pixel edit** against the user-provided preferred image, with source SHA-256 `764e1e273054a29674593d2025805c8b86a87321ca33ea77389def1549cf9628`, destination SHA-256 `7517164b4e3757e13bbf1aaa46743710c621257fd807ff44f252bf57238b2717`, and a verified diff restricted to x=807..855, y=352..406 (2,614 changed pixels; every pixel outside the region unchanged). The resulting corrected raster is in this chat's generated files but has **not been Git-archived**. Treat it as an **unapproved candidate**, not a graphic lock or publication.
+
+The agent's visual review protocol on PR #16 was updated at commit `a8ae2f991218566038a04befbe338369291cbec9` to require a minimal-change gate: preserve a chosen baseline, modify only named elements/regions, independently prove unchanged out-of-scope content, and do not substitute a whole-image re-generation for a one-element edit. Future work: import the precise corrected asset and its SHA proof to the private decision archive with author review, rather than proliferating unnecessary revisions.
