@@ -84,3 +84,7 @@ The private agent repository now provides `artifacts <post-id>` and the `status.
 ### Manual visual V001/V002 governance pilot — 2026-11-05
 
 Visual source and raster pilot bundle generated locally for `live-smoke-001` (original PNG, editable SVG reconstruction and V002 revision, provisional QA, manifests and validation scripts). Governance documents/index are present on [agent draft PR #16](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/16). **The full ZIP contents are not yet pushed to agent GitHub** and require the operator's explicit import before the PR can merge. Operational visual automation is tracked in [issue #15](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/15). Graphic and publication approvals remain pending.
+
+### V003 visual candidate and process — 2026-11-05
+
+Private agent PR #16 includes V002-F1/F2/F3 findings and reusable visual-preflight command + documentation, while V003 SVG/PNG/source review package is awaiting Git import. Locked text and V001/V002 remain unchanged. New source digest `51f1880d927373c95f1408bca579d58c0cc70407eb76d673f2b83fb1f590065c` and PNG digest `28e16fafea5274e3872f6b3122ff5382f018d4f1f4423da2a6a389aa4fb9c829`. This is a controlled visual QA *candidate*, not a graphic lock nor an operational image pipeline. See [agent PR #16](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/16) and [issue #15](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/15).
