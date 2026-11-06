@@ -33,6 +33,7 @@ Future conversations should **refine the canon rather than reinvent it**.
 
 2. `canon/02-ai-ready-enterprise-architecture.md`
    - Data quality defines reasoning quality
+   - Data readiness and business context: governed semantics and verifiable evidence
    - Process-first AI architecture
    - Executive shorthand vs. practitioner methodology
    - Frame -> Observe -> Decompose -> Govern -> Redesign -> Architect -> Specify -> Select -> Prove -> Learn

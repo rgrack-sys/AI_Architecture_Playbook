@@ -1,6 +1,6 @@
 # Canon 02 - AI-Ready Enterprise Architecture
 
-**Status:** Working Canon v0.6  
+**Status:** Working Canon v0.7  
 **Origin:** August 25, 2026 conversation
 
 ## 1. Data quality defines reasoning quality
@@ -28,6 +28,29 @@ Traditional quality dimensions such as correctness, completeness, consistency, a
 > **Data quality defines reasoning quality.**
 
 The mathematics of statistics, machine learning, and AI can be extraordinarily powerful, but poor, stale, ambiguous, or ungoverned evidence produces poor reasoning.
+
+### Canonical principle — Data readiness and business context
+
+> **Data readiness establishes whether information is usable and trustworthy. Business context establishes what that information means for a particular process, decision and desired outcome. AI readiness requires both, connected through governed semantics and verifiable evidence.**
+
+#### Architectural implications
+
+- **Data readiness** addresses whether information can be accessed and relied upon for the intended use: quality, identity, timeliness, lineage, security, and permissible use.
+- **Business context** specifies the meaning of that information within a defined process and decision: business terms, state, relationships, applicable rules, exceptions, and the outcome being evaluated.
+- **Governed semantics** connect the source representation to business meaning through accountable definitions, transformation rules, versioning, and stewardship. They need not require a separately deployed semantic database.
+- **Verifiable evidence** ties consequential claims and state transitions back to authoritative records, observations, and the organization's defined evidence standards.
+- **AI readiness** is evaluated for a specified use case or decision, not declared solely because a dataset or platform passes a generic readiness checklist.
+
+#### Stress test and limits
+
+- **Technically correct but semantically insufficient:** An order status of `COMPLETE` may mean picked, shipped, delivered, accepted, or financially settled. A correct value without an authoritative definition of the relevant business state cannot prove the desired outcome.
+- **Meaning changes with process and time:** The same record can support different decisions under different roles, policies, jurisdictions, effective dates, or process stages. Context must not be treated as a universal static label.
+- **Avoid unnecessary infrastructure:** Simple, low-risk systems may encode the needed semantics in existing business logic and governed interfaces rather than add a standalone knowledge layer.
+- **Incomplete or conflicting semantics:** If business definitions or evidence disagree, architecture must surface the uncertainty and use the appropriate review or escalation path rather than silently infer a business conclusion.
+
+**Revision condition:** Revisit the principle if a defined business decision can be shown to operate safely without explicit semantic mediation, or if the proposed semantic controls add complexity without improving outcome correctness, governance, or traceability. This tests implementation proportionality; it does not imply that business meaning is optional.
+
+**Decision record:** Approved for the working canon on 2026-11-06. The wording above is preserved verbatim from the approved statement.
 
 ---
 
