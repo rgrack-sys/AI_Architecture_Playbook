@@ -722,3 +722,12 @@ The recovery sequence is: **detect failure → preserve state → reconcile the 
 - Recovery cannot be considered successful until the required business outcome *and* the governed process behavior have been verified.
 
 **Related execution and visualization notes:** `notes/2026-11-07-technology-mechanisms-and-execution.md` and `presentations/2026-11-07-agent-execution-animation-scenarios.md`.
+
+
+### Human authorship is more than an approval gate — November 7, 2026 clarification
+
+> **The human is not merely an approval gate. The human remains the accountable author and decision-maker. AI produces governed candidates; people determine what they ultimately communicate.**
+
+For human-authored publication workflows, preserve three distinct artifacts: (1) the immutable, traceable agent-generated candidate with its evidence and review status; (2) the human-edited, explicitly accepted final artifact, with provenance of substantive edits; and (3) publication evidence showing the actual content, destination, time and publishing actor. Approval of a candidate does not automatically approve a later edited version. Revalidate or obtain renewed approval when edits change meaning, claims, risk, or governed constraints; ordinary editorial changes should be handled proportionately. The system must not imply that agent-generated text was published unchanged when a human modified it. Human ownership is an accountability principle, not a claim that every output is legally attributable in all jurisdictions.
+
+**Provenance:** User-supplied excerpt from another AI Architecture Playbook chat, reconciled as a clarification of the already established human-accountability canon.
