@@ -803,3 +803,37 @@ A working formulation:
 > **Traditional architecture retrieves data. AI-ready architecture produces governable knowledge and current evidence for reasoning.**
 
 This statement is deliberately provisional. It should be challenged before being promoted to mature canon.
+
+
+---
+
+## November 7, 2026 integration — Outcome, process readiness, and technology selection
+
+**Status:** Approved additions to existing working canon. **Provenance:** November 7 architecture discussion; reconciled into this document without replacing prior methodology.
+
+### Outcome Before Mechanism
+
+> **Define the business outcome before defining the process or selecting the mechanism.**
+
+The design hierarchy is **outcome → process definition/readiness → mechanism selection → execution and verification**. This extends, rather than supersedes, the existing practitioner sequence (Frame → Observe → Decompose → Govern → Redesign → Architect → Specify → Select → Prove → Learn). An outcome requires explicit acceptance criteria; a completed tool call is not proof that the outcome was achieved.
+
+### Process Readiness is a prerequisite for automation
+
+> **An agent cannot substitute for an incomplete process definition.**
+
+Capture trigger, actor, work and decision steps, tacit human practices, business context, inputs and data meaning, evidence needs, authority, accountable owner, expected result, exception paths, re-entry and verification. Tacit process knowledge, business context and data design are separate concerns that must be documented and traced to the decision they support. A model's plausible inference is not a substitute for an authorized process definition. The agent cannot rewrite its own governance to fill gaps.
+
+### Progressive mechanism selection
+
+Select the least complex mechanism that reliably achieves the outcome under the required controls. Compare deterministic workflow and direct API integration, model-mediated calls, agent-directed tool use, and deterministic execution with bounded agentic exception handling. Introduce model reasoning only when the task requires it; place it behind a replaceable governed interface. The existence of an MCP server, a skill, a model, or an agent framework is not itself a business requirement.
+
+Evaluate **cost per verified outcome**, not just model-token cost: API charges, model tokens, orchestration overhead, retries, human review, latency, recovery and operational complexity all count. Optimize unnecessary invocation and workflow design before optimizing prompts in isolation.
+
+### Stress tests and limits
+
+- A simple, deterministic integration may satisfy a complex business outcome better than an autonomous agent.
+- A fully documented process can still be unsafe if authority or evidence boundaries are missing.
+- Tacit knowledge can be valuable but must be elicited and validated with responsible domain participants; it must not be invented by the model.
+- The selected architecture must be reevaluated when outcome, risk, volatility, or economics change.
+
+**Related implementation guidance:** `notes/2026-11-07-technology-mechanisms-and-execution.md`.
