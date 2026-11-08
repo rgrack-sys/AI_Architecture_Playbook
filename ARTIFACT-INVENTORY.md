@@ -105,3 +105,8 @@ Private agent PR #16 includes V002-F1/F2/F3 findings and reusable visual-preflig
 | Terms and alternate meanings | `notes/2026-11-07-architecture-glossary.md` | Supporting glossary | Added November 7 |
 
 **Unverified:** Full conversation-by-conversation coverage of all historical Playbook chats; any uncommitted local Windows/Linux files; whether separate agent repository artifacts have since changed. Do not equate this scoped reconciliation with a complete historical or multi-machine audit. Preserve existing Library-only binary exclusions above.
+
+
+### Human authorship clarification — November 7, 2026
+
+User-supplied excerpt from another Playbook chat integrated into `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md`. Clarifies agent candidate, human-edited final artifact, and publication receipt as separate records. Classification: clarification of existing approved working canon; not a claim of full historical chat coverage.
