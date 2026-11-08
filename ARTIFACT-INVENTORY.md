@@ -88,3 +88,20 @@ Visual source and raster pilot bundle generated locally for `live-smoke-001` (or
 ### V003 visual candidate and process — 2026-11-05
 
 Private agent PR #16 includes V002-F1/F2/F3 findings and reusable visual-preflight command + documentation, while V003 SVG/PNG/source review package is awaiting Git import. Locked text and V001/V002 remain unchanged. New source digest `51f1880d927373c95f1408bca579d58c0cc70407eb76d673f2b83fb1f590065c` and PNG digest `28e16fafea5274e3872f6b3122ff5382f018d4f1f4423da2a6a389aa4fb9c829`. This is a controlled visual QA *candidate*, not a graphic lock nor an operational image pipeline. See [agent PR #16](https://github.com/rgrack-sys/linkedin-publishing-agent/pull/16) and [issue #15](https://github.com/rgrack-sys/linkedin-publishing-agent/issues/15).
+
+
+## November 7, 2026 architecture conversation reconciliation
+
+**Remote baseline:** `main` at `c816732fe365d8cdb57a60ad3df3d7d250cdfb8e` (November 6). **Audit scope:** November 7 architecture discussion available in the conversation context and recovered decision summary; *not* a complete historical transcript export or local Windows/Linux checkout audit.
+
+| Decision or artifact | Destination | Classification | Status |
+| --- | --- | --- | --- |
+| Outcome Before Mechanism; process readiness; tacit process/business context/data distinction | `ai-architecture-playbook-canon/canon/02-ai-ready-enterprise-architecture.md` | Approved working canon | Integrated November 7 |
+| Progressive technology justification and cost per verified outcome | `ai-architecture-playbook-canon/canon/02-ai-ready-enterprise-architecture.md` | Approved working canon | Integrated November 7 |
+| Information vs integration authority; bounded autonomy; human accountability | `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md` | Approved working canon | Integrated November 7 |
+| Failure detection, state preservation, outcome reconciliation and governed recovery | `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md` | Approved working canon | Integrated November 7 |
+| Concrete technical components, invocation patterns and example execution | `notes/2026-11-07-technology-mechanisms-and-execution.md` | Supporting corpus | Added November 7 |
+| Five scenarios and future animation framing | `presentations/2026-11-07-agent-execution-animation-scenarios.md` | Presentation backlog | Added November 7; storyboard deferred |
+| Terms and alternate meanings | `notes/2026-11-07-architecture-glossary.md` | Supporting glossary | Added November 7 |
+
+**Unverified:** Full conversation-by-conversation coverage of all historical Playbook chats; any uncommitted local Windows/Linux files; whether separate agent repository artifacts have since changed. Do not equate this scoped reconciliation with a complete historical or multi-machine audit. Preserve existing Library-only binary exclusions above.
