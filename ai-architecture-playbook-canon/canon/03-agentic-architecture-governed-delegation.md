@@ -686,3 +686,39 @@ And for enterprise delegation:
 > **Reason where the enterprise has context. Act where the domain has authority. Delegation transfers a bounded task, not unlimited authority.**
 
 These formulations are working canon and should continue to be stress-tested.
+
+
+---
+
+## November 7, 2026 integration — Authority, accountability, and recovery
+
+**Status:** Approved additions to existing working canon; implementation patterns remain subject to design-specific verification.
+
+### Distinguish information authority from integration authority
+
+An information source can be authoritative for *what is known* without being authorized to perform an action. An API, MCP server, or other integration endpoint provides an access mechanism, not automatic business authorization. Separate source provenance, evidence sufficiency, identity, permissions, domain policy, action authorization, and proof of effect. A tool's technical ability to execute is not a delegation of organizational authority.
+
+### Bounded autonomy and ownership
+
+> **Agentic authority must be earned, bounded, and verifiable.**
+
+Define allowed actions, resources, scope, limits, prerequisites, approval and escalation boundaries, and explicit prohibited effects. Enforce constraints at the relevant control and domain execution boundaries, not solely in prompt wording. The agent must not alter its own authority, evidence requirements, or governance rules.
+
+> **You own every word or action your agents generate.**
+
+This is an accountability hook, not a claim that every generated output is automatically endorsed or legally attributable in every context. An identifiable human or organization remains accountable for deploying, supervising, and responding to agent behavior. Delegating execution does not delegate away ultimate organizational responsibility. Record who owns the outcome, who authorized the action, and who is accountable for exceptions and remediation.
+
+### Failure and recovery are designed before autonomy
+
+> **Autonomous execution requires a designed failure-and-recovery path, not merely a retry policy.**
+
+The recovery sequence is: **detect failure → preserve state → reconcile the actual or uncertain outcome → select controlled recovery (retry, resume, compensate, escalate or stop) → verify and retain accountable evidence**. A timeout after a possible external commit is an *unknown outcome*, not proof of failure; blindly retrying can duplicate effects. A recovery may be a new authorized state and must be governed as such. Recovery controls must preserve evidence and prevent loops, uncontrolled spending, privilege expansion, or silent partial completion.
+
+### Stress tests and limits
+
+- Evidence can be fresh and authentic but still insufficient for the decision or unauthorized for use.
+- A human approval step is not a substitute for enforceable technical constraints and auditable effect verification.
+- Compensation is not always a true rollback; some external actions are irreversible and require escalation.
+- Recovery cannot be considered successful until the required business outcome *and* the governed process behavior have been verified.
+
+**Related execution and visualization notes:** `notes/2026-11-07-technology-mechanisms-and-execution.md` and `presentations/2026-11-07-agent-execution-animation-scenarios.md`.
