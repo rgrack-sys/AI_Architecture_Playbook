@@ -110,3 +110,18 @@ Private agent PR #16 includes V002-F1/F2/F3 findings and reusable visual-preflig
 ### Human authorship clarification — November 7, 2026
 
 User-supplied excerpt from another Playbook chat integrated into `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md`. Clarifies agent candidate, human-edited final artifact, and publication receipt as separate records. Classification: clarification of existing approved working canon; not a claim of full historical chat coverage.
+
+## November 10, 2026 targeted reconciliation of November 7 discussion
+
+**Scope and provenance:** User-requested follow-up to the November 7 mobile architecture conversation, reconciled against previously committed Canon 02–03, supporting notes, and the November 7 artifact inventory. This is an **additive clarification**: Canon 01 is unchanged; prior content of Canon 02 and Canon 03 is preserved. It is **not** an assertion that the complete November 7 chat transcript, all historical conversations, or either local machine was inspected.
+
+| Restored item | Classification | Authoritative location |
+| --- | --- | --- |
+| Architectural Efficiency Before Invocation Optimization, including synchronous/batch/cache/event/asynchronous/polling choices and cost per verified outcome | Approved working-canon clarification | `ai-architecture-playbook-canon/canon/02-ai-ready-enterprise-architecture.md` |
+| Explicit fit assessment of flat files, relational, graph, and big-data approaches | Approved working-canon clarification | `ai-architecture-playbook-canon/canon/02-ai-ready-enterprise-architecture.md` |
+| “An agent decides what it needs; the architecture decides how to get it,” qualified by evidence and authority controls | Approved working-canon clarification | `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md` |
+| Explicit accountable-owner question | Approved working-canon clarification of existing human-accountability principle | `ai-architecture-playbook-canon/canon/03-agentic-architecture-governed-delegation.md` |
+| Model, agent, API, classifier, deterministic workflow, data stores, and invocation-pattern definitions | Supporting glossary, not new policy | `notes/2026-11-07-architecture-glossary.md` |
+| Lexical match and semantic sufficiency definitions in LinkedIn Publishing Agent Issue #29 | Proposal only; not promoted to Playbook canon | Separate LinkedIn Publishing Agent repository, commit `3d271bb9` |
+
+**Verification boundary:** GitHub `main` commit and changed-file integrity must be checked after the update. Hugo-1 and Windows checkout branch, HEAD, working-tree state, and fetch comparison require commands executed on those devices; a remote repository inspection alone cannot certify local synchronization. Preserve uncommitted work and do not reset, clean, or blindly pull.

@@ -731,3 +731,21 @@ The recovery sequence is: **detect failure → preserve state → reconcile the 
 For human-authored publication workflows, preserve three distinct artifacts: (1) the immutable, traceable agent-generated candidate with its evidence and review status; (2) the human-edited, explicitly accepted final artifact, with provenance of substantive edits; and (3) publication evidence showing the actual content, destination, time and publishing actor. Approval of a candidate does not automatically approve a later edited version. Revalidate or obtain renewed approval when edits change meaning, claims, risk, or governed constraints; ordinary editorial changes should be handled proportionately. The system must not imply that agent-generated text was published unchanged when a human modified it. Human ownership is an accountability principle, not a claim that every output is legally attributable in all jurisdictions.
 
 **Provenance:** User-supplied excerpt from another AI Architecture Playbook chat, reconciled as a clarification of the already established human-accountability canon.
+
+---
+
+## November 7, 2026 targeted reconciliation — Adaptive need, governed acquisition, and accountable execution
+
+**Classification:** Approved working-canon clarification, reconciled November 10, 2026. **Provenance:** November 7 AI Architecture Playbook discussion and its previously committed glossary and mechanism notes. This section clarifies Sections 2–5 and the November 7 authority/accountability integration; it neither grants new authority nor replaces prior controls.
+
+> **An agent decides what it needs; the architecture decides how to get it.**
+
+**Meaning and boundary:** Within an authorized delegated task, an agent may assess which information, reasoning, or next action appears necessary and propose an appropriate capability. The architecture and harness determine which sources and tools are eligible, how the information is obtained, what is fresh and sufficient, when a model call is justified, what cost and time limits apply, and which actions require independent permission or human approval. **Need identification is not access permission, and technical connectivity is not business authority.** An adaptive suggestion must never bypass deterministic orchestration, evidence rules, policy enforcement, domain-owned execution, or outcome verification.
+
+Use the correct mechanism for the job: deterministic code for defined transforms and state transitions; a direct API for contracted operations; an MCP server or other adapter to expose governed capabilities; a classifier for bounded categorization/routing where justified; model reasoning for interpretation that deterministic methods cannot adequately provide; and agentic tool selection only where adaptive delegated execution adds demonstrable value. A classifier need not be a generative model, and a model, skill, API, or MCP endpoint is not itself an autonomous accountable agent.
+
+For every consequential workflow, ask explicitly: **Who is accountable for the activity and its outcome?** Name the human or organizational owner, the delegated scope, enforceable controls, required receipts and verification evidence, and the person or role responsible for exception handling. The prior accountability hook — **“You own every word or action your agents generate.”** — remains in force, with its existing caveat regarding legal attribution.
+
+**Stress tests and limits:** An agent's proposed evidence may be unauthorized or insufficient; a technically available API may be unsafe to invoke; a classifier's confidence score is not proof of source authority; an executed tool call does not prove a business outcome. The architecture must be able to refuse, pause, reconcile, escalate, and record the outcome without inventing missing process definition.
+
+**Supporting terminology, not independent policy:** `notes/2026-11-07-architecture-glossary.md`. **Illustrative component patterns, not a mandated implementation:** `notes/2026-11-07-technology-mechanisms-and-execution.md`.

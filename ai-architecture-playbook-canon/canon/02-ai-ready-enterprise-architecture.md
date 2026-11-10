@@ -837,3 +837,36 @@ Evaluate **cost per verified outcome**, not just model-token cost: API charges, 
 - The selected architecture must be reevaluated when outcome, risk, volatility, or economics change.
 
 **Related implementation guidance:** `notes/2026-11-07-technology-mechanisms-and-execution.md`.
+
+---
+
+## November 7, 2026 targeted reconciliation — Architectural efficiency and data structure
+
+**Classification:** Approved working-canon clarification, reconciled November 10, 2026. **Provenance:** November 7 AI Architecture Playbook discussion and its previously committed November 7 supporting corpus. This addendum makes previously agreed architectural tests explicit without replacing earlier principles. It is not a claim of complete verbatim cross-chat recovery.
+
+### Architectural Efficiency Before Invocation Optimization
+
+> **Before optimizing an invocation, determine whether the invocation is needed at all.**
+
+Derive the interaction pattern from the required business outcome, latency, freshness, workload, authority, and evidence obligations. Evaluate whether an action or retrieval should be synchronous, batched, cached with an explicit validity policy, triggered by an event, performed asynchronously with durable state, or invoked on demand. Polling is a deliberate fallback when event notification is unavailable or inadequate, not a default reason to keep an agent running. A predictable schedule, transfer, validation, or retry should ordinarily be implemented in deterministic software, rather than through unnecessary repeated model or agent calls.
+
+Choose the **lowest appropriate execution layer** that can satisfy the requirement: database or source-system operation, direct API, deterministic workflow, bounded model reasoning, or governed agentic execution. Calculate the cost of the **verified outcome**, including integration and API consumption, model tokens, compute, orchestration, retrieval, latency, retries, human intervention, and failure recovery. Do not optimize token count while leaving avoidable interactions or unnecessary workflow stages in place.
+
+**Tradeoffs and limits:** Caching can violate freshness or authorization requirements; batching may delay an urgent outcome; event-driven systems can lose or duplicate delivery without durable controls; polling may be necessary for systems that expose no event interface. The preferred pattern is a requirements-based choice, not an absolute hierarchy. Revisit it as workloads, risk, cost, or external capabilities change.
+
+### Data structure follows the business work
+
+> **Choose data structures and storage technologies only after the process, authoritative state, access patterns, evidence, and operational constraints are understood.**
+
+Evaluate these options separately before selecting or combining them:
+
+- **Flat files** (for example CSV, JSON, or Markdown) for modest, inspectable, portable, or version-controlled information when transactional concurrency and complex querying are not required.
+- **Relational databases** when structured entities, integrity constraints, joins, transactional updates, and well-defined state transitions are important.
+- **Graph representations/databases** when relationships and traversal questions are first-class requirements that other designs cannot satisfy as clearly or economically.
+- **Big-data or analytical systems** when volume, historical analysis, throughput, or distributed processing requirements justify their additional complexity.
+
+Do not choose a vector index, graph, lakehouse, or other fashionable technology by default. One authoritative source may support several derived representations for different legitimate uses; derived indexes do not become authoritative merely because retrieval is convenient.
+
+**Tradeoffs and limits:** Small systems can outgrow files; relational stores can also represent relationships; graphs do not automatically improve every connected-data problem; and large-scale platforms carry real governance and operating costs. The appropriate design is the simplest combination that meets the actual process and evidence requirements.
+
+**Supporting definitions (not additional principles):** `notes/2026-11-07-architecture-glossary.md`. **Related mechanism examples (not canon):** `notes/2026-11-07-technology-mechanisms-and-execution.md`.
