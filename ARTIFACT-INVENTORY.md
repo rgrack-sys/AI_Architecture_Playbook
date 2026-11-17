@@ -125,3 +125,12 @@ User-supplied excerpt from another Playbook chat integrated into `ai-architectur
 | Lexical match and semantic sufficiency definitions in LinkedIn Publishing Agent Issue #29 | Proposal only; not promoted to Playbook canon | Separate LinkedIn Publishing Agent repository, commit `3d271bb9` |
 
 **Verification boundary:** GitHub `main` commit and changed-file integrity must be checked after the update. Hugo-1 and Windows checkout branch, HEAD, working-tree state, and fetch comparison require commands executed on those devices; a remote repository inspection alone cannot certify local synchronization. Preserve uncommitted work and do not reset, clean, or blindly pull.
+
+
+## November 16, 2026 — portfolio hybrid execution direction
+
+| Artifact | Location | Classification / state |
+| --- | --- | --- |
+| Conversational interface and Linux execution contract | `notes/2026-11-16-portfolio-hybrid-execution.md` | Owner-selected portfolio direction recorded for review; not a universal canon principle or implemented connector |
+
+Scope: ChatGPT or another originating interface delegates versioned parameters to Python on owner-controlled Linux and receives evidence-backed results. Zero incremental project spending; deterministic-first operation; agentic loops only when justified. Uniform portfolio adoption, generator enforcement, endpoint deployment and actual round-trip integration remain unverified. Existing canon and historical inventory entries are preserved.
