@@ -69,6 +69,7 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Delegation Contract
    - Domain-owned execution
    - Model Gateway / Model Policy abstraction
+   - Portable agency and retained institutional knowledge (November 20, 2026)
    - Closed-loop outcome feedback
    - Emerging Reference Architecture — Draft 0.1
 
@@ -85,3 +86,5 @@ Future conversations should **refine the canon rather than reinvent it**.
 > AI architecture is not traditional architecture plus a model. It is an architecture for governed reasoning, evidence, delegation, and controlled action.
 
 > The fact that we can call an AI model doesn't mean we should.
+
+> **An agent's intelligence may be rented. Its business logic, operating state, and institutional knowledge must remain portable.** (See Canon 03, November 20, 2026: vendor-exit / relocation drill.)
