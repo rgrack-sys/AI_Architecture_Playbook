@@ -749,3 +749,40 @@ For every consequential workflow, ask explicitly: **Who is accountable for the a
 **Stress tests and limits:** An agent's proposed evidence may be unauthorized or insufficient; a technically available API may be unsafe to invoke; a classifier's confidence score is not proof of source authority; an executed tool call does not prove a business outcome. The architecture must be able to refuse, pause, reconcile, escalate, and record the outcome without inventing missing process definition.
 
 **Supporting terminology, not independent policy:** `notes/2026-11-07-architecture-glossary.md`. **Illustrative component patterns, not a mandated implementation:** `notes/2026-11-07-technology-mechanisms-and-execution.md`.
+
+---
+
+## November 20, 2026 — Portable agency and retained institutional knowledge
+
+**Status:** User-approved addition to working canon. **Scope:** Extends model-provider independence to the agent runtime, orchestration platform, operational state, and supporting intellectual property. **Origin:** November 20 discussion contrasting a self-hosted governed agent stack with OpenAI Dot as a managed coordination environment.
+
+### Canonical principle
+
+> **An agent's intelligence may be rented. Its business logic, operating state, and institutional knowledge must remain portable.**
+
+**Ownership is not portability.** Legal or contractual ownership of a process, prompt, or output does not establish the practical ability to export, reconstruct, operate, and verify that process outside its original platform. Avoid making a vendor-managed agent's proprietary memory, orchestration, tools, task history, or policy configuration the sole authoritative representation of organizational know-how.
+
+### Architectural obligations
+
+- Maintain **authoritative, versioned definitions** of business rules, task/delegation contracts, workflow transitions, approvals, evidence requirements, tool interfaces, model policy, recovery behavior, and acceptance tests in controlled repositories or systems of record.
+- Persist **durable operating state and institutional knowledge** in documented, accessible formats and governed stores, with provenance, ownership, retention, and restore procedures. Identify what can and cannot be exported from managed services.
+- Put model, tool, and managed-orchestrator integrations behind **replaceable adapters** when the expected switching value justifies the cost. Avoid embedding essential decisions exclusively in inaccessible prompts or platform-specific workflows.
+- Preserve the ability to run the **core authorized workflow** on another machine or infrastructure provider; test Linux/Windows or alternative hosts as appropriate. Document platform-specific services that require replacement and acceptable degradation.
+- Before entrusting a managed agent with proprietary logic or consequential processes, assess **exit terms, export fidelity, security and confidentiality, credentials, cost exposure, and continuity risk**. Do not confuse vendor access with operational control.
+
+### Acceptance test: vendor-exit / relocation drill
+
+1. Remove access to the managed agent/orchestrator in a controlled test environment; keep only retained, authorized exports, repositories, credentials, and infrastructure definitions.
+2. Reconstruct the workflow on a different execution environment or substitute provider, without relying on undisclosed platform memory or proprietary behavior.
+3. Restore representative task state and evidence, then execute an end-to-end scenario including an approval boundary, an exception or timeout, recovery, and independently verified outcome.
+4. Reconcile **state continuity, business behavior, permissions, provenance, audit receipts, and acceptance results** against the original. Record loss, manual reconstruction, cost, and recovery time. Do not declare portability proven from a source-code copy alone.
+
+**Decision rule:** Use managed agent capabilities when they materially reduce effort or improve outcomes **and** the consequences of losing the provider are accepted, documented, and mitigated. Keep business-critical source of truth outside the managed agent unless a deliberate exception is approved. A managed coordinator may delegate to portable domain agents, but must not silently become the only place where their rules or durable state exist.
+
+### Stress test / tradeoffs
+
+- **Counterargument:** Native vendor memory and orchestration may provide better capabilities, faster delivery, and lower total cost than a fully provider-neutral stack.
+- **Response:** The principle does not ban vendor-specific features. Identify the dependency explicitly, preserve recoverable authoritative assets, and choose an exit strategy proportionate to criticality.
+- **Failure modes:** Prompts that cannot be reconstructed; exportable data missing execution semantics; hidden approvals or schedules; credentials tied to one service; incomplete event history; and a replacement agent that runs but cannot verify the intended outcomes.
+- **Skeptical review question:** If the vendor disables access or sharply changes price tomorrow, which critical functions and knowledge can we recover and run, how quickly, and with what verified loss?
+- **Revision condition:** Reassess the required degree of portability when the system's criticality, vendor assurances, portability standards, costs, or available alternatives change. Portability is a measured capability, not a promise of zero-cost seamless substitution.
