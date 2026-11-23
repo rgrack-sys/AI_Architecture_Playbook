@@ -125,3 +125,17 @@ User-supplied excerpt from another Playbook chat integrated into `ai-architectur
 | Lexical match and semantic sufficiency definitions in LinkedIn Publishing Agent Issue #29 | Proposal only; not promoted to Playbook canon | Separate LinkedIn Publishing Agent repository, commit `3d271bb9` |
 
 **Verification boundary:** GitHub `main` commit and changed-file integrity must be checked after the update. Hugo-1 and Windows checkout branch, HEAD, working-tree state, and fetch comparison require commands executed on those devices; a remote repository inspection alone cannot certify local synchronization. Preserve uncommitted work and do not reset, clean, or blindly pull.
+
+
+## November 23, 2026 — Data access and model training discussion
+
+**Baseline examined:** main at 0f46a0fb61dbcaf6e5b93df3005c5daebff33270. **Archive branch:** docs/data-access-vs-training-20261123. **Scope:** The current discussion and source review; not an audit of all historical conversations or physical-machine checkouts.
+
+| Artifact | Repository path | Classification |
+| --- | --- | --- |
+| Data access is not model training | [Supporting note](notes/2026-11-23-data-access-is-not-training.md) | Source-vetted analysis and candidate teaching wording; not new canon approval |
+| Discussion provenance and approval state | [Session record](notes/2026-11-23-data-access-is-not-training-session.md) | Scoped conversation record; user wording preserved, earlier assistant turns explicitly summarized |
+
+The argument is consistent with existing Canon 01 distinctions between inference, training, model weights, and external retrieval. A separate technical Critic examined the claim and its material qualifications. The archive preserves primary sources, a test-time-training counterexample, system-boundary and retention qualifications, and the proposed teaching sentence: **Querying your data can inform the answer without training the model.**
+
+No new canon or presentation approval is inferred. The three intended changed paths are this inventory and the two notes. Publication and readback must be verified separately after the commit; neither remote publication nor a cloud checkout proves Windows or Hugo-1 synchronization.
