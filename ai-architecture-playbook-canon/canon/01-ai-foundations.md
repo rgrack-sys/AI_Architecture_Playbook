@@ -165,3 +165,36 @@ Blindly applying RAG to every question can:
 ### Canonical position
 **Retrieval is a tool for evidence acquisition, not a universal substitute for model knowledge.**
 
+---
+
+## 7. Data access is not model training — November 23, 2026
+
+**Status:** Accepted clarification of these foundations. Richard accepted the vetted candidate and directed that its memorable catchphrases be retained. The hooks and explanation form one teaching unit under the [Playbook teaching convention](../README.md#teaching-convention-catchphrase-then-explanation).
+
+### Teaching hook
+
+> **The data doesn't know.**  
+> **The data does not train the LLM.**  
+> **And getting an answer does not mean the LLM now has the data.**
+
+### Let me explain why I say that
+
+Data can represent facts, relationships, and rules. Here, "the data doesn't know" points to the distinction between recorded information and the system that processes it. The model uses the information supplied to it, together with what it learned during training, to generate an interpretation or answer.
+
+> **Giving an LLM access to your data does not, by itself, train the model on that data. During ordinary inference, retrieved information supplies context for generating an answer; it does not update the model's learned parameters. The application may retain or retrieve that information again, but those capabilities are separate from training the underlying model.**
+
+When we say that the LLM does not "now have the data," the intended point is that receiving an answer has not, by itself, incorporated that information into the model's learned parameters. The information can still be available in context or retained by the surrounding application. The phrase is not a statement that no copy exists or that a system deletes the information.
+
+The technical foundation is the distinction between contextual use without weight updates in [Brown et al.](https://arxiv.org/html/2005.14165v4) and parametric versus external retrieval memory in [Lewis et al.](https://arxiv.org/html/2005.11401v4). A query workflow can deliberately include a separate training or adaptation step, as illustrated by [Hardt and Sun](https://proceedings.iclr.cc/paper_files/paper/2024/hash/f02f1185b97518ab5bd7ebde466992d3-Abstract-Conference.html). That exception belongs in the explanation; it does not require replacing the teaching hook.
+
+### Example and architectural implication
+
+In a hypothetical order-status example, a tool retrieves a newly created order record and the model answers using that record. A later invocation can use it again if the application supplies the information again. The earlier correct answer alone does not demonstrate that the model was trained on the order.
+
+Describe separately **what the model has learned, what the application can access, and what the application retains**. A successful answer using enterprise records demonstrates a capability of the assembled system; it does not by itself establish incorporation of those records into the model's trained knowledge.
+
+The precise short summary remains available alongside the hooks:
+
+> **Querying your data can inform the answer without training the model.**
+
+**Vetting and provenance:** [Supporting analysis, primary sources, and qualifications](../../notes/2026-11-23-data-access-is-not-training.md); [conversation record and explicit acceptance](../../notes/2026-11-23-data-access-is-not-training-session.md). The technical candidate was independently reviewed before acceptance. The subsequent editorial review confirmed that retaining the hooks with this explanation preserves its meaning and scope.

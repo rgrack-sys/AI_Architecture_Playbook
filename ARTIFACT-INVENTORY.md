@@ -139,3 +139,16 @@ User-supplied excerpt from another Playbook chat integrated into `ai-architectur
 The argument is consistent with existing Canon 01 distinctions between inference, training, model weights, and external retrieval. A separate technical Critic examined the claim and its material qualifications. The archive preserves primary sources, a test-time-training counterexample, system-boundary and retention qualifications, and the proposed teaching sentence: **Querying your data can inform the answer without training the model.**
 
 No new canon or presentation approval is inferred. The three intended changed paths are this inventory and the two notes. Publication and readback must be verified separately after the commit; neither remote publication nor a cloud checkout proves Windows or Hugo-1 synchronization.
+
+### November 23, 2026 — Explicit acceptance and retention of teaching hooks
+
+Richard subsequently stated, **"The candidate is acceptable and correct,"** and directed that catchphrases be retained, followed by **"Let me explain why I say that."** This entry supersedes the pending-candidate classification above for this principle while preserving that earlier entry as history.
+
+| Artifact | Repository path | Accepted state |
+| --- | --- | --- |
+| Catchphrase and explanation teaching convention | [Playbook README](ai-architecture-playbook-canon/README.md#teaching-convention-catchphrase-then-explanation) | Author-directed presentation and talk-track convention |
+| Data access is not model training | [Canon 01, section 7](ai-architecture-playbook-canon/canon/01-ai-foundations.md#7-data-access-is-not-model-training--november-23-2026) | Accepted foundational clarification with retained hooks and precise explanation |
+| Source-backed explanation and preserved phrasing | [Supporting note](notes/2026-11-23-data-access-is-not-training.md) | Accepted; original candidate remains traceable at e5531ffe36aabb32866eaa40dc6126374f3d6470 |
+| Explicit acceptance and author direction | [Session record, sections 8-9](notes/2026-11-23-data-access-is-not-training-session.md) | User statement preserved; prior candidate state retained as historical provenance |
+
+The separate editorial/technical review supported evaluating the hook and accepted explanation together. The teaching convention allows deliberate simplification and context-dependent language in the hook while preserving technical accuracy in the explanation. It adds no new approval gate. The current publication contains only these documentation updates and the earlier discussion archive; completion of a future deck or external publication is a separate activity.

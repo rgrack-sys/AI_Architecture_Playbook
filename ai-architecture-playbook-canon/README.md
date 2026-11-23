@@ -22,6 +22,24 @@ Every important principle should eventually include:
 
 Future conversations should **refine the canon rather than reinvent it**.
 
+## Teaching convention: catchphrase, then explanation
+
+**Author direction accepted November 23, 2026.**
+
+**Teach with a memorable hook, then explain it.** A catchphrase may simplify, compress, or use metaphor to introduce an architectural idea. It does not have to be literally accurate in every possible context or function as a complete standalone technical definition. Its purpose is to catch attention, give the audience something memorable, and invite a deeper explanation.
+
+Preserve the force of the phrase and the author's intended wording. Follow it with the bridge:
+
+> **Let me explain why I say that.**
+
+The explanation supplies the precise meaning, evidence, example, and material boundaries needed to understand and apply the principle. Qualifications belong where they help explain the idea; do not require every qualification in the opening line.
+
+**Vet the catchphrase and explanation together as a teaching unit.** Review whether the hook introduces the intended idea and whether the explanation develops it accurately. An incomplete or context-dependent hook is not automatically a conceptual defect. A substantive error in the explanation still requires correction. This preserves the existing canon review standard while applying it to the complete lesson.
+
+Keep the catchphrase and its explanation associated in the canon, talk track, and accompanying material. A slide can carry the short phrase while speaker notes or the next part of the same teaching segment carry the explanation. When reusing an excerpt, preserve a route to that explanation rather than rewriting every hook as a technical paragraph.
+
+The approved application appears in [Canon 01, section 7](canon/01-ai-foundations.md#7-data-access-is-not-model-training--november-23-2026).
+
 ## Canonical papers
 
 1. `canon/01-ai-foundations.md`
@@ -30,6 +48,7 @@ Future conversations should **refine the canon rather than reinvent it**.
    - Contextual representation
    - Vector databases and retrieval
    - Model knowledge vs. external evidence
+   - Data access is not model training: retained catchphrases and accepted explanation
 
 2. `canon/02-ai-ready-enterprise-architecture.md`
    - Data quality defines reasoning quality

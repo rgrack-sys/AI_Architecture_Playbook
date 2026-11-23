@@ -1,7 +1,7 @@
 # Session record: Data access, inference, and model training
 
 **Date:** November 23, 2026  
-**Classification:** Supporting conversation record; not canon approval.  
+**Classification:** Supporting conversation record, including the initial candidate stage and subsequent explicit acceptance in section 8.  
 **Scope:** The substantive user/assistant exchanges visible in this conversation about data access and training. User statements are quoted verbatim. Earlier assistant turns are summarized explicitly, including their proposed wording and unresolved question. This is a scoped session record, not a complete platform transcript export. Unrelated personal-context material and internal instructions are excluded.
 
 ## 1. User's original proposition
@@ -62,7 +62,7 @@ The complete current analysis, candidate wording, hypothetical example, qualific
 
 > Querying your data can inform the answer without training the model.
 
-## 7. Decision and publication state
+## 7. Initial archive state, before the acceptance in section 8
 
 - **Supported technical conclusion:** Mere retrieval and contextual use do not establish training or incorporation into learned parameters.
 - **Existing canon relationship:** Clarifies the distinctions already present in Canon 01; a new canon entry is not necessary to preserve the discussion.
@@ -72,3 +72,31 @@ The complete current analysis, candidate wording, hypothetical example, qualific
 - **Verification boundary:** This session's accessible checkout and remote GitHub state can be checked. No Windows or Hugo-1 synchronization is inferred from those checks.
 
 The record preserves the interaction's substance and the distinction between discussion, source vetting, proposed wording, and approval. Operational progress messages and publication receipts do not add a separate canon decision.
+
+## 8. Richard's acceptance and teaching direction
+
+Richard supplied the previously archived supporting note and wrote:
+
+> The candidate is acceptable and correct - but we need to retain the catch phrases to make the esoteric meaningful.  
+> A canon catchphrase does not have to 100% accurate because it is illustrating a pint- it is not the point.
+> A good catchphrase is followed by, "let me explain why I say that"  The hearer retains the phrase, but the hearer also knows that its too simple and wants to take it deeper.
+> it catches the attention and then creates the desire to learn more
+
+**Disposition:** This is explicit acceptance of the technical candidate together with author direction about teaching style. The candidate is no longer pending acceptance. The earlier status in section 7 is retained as history and is superseded on this point.
+
+## 9. Assistant response and implementation of that direction
+
+The assistant recognized that it had applied the standard for a technical definition too broadly to the opening line. It committed to retaining the memorable hooks, following them with "Let me explain why I say that," and evaluating the hook and explanation together.
+
+A separate editorial/technical Critic supported that approach without reopening the accepted candidate. The review identified three possible misreadings for the explanation to resolve: recorded data can encode facts and rules; ordinary querying is distinct from an explicit training operation; and absence of parameter learning does not establish absence of context or application retention. The accepted explanatory paragraph remains intact.
+
+The implemented editorial structure is:
+
+1. Preserve the catchphrase as the invitation to understand the idea.
+2. Use Richard's bridge into explanation.
+3. Give the accepted technical explanation and a concrete example.
+4. Retain the scope, evidence, and material qualifications in that explanation and accompanying material.
+
+The Playbook README records this teaching convention. Canon 01, section 7, contains the retained hooks, accepted explanation, example, and source/provenance links. The supporting note records the accepted status and both forms of wording. The inventory records the transition from candidate to accepted clarification.
+
+This is an author-directed teaching convention, not a report of an experiment on audience attention or retention. Publication commit identity and synchronization evidence are reported separately after the repository write is verified.

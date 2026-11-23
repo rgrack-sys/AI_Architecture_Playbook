@@ -1,7 +1,8 @@
 # Data access is not model training
 
 **Date:** November 23, 2026  
-**Classification:** Source-vetted supporting discussion and candidate teaching formulation; not a new canon approval.  
+**Classification:** Accepted technical principle and supporting explanation, with retained teaching hooks.  
+**Acceptance:** Richard accepted the source-vetted candidate on November 23, 2026 and directed that its catchphrases remain part of the teaching material.  
 **Repository baseline examined:** main at 0f46a0fb61dbcaf6e5b93df3005c5daebff33270.  
 **Scope:** Ordinary inference with fixed trained parameters; distinguish the underlying LLM from the application, tools, retrieval stores, and persistent state around it.
 
@@ -13,19 +14,31 @@
 
 The core argument is technically sound for ordinary LLM inference. A query can supply new information for an answer without updating the model's learned parameters. Answering a question correctly using retrieved information is evidence that the information was usable in that interaction; it is not, by itself, evidence that the model was trained on it. Brown et al. demonstrate useful adaptation to textual instructions and examples without gradient updates or fine-tuning [S1].
 
-The phrase to tighten is **the LLM's overall set of knowledge**. Use **the model's learned, or parametric, knowledge** when making the technical claim. An AI application's accessible knowledge resources can expand through documents, retrieval indexes, saved conversation state, and external memory while its underlying language model's trained parameters remain unchanged. Lewis et al. explicitly distinguish parametric memory from external, non-parametric memory [S2].
+In the technical explanation, **the model's learned, or parametric, knowledge** gives precision to the informal phrase **the LLM's overall set of knowledge**. This does not require replacing the memorable catchphrases with technical definitions. An AI application's accessible knowledge resources can expand through documents, retrieval indexes, saved conversation state, and external memory while its underlying language model's trained parameters remain unchanged. Lewis et al. explicitly distinguish parametric memory from external, non-parametric memory [S2].
 
 The earlier assistant response broadened the discussion into reasoning reliability, truth, accountability, and systems of record. Those are related architectural subjects, but they are not needed to establish or challenge Richard's clarified claim. This note centers the causal distinction: receiving data does not itself establish a model-training operation.
 
-## Candidate teaching formulation
+## Retained teaching hooks and accepted explanation
+
+### Teaching hook
+
+> **The data doesn't know.**  
+> **The data does not train the LLM.**  
+> **And getting an answer does not mean the LLM now has the data.**
+
+### Let me explain why I say that
+
+Data can represent facts, relationships, and rules. The first hook distinguishes that recorded information from the system that processes it. The model uses information supplied to it, together with what it learned during training, to generate an interpretation or answer.
 
 > **Giving an LLM access to your data does not, by itself, train the model on that data. During ordinary inference, retrieved information supplies context for generating an answer; it does not update the model's learned parameters. The application may retain or retrieve that information again, but those capabilities are separate from training the underlying model.**
 
-Short version:
+When we say that the LLM does not "now have the data," the point is that receiving an answer has not, by itself, incorporated the information into learned parameters. It can still be present in context or retained by the surrounding application. The hook introduces that distinction; this explanation specifies its meaning.
+
+Precise short summary, retained alongside the hooks:
 
 > **Querying your data can inform the answer without training the model.**
 
-These formulations are proposed wording, not a claim that Richard has approved a new canon entry or presentation artifact.
+Richard explicitly accepted the technical candidate and added the teaching direction to preserve catchphrases that attract attention and invite a deeper explanation. The catchphrase need not be a complete standalone technical definition or literally accurate in every possible context. Vet the phrase and its explanation as one teaching unit, preserving the intended idea and a technically defensible explanation. This direction is recorded in the [Playbook teaching convention](https://github.com/rgrack-sys/AI_Architecture_Playbook/blob/main/ai-architecture-playbook-canon/README.md#teaching-convention-catchphrase-then-explanation) and applied in [Canon 01](https://github.com/rgrack-sys/AI_Architecture_Playbook/blob/main/ai-architecture-playbook-canon/canon/01-ai-foundations.md#7-data-access-is-not-model-training--november-23-2026).
 
 ## What changes when a query is answered?
 
@@ -87,7 +100,7 @@ Retrieval and training can both be useful. Retrieval allows externally maintaine
 
 ## Relationship to existing Playbook material
 
-Canon 01 already separates training from inference, model weights from databases, and external retrieval from learned knowledge. The present argument sharpens those existing foundations into a concise teaching statement. The November 7 glossary also distinguishes model, agent, MCP, and skill roles [R1, R2]. No edit to Canon 01, Canon 02, Canon 03, or presentation files is made by this discussion archive.
+Canon 01 already separates training from inference, model weights from databases, and external retrieval from learned knowledge. The present argument sharpens those existing foundations into a concise teaching statement. The November 7 glossary also distinguishes model, agent, MCP, and skill roles [R1, R2]. The initial archive at e5531ffe36aabb32866eaa40dc6126374f3d6470 preserved a candidate without changing canon. Following Richard's explicit acceptance, the hooks and accepted explanation are incorporated in Canon 01, section 7, and the teaching convention is recorded in the Playbook README.
 
 The repository's canon review rule calls for counterarguments and revision conditions [R3]. The main revision trigger is a specific implementation that performs training, updates adapters or other trainable state, or uses a different boundary for what it calls the model. Such a system requires its actual learning and persistence mechanisms to be documented. It does not invalidate the narrower claim that mere access and retrieval do not establish training.
 
@@ -96,7 +109,8 @@ The repository's canon review rule calls for counterarguments and revision condi
 - Root review: primary sources S1-S4 opened and examined; relevant repository material R1-R3 and GIT-WORKFLOW.md read at the stated baseline.
 - Separate technical Critic: independently supported the argument under fixed-weight inference and identified the in-context learning, system-boundary, explicit adaptation, and retention qualifications incorporated here.
 - Evidence type: source review and architectural reasoning. No experiment was run on a particular proprietary model, and no claim is made about a provider's actual training or retention configuration.
-- Approval state: supporting analysis and candidate wording. No new user approval of canon or presentation use is inferred.
+- Approval state: Richard explicitly stated, "The candidate is acceptable and correct," and directed preservation of catchphrases with a deeper explanation. The technical candidate is accepted; the teaching convention implements that author direction. Acceptance of this principle does not certify a future deck, post, or publication as having completed its own review.
+- Editorial review after acceptance: a separate Critic supported preserving the hooks with the accepted explanation, identified the relevant possible misreadings, and advised against requiring every hook to serve as a complete technical definition. The accepted technical explanation remains intact.
 - Conversation provenance: [Session record](2026-11-23-data-access-is-not-training-session.md).
 
 ## Sources
